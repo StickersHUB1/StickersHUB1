@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background: url(https://i.imgur.com/ippqOIB.gif);
-            font-family: 'Press Start 2P', cursive;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin-top: 250px;
-            background-size: 1500px;
+         margin: 0;
+    padding: 0;
+    background: url(https://i.imgur.com/ippqOIB.gif);
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: 1300px;
+    margin-top: 220px;
         }
 
         .title-container {
@@ -27,19 +27,24 @@
         }
 
         .version-button-container {
-            margin-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+    align-items: center; /* Centra los elementos horizontalmente */
+
         }
 
         .version-button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin-right: 10px;
-            cursor: pointer;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 5px 0; /* Ajusta la separación vertical entre los botones */
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+
         }
 
         #game-container {
@@ -228,8 +233,8 @@
     <div class="title-container">
         <h1>Free Profit Tracker Adventure</h1>
         <div class="version-button-container">
-            <a href="normal_version.html" class="version-button">Normal Version</a>
-            <a href="premium_version.html" class="version-button">Premium Version</a>
+            <a href="normal_version.html.html" class="version-button">Normal Version</a>
+            <a href="premium_version.html.html" class="version-button">Premium Version</a>
         </div>
     </div>
 
@@ -272,7 +277,9 @@
         </ul>
     </div>
     <p id="timestamp"><span id="current-time"></span></p>
-    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
+    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image" style="
+    width: 400px;
+">
     
 </body>
 
@@ -345,3 +352,4 @@
 </script>
 
 </html>
+
