@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url(https://i.imgur.com/v4EaN62.gif);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin-top: 450px;
+            background-size: 1400px;
+        }
+
+        h1 {
+                margin-bottom: 10px;
+    margin-top: -180px;
+        }
+
+        .container {
+            border: 2px solid red;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: dimgray;
+            margin-bottom: 20px;
+            max-width: 400px;
+            box-shadow: 0 0 10px #f06419, 0 0 20px #ffac00, 0 0 30px #f2ff00;
+        }
+
+        #prize {
+            font-size: 24px;
+            margin-top: 20px;
+            line-height: 1.5;
+            color: greenyellow;
+        }
+
+        .prize-hidden {
+            display: none;
+        }
+
+        #play-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #wax-wallet-label {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #wax-wallet-input {
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: 2px solid white;
+            background-color: rgb(0 0 0);
+            color: white;
+            border-color: darkorange;
+        }
+
+        #logo {
+            width: 200px;
+            height: auto;
+            margin-top: auto;
+            width: 100px;
+            height: fit-content;
+            border-radius: 20px;
+            border: 2px solid white;
+            margin-bottom: 0px;
+            border-color: #cb8f8f;
+            box-shadow: 0 0 10px #000000, 0 0 20px #393939, 0 0 30px #bababa;
+        }
+
+        .characters {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .character {
+            width: 100px;
+            height: fit-content;
+            border-radius: 20px;
+            border: 2px solid white;
+            margin-bottom: 20px;
+            border-color: #cb8f8f;
+            box-shadow: 0 0 10px #000000, 0 0 20px #393939, 0 0 30px #bababa;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 80%;
+            }
+
+            #timestamp {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                color: #ffffff;
+                font-size: 12px;
+                padding: 5px 10px;
+                background-color: #d31cda;
+                border-radius: 5px;
+                box-shadow: 0 0 10px #d31cda;
+            }
+
+            #info {
+                border: 3px solid #1d83e8;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+                margin-top: 40px;
+                background: url(https://i.imgur.com/aEuQQJZ.gif);
+                padding: 20px;
+                border-radius: 10px;
+                width: 80%;
+                text-align: left;
+                background-size: 1100px;
+                margin-left: 17px;
+            }
+
+            #info ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #info li {
+                margin-bottom: 10px;
+                font-size: 10px;
+            }
+        }
+    </style>
+    <title>DIVINE Prizes Bag</title>
+</head>
+
+<body>
+    <h1>DIVINE Prizes Bag</h1>
+
+<button onclick="goBack()" style="
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 50px;
+">Go Back</button>
+
+    <div class="container">
+        <button id="play-button" onclick="play()">Play</button>
+        
+        <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet">
+        <div id="prize" class="prize-hidden"></div>
+        <div class="characters">
+            <img class="character" src="https://i.imgur.com/MULy4QM.jpeg" alt="Character 1">
+            <img class="character" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Character 2">
+        </div>
+    </div>
+    <div id="prize-breakdown" style="
+        border: 2px solid red;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        max-width: 400px;
+        box-shadow: 0 0 10px #f06419, 0 0 20px #ffac00, 0 0 30px #f2ff00;
+        margin-top: 50px;
+        background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+        width: 300px;
+        background-position: center;
+        background-size: 400px;
+    ">
+        <p>1 CLAIM YOUR PRIZES HERE: <a href="https://discord.gg/Txasq3jqRe" target="_blank">https://discord.gg/Txasq3jqRe</a>⬅️</p>
+        <p>1 NFT FROM 0.1 TO 1 WAX. = 65%</p>
+        <p>1 NFT FROM 1 TO 5 WAX. = 30%</p>
+        <p>1 NFT FROM 5 TO 10 WAX. = 15%</p>
+        <p>1 NFT FROM 10 TO 20 WAX. = 10%</p>
+        <p>1 NFT FROM 20 TO 40 WAX. = 5%</p>
+        <p>1 NFT FROM 40 TO 60 WAX. = 2.5%</p>
+        <p>1 NFT FROM 60 TO 80 WAX. = 0.9%</p>
+        <img id="logo" src="https://i.imgur.com/bvB4QMC.gif" alt="DIVINE Logo">
+    </div>
+
+    <div id="info" style="
+    border: 2px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 0 10px #f06419, 0 0 20px #ffac00, 0 0 30px #f2ff00;
+    background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+    width: 300px;
+    background-position: center;
+    background-size: 400px;
+    height: 175px;
+    text-align: left;
+    margin: auto;
+    margin-top: 50px;
+    ">
+        <h2 style="text-align: center;margin-top: 10px;">📍READ ME</h2>
+        <ul>
+            <li style="
+    font-size: 10px;
+">📌To claim your prize, it is necessary to send a screenshot to Discord showing the prize you have won. </li>
+            <li style="
+    font-size: 10px;
+">📌Please send a screenshot to Discord in the 'ptc-screenshots' channel. </li>
+            <li style="
+    font-size: 10px;
+">📌Make sure to include your wallet address, and whether you are a holder or not, or else prizes will not be awarded. </li>
+        </ul>
+        <img src="https://i.imgur.com/JaYGmbQ.gif" style="width: 400px;margin-left: -50px;margin-top: 50px;">
+    </div>
+
+    <span id="current-time" style="
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        color: #ffffff;
+        font-size: 16px;
+        padding: 5px 10px;
+        background-color: #d31cda;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #d31cda;
+    ">10:28:38 (17 - 03 - 2024)</span>
+
+    
+
+    <script>
+        // Variable global para rastrear si el juego ha sido jugado hoy
+        var gamePlayedToday = false;
+
+        function play() {
+            // Verificar si el juego ya ha sido jugado hoy
+            if (gamePlayedToday) {
+                alert("The game can only be played once per day. Please try again tomorrow.");
+                return; // Detener la ejecución del juego
+            }
+
+            const prizes = [
+                "Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter", "BotPod Knight", "BotPod Joy", "BotPod Prime", "BotPod Warrior", "BotPod Elite Guard", "BotPod Definitive", "BotPod Sovereign Sentinel", "BotPod Ascendant", "Cosmic Tentacle Critter ", "Green Cosmic Tentacle Critter ", "Red Cosmic Tentacle Critter ", "Cosmic Purr", "Infernal Purr"
+            ];
+
+            const randomIndex = Math.floor(Math.random() * prizes.length);
+            const prize = prizes[randomIndex];
+            document.getElementById("prize").innerHTML = "You've won a " + prize; // Añadir el mensaje aleatorio antes del premio
+            document.getElementById("prize").classList.remove("prize-hidden");
+
+            // Actualizar la variable global para indicar que el juego ha sido jugado hoy
+            gamePlayedToday = true;
+        }
+
+        // Mostrar la hora actual
+        function updateCurrentTime() {
+            var now = new Date();
+            var day = now.getDate().toString().padStart(2, '0');
+            var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
+            var year = now.getFullYear();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+
+            var formattedDate = day + ' - ' + month + ' - ' + year;
+            var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
+            document.getElementById('current-time').innerText = currentTime;
+        }
+
+        // Actualizar cada segundo
+        setInterval(updateCurrentTime, 1000);
+
+        // Mostrar la hora actual al cargar la página
+        window.onload = updateCurrentTime;
+
+        // Función para retroceder a la página index.html
+        function goBack() {
+            window.location.href = "index.html.html";
+        }
+    </script>
+
+</body>
+
+</html>
