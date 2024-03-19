@@ -6,20 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-         margin: 0;
-    padding: 0;
-    background: url(https://i.imgur.com/6XsfTVD.gif);
-    font-family: 'Press Start 2P', cursive;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-size: 1600px;
-    margin-top: 350px;
-    background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin-top: 350px;
+            background-color: #000; /* Color de fondo */
         }
 
         .title-container {
@@ -28,24 +26,22 @@
         }
 
         .version-button-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column; /* Cambia la dirección de los elementos a vertical */
-    align-items: center; /* Centra los elementos horizontalmente */
-
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+            align-items: center; /* Centra los elementos horizontalmente */
         }
 
         .version-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    margin: 5px 0; /* Ajusta la separación vertical entre los botones */
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px 0; /* Ajusta la separación vertical entre los botones */
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
         }
 
         #game-container {
@@ -60,6 +56,7 @@
             width: 250px;
             margin-bottom: -60px;
             background-color: dimgray;
+    z-index: 1;
         }
 
         #logo {
@@ -227,28 +224,87 @@
             font-size: 9px;
         }
 
+ #background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 600px) {
+    #background-container {
+        background-attachment: scroll;
+    }
+}
+
+        canvas {
+              position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+
+        .neon-image {
+               position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
+    max-width: 80%;
+    max-height: 80%;
+    filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+    z-index: -2;
+        }
+
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
+            }
+            to {
+                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            }
+            to {
+                filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P">
     <title>Free Profit Tracker Adventure</title>
 </head>
 
 <body>
+    <canvas id="canvas"></canvas>
+    <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
     <div class="title-container">
-         <img src="https://i.imgur.com/I1wnsYi.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">
+        <img src="https://i.imgur.com/I1wnsYi.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">
         <div class="version-button-container">
             <a href="normal_version.html" class="version-button" style="
-    background: url(https://i.imgur.com/r5RLdRW.jpeg);
-    background-position: 150px;
-">Normal Version</a>
+                background: url(https://i.imgur.com/r5RLdRW.jpeg);
+                background-position: 150px;
+            ">Normal Version</a>
             <a href="premium_version.html" class="version-button" style="
-    background: url(https://i.imgur.com/hqG7kuT.jpeg);
-    background-position: center;
-">Premium Version</a>
+                background: url(https://i.imgur.com/hqG7kuT.jpeg);
+                background-position: center;
+            ">Premium Version</a>
             <a href="divine_version.html" class="version-button" style="
-    background: url(https://i.imgur.com/rJEawSz.jpeg);
-    background-position: center;
-    background-size: 400px;
-">Divine Version</a>
+                background: url(https://i.imgur.com/rJEawSz.jpeg);
+                background-position: center;
+                background-size: 400px;
+            ">Divine Version</a>
         </div>
     </div>
 
@@ -269,7 +325,7 @@
         </div>
     </div>
     <div id="gameplay">
-        <h2 style="margin-top: 90px;">Your Progress:</h2>
+        <h2 style="margin-top: 90px;">Your Prize:</h2>
         <!-- Display player's progress here -->
     </div>
     <div id="result"></div>
@@ -292,77 +348,121 @@
     </div>
     <p id="timestamp"><span id="current-time"></span></p>
     <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image" style="
-    width: 400px;
-">
-    
-</body>
+        width: 400px;
+    ">
 
-<script>
-    var currentClicks = 0;
-    var currentLevel = 0;
-    var levelThresholds = [500];
+    <script>
+        var currentClicks = 0;
+        var currentLevel = 0;
+        var levelThresholds = [500];
 
-    function incrementCounter() {
-        currentClicks++;
+        function incrementCounter() {
+            currentClicks++;
 
-        if (currentClicks >= levelThresholds[currentLevel]) {
-            currentLevel++;
-            currentClicks = 0;
+            if (currentClicks >= levelThresholds[currentLevel]) {
+                currentLevel++;
+                currentClicks = 0;
 
-            var randomPrizes = getRandomPrizes(currentLevel);
-            var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-            var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
+                var randomPrizes = getRandomPrizes(currentLevel);
+                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
+                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
 
-            document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-            document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
-            document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+                document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
+                document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
+                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
 
-            // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
-            setTimeout(function () {
-                document.getElementById('winMessage').innerHTML = "";
-            }, 2000);
+                // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
+                setTimeout(function () {
+                    document.getElementById('winMessage').innerHTML = "";
+                }, 2000);
+            }
+
+            // Actualizar la barra de progreso
+            document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+
+            // Actualizar el contador de nivel
+            document.getElementById('level-counter').innerText = "Level " + currentLevel;
+
+            // Actualizar el porcentaje de progreso (de 100 a 0)
+            document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
         }
 
-        // Actualizar la barra de progreso
-        document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+        function getRandomPrizes(level) {
+            var prizes = [
+                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
 
-        // Actualizar el contador de nivel
-        document.getElementById('level-counter').innerText = "Level " + currentLevel;
+            ];
 
-        // Actualizar el porcentaje de progreso (de 100 a 0)
-        document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
-    }
+            return prizes[level - 1];
+        }
 
-    function getRandomPrizes(level) {
-        var prizes = [
-            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-            
-        ];
+        // Mostrar la hora actual
+        function updateCurrentTime() {
+            var now = new Date();
+            var day = now.getDate().toString().padStart(2, '0');
+            var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
+            var year = now.getFullYear();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
 
-        return prizes[level - 1];
-    }
+            var formattedDate = day + ' - ' + month + ' - ' + year;
+            var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
+            document.getElementById('current-time').innerText = currentTime;
+        }
 
-    // Mostrar la hora actual
-    function updateCurrentTime() {
-        var now = new Date();
-        var day = now.getDate().toString().padStart(2, '0');
-        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
-        var year = now.getFullYear();
-        var hours = now.getHours().toString().padStart(2, '0');
-        var minutes = now.getMinutes().toString().padStart(2, '0');
-        var seconds = now.getSeconds().toString().padStart(2, '0');
+        // Actualizar cada segundo
+        setInterval(updateCurrentTime, 1000);
 
-        var formattedDate = day + ' - ' + month + ' - ' + year;
-        var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
-        document.getElementById('current-time').innerText = currentTime;
-    }
+        // Mostrar la hora actual al cargar la página
+        window.onload = updateCurrentTime;
+    </script>
 
-    // Actualizar cada segundo
-    setInterval(updateCurrentTime, 1000);
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    // Mostrar la hora actual al cargar la página
-    window.onload = updateCurrentTime;
+        const stars = [];
+        const numStars = 100;
 
-</script>
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0ff';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
+
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
 
 </html>
