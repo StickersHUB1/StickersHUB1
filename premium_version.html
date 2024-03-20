@@ -6,20 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-         margin: 0;
-    padding: 0;
-    background: url(https://i.imgur.com/1cGcI7c.gif);
-    font-family: 'Press Start 2P', cursive;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin-top: 530px;
-    background-size: 1600px;
-    background-position: center;
+       margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            margin-top: 530px;
         }
 
         #game-container {
@@ -234,12 +232,67 @@
     text-decoration: none;
         }
 
+#background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @media only screen and (max-width: 600px) {
+            #background-container {
+                background-attachment: scroll;
+            }
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+        .neon-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
+            max-width: 80%;
+            max-height: 80%;
+            filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            z-index: -2;
+        }
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
+            }
+            to {
+                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
+            }
+        }
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            }
+            to {
+                filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P">
     <title>Premium Profit Tracker Adventure</title>
 </head>
 
 <body>
+<canvas id="canvas"></canvas>
+    <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
+    <img src="https://i.imgur.com/lngXzrK.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 20px;">
      <img src="https://i.imgur.com/1JUUi63.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">
     <div class="version-button-container">
         <a href="index.html" class="version-button">Go Back</a>
@@ -273,7 +326,8 @@
     <div id="prizes">
         <h2>Prizes:</h2>
         <ul>
-            <li><a href="https://discord.gg/Txasq3jqRe" target="_blank">CLAIM YOUR PRIZES HERE</a>⬅️</li>
+            <li>Claim Prizes Here:
+<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;">https://discord.gg/NeUgxfuSZQ</a>⬅️</li>
             <li>Level 1: 1 NFT FROM 0.1 TO 1 WAX.</li>
             <li>Level 2: 1 NFT FROM 1 TO 5 WAX.</li>
             <li>Level 3: 1 NFT FROM 5 TO 10 WAX.</li>
@@ -281,15 +335,16 @@
             <li>Level 5: 1 NFT FROM 20 TO 40 WAX.</li>
             <li>Level 6: 1 NFT FROM 40 TO 60 WAX.</li>
             <li>Level 7: 1 NFT FROM 60 TO 80 WAX.</li>
-            <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
         </ul>
+        <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
     </div>
     <div id="info">
         <h2 style="text-align: center;">📍READ ME</h2>
         <ul>
-            <li>📌To claim your prize, it is necessary to send a screenshot to Discord showing the prize you have won and your wax wallet. </li>
-            <li>📌For each level you advance, please send a screenshot to Discord in the 'ptc-screenshots' channel. </li>
-            <li>📌Make sure to include your wallet address and confirm whether you are a holder of the NFT PROFIT TRACKER CRITTER PREMIUM. Otherwise, prizes will not be awarded.. </li>
+            <li>📌To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
+            <li>📌Don't forget to include your wallet address and indicate whether you are a proud owner of the Profit Tracker Critter Premium. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
+            <li>📌Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗
+<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;">https://discord.gg/NeUgxfuSZQ</a></li>
         </ul>
     </div>
     <span id="current-time" style="
@@ -388,5 +443,50 @@
     setInterval(updateCurrentTime, 1000);
     updateCurrentTime();
 </script>
+<script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
+        const stars = [];
+        const numStars = 100;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#FFD700';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
+
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
 </html>
