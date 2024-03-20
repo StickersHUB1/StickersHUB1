@@ -17,15 +17,15 @@
             justify-content: center;
             height: 100vh;
             background-color: #000;
-            margin-top: 550px;
+            margin-top: 650px;
         }
 
         #game-container {
-            padding: 20px;
+         padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     border: 3px solid #1d83e8;
     border-radius: 10px;
     box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
@@ -35,11 +35,10 @@
         }
 
         #title-image {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-            margin-top: -35px;
-            margin-left: 0px;
+                 width: 100%;
+    max-width: 400px;
+    margin-top: -35px;
+    margin-left: 0px;
         }
 
         #logo {
@@ -52,12 +51,14 @@
         }
 
         #protagonist {
-            width: 100px;
-            height: 200px;
-            margin-top: -75px;
-            margin-left: 0px;
-            border: solid 2px palegoldenrod;
-            box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
+               width: 120px;
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 0px;
+    border: solid 2px palegoldenrod;
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
+    border-radius: 10px;
+    margin-bottom: 0px;
         }
 
         #play-button {
@@ -135,16 +136,16 @@
 
         #prizes {
             border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 0px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            text-align: center;
-            background-size: 1000px;
-            background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+    margin-top: 50px;
+    background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    background-size: 1000px;
+    background-position: center;
         }
 
         #prizes ul {
@@ -250,12 +251,12 @@
             }
         }
         canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
+               position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
         }
         .neon-image {
             position: fixed;
@@ -293,10 +294,8 @@
 <canvas id="canvas"></canvas>
     <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
     <img src="https://i.imgur.com/lngXzrK.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 20px;">
-     <img src="https://i.imgur.com/1JUUi63.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">
-    <div class="version-button-container">
-        <a href="index.html" class="version-button">Go Back</a>
-    </div>
+     <img src="https://i.imgur.com/1JUUi63.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">   
+</div>
     <div id="game-container">
         <button id="play-button" onclick="startAutoIncrement()" style="
     background: url(https://i.imgur.com/hqG7kuT.jpeg);
@@ -317,11 +316,12 @@
         </div>
     </div>
     <div id="gameplay">
-        <h2 style="margin-top: 90px;">Your Prize:</h2>
+        <h2 style="margin-top: 70px;">Your Prize:</h2>
     </div>
     <div id="result"></div>
-
-    <div id="winMessage"></div> <!-- agregado por Rodo -->
+    <div class="version-button-container">
+        <a href="index.html" class="version-button">Go Back</a>
+    </div>
 
     <div id="prizes">
         <h2>Prizes:</h2>
@@ -342,7 +342,7 @@
         <h2 style="text-align: center;">📍READ ME</h2>
         <ul>
             <li>📌To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
-            <li>📌Don't forget to include your wallet address and indicate whether you are a proud owner of the Profit Tracker Critter Premium. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
+            <li>📌Don't forget to include your wallet address in order to specify whether you are the owner of Profit Tracker Critter Premium. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
             <li>📌Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗
 <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;">https://discord.gg/NeUgxfuSZQ</a></li>
         </ul>
@@ -358,8 +358,8 @@
     border-radius: 5px;
     box-shadow: 0 0 10px #d31cda; /* Efecto visual adicional */
 ">22:01:03 (16 - 03 - 2024)</span>
-    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
     <img id="protagonist" src="https://i.imgur.com/U59FAuj.gif" alt="protagonist">
+    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
 </body>
 
 <script>
@@ -450,7 +450,7 @@
         canvas.height = window.innerHeight;
 
         const stars = [];
-        const numStars = 100;
+        const numStars = 250;
 
         for (let i = 0; i < numStars; i++) {
             stars.push({
