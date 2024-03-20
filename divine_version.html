@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
-                margin: 0;
-    padding: 0;
-    background: url(https://i.imgur.com/yutGMtp.gif);
+           padding: 0;
     font-family: 'Press Start 2P', cursive;
     color: white;
     text-align: center;
@@ -18,9 +16,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin-top: 450px;
-    background-size: 1600px;
-    background-position: center;
+    background-color: #000;
+    margin-top: 475px;
         }
 
         h1 {
@@ -40,7 +37,7 @@
         }
 
         #prize {
-            font-size: 24px;
+            font-size: 10px;
             margin-top: 20px;
             line-height: 1.5;
             color: greenyellow;
@@ -157,26 +154,69 @@
                 font-size: 10px;
             }
         }
+#background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @media only screen and (max-width: 600px) {
+            #background-container {
+                background-attachment: scroll;
+            }
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+        .neon-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
+            max-width: 80%;
+            max-height: 80%;
+            filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            z-index: -2;
+        }
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
+            }
+            to {
+                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
+            }
+        }
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            }
+            to {
+                filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
+            }
+        }
     </style>
     <title>DIVINE Prizes Bag</title>
 </head>
 
 <body>
-    <img src="https://i.imgur.com/L775cYg.png" style="width: 400px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 20px;">
-
-    <button onclick="goBack()" style="
-    padding: 10px 20px;
-    font-size: 18px;
-    margin-right: 10px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-bottom: 50px;
-    font-family: 'Press Start 2P';
-">Go Back</button>
+    <canvas id="canvas"></canvas>
+    <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
+    <img src="https://i.imgur.com/L775cYg.png" style="width: 400px;
+    margin-left: 0px;
+    margin-top: -90px;
+    MARGIN-BOTTOM: 50px;">
 
     <div class="container">
         <button id="play-button" onclick="play()">Play</button>
@@ -187,15 +227,31 @@
             <img class="character" src="https://i.imgur.com/MULy4QM.jpeg" alt="Character 1">
             <img class="character" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Character 2">
         </div>
-    </div>
+
+    </div><button onclick="goBack()" style="
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 25px;
+    font-family: 'Press Start 2P';
+margin-top: 25px;
+">Go Back</button>
+</div>
+
     <div id="prize-breakdown" style="
        border: 2px solid red;
     padding: 20px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     max-width: 400px;
     box-shadow: 0 0 10px #f06419, 0 0 20px #ffac00, 0 0 30px #f2ff00;
-    margin-top: 50px;
+    margin-top: 25px;
     background: url(https://i.imgur.com/0PWVZ7a.jpeg);
     width: 300px;
     background-position: center;
@@ -214,7 +270,7 @@
     </div>
 
     <div id="info" style="
-        border: 2px solid red;
+    border: 2px solid red;
     padding: 20px;
     border-radius: 10px;
     max-width: 400px;
@@ -223,25 +279,22 @@
     width: 300px;
     background-position: center;
     background-size: 400px;
-    height: 215px;
+    height: 410px;
     text-align: left;
     margin: auto;
     margin-top: 50px;
-    ">
-        <h2 style="text-align: center;margin-top: 10px;">📍READ ME</h2>
-        <ul>
-            <li style="
-    font-size: 10px;
-">📌To claim your prize, it is necessary to send a screenshot to Discord showing the prize you have won. </li>
-            <li style="
-    font-size: 10px;
-">📌Please send a screenshot to Discord in the 'ptc-screenshots' channel. </li>
-            <li style="
-    font-size: 10px;
-">📌Make sure to include your wallet address, and whether you are a holder or not, or else prizes will not be awarded. </li>
-        </ul>
-        <img src="https://i.imgur.com/JaYGmbQ.gif" style="width: 400px;margin-left: -50px;margin-top: 0px;">
-    </div>
+">
+    <h2 style="text-align: center;margin-top: 10px;">📍READ ME</h2>
+    <ul style="margin-top: 20px;"> <!-- Añadido margen arriba -->
+        <li style="font-size: 10px;margin: 10px;margin-left: 0px;">📌To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
+
+        <li style="font-size: 10px;margin: 10px;margin-left: 0px;">📌 Don't forget to include your wallet address in order to specify whether you are the owner of DIVINE RARITY. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
+
+        <li style="font-size: 10px;">📌Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗
+<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;font-size: 8px;">https://discord.gg/NeUgxfuSZQ</a></li>
+    </ul>
+    <img src="https://i.imgur.com/JaYGmbQ.gif" style="width: 400px;margin-left: -50px;margin-top: 0px;">
+</div>
 
     <span id="current-time" style="
             position: fixed;
@@ -308,7 +361,50 @@
             window.location.href = "index.html";
         }
     </script>
+<script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
+        const stars = [];
+        const numStars = 250;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#800080';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
+
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
 </body>
-
 </html>
