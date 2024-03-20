@@ -17,27 +17,26 @@
             justify-content: center;
             height: 100vh;
             background-color: #000;
-            margin-top: 530px;
+            margin-top: 600px;
         }
         #game-container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            width: 250px;
-            background-color: dimgray;
-            margin-top: 30px;
-            margin-bottom: -60px;
+             padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #1d83e8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+    width: 250px;
+    background-color: dimgray;
+    margin-top: 100px;
+    margin-bottom: -70px;
         }
         #title-image {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 40px;
-            margin-top: -35px;
-            margin-left: 0px;
+                 width: 100%;
+    max-width: 400px;
+    margin-top: -35px;
+    margin-left: 0px;
         }
         #logo {
             width: 50px;
@@ -48,12 +47,14 @@
             box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
         }
         #protagonist {
-            width: 100px;
-            height: 200px;
-            margin-top: -75px;
-            margin-left: 0px;
-            border: solid 2px palegoldenrod;
-            box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
+               width: 120px;
+    height: 200px;
+    margin-top: 50px;
+    margin-left: 0px;
+    border: solid 2px palegoldenrod;
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
+    border-radius: 10px;
+    margin-bottom: 0px;
         }
         #play-button {
             padding: 10px 20px;
@@ -119,17 +120,17 @@
             margin-top: 30px;
         }
         #prizes {
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 0px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            text-align: center;
-            background-size: 1000px;
-            background-position: center;
+                border: 3px solid #1d83e8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+    margin-top: 50px;
+    background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    background-size: 1000px;
+    background-position: center;
         }
         #prizes ul {
             list-style: none;
@@ -258,11 +259,10 @@
 <body>
     <canvas id="canvas"></canvas>
     <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
-    <img src="https://i.imgur.com/lngXzrK.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 20px;">
-    <div class="version-button-container">
-        <a href="index.html" class="version-button">Go Back</a>
+    <img src="https://i.imgur.com/lngXzrK.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: -80px;">
     </div>
-    <div id="game-container">
+
+        <div id="game-container">
         <button id="play-button" onclick="incrementCounter()">👉Click Profit👈</button>
         <div id="wallet-input-container">
             <label id="wallet-label" for="wallet-input">WAX Wallet:</label>
@@ -278,11 +278,14 @@
             </div>
         </div>
     </div>
-    <div id="gameplay">
-        <h2 style="margin-top: 90px;">Your Progress:</h2>
+<div id="gameplay">
+        <h2 style="margin-top: 80px;">Your Prize:</h2>
         <!-- Display player's progress here -->
     </div>
     <div id="result"></div>
+<div class="version-button-container">
+        <a href="index.html" class="version-button">Go Back</a>
+    </div>
     <div id="prizes">
         <h2>Prizes:</h2>
         <!-- Lista de premios
@@ -310,8 +313,8 @@
         </ul>
     </div>
     <p id="timestamp"><span id="current-time"></span></p>
+    <img id="protagonist" src="https://i.imgur.com/BCkJSGb.gif" alt="protagonist" style="width: 120px;height: 200px;margin-top: 50px;margin-left: 0px;border: solid 2px palegoldenrod;box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;border-radius: 10px;margin-bottom: 0px;">
     <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
-    <img id="protagonist" src="https://i.imgur.com/BCkJSGb.gif" alt="protagonist" style="width: 120px;height: 200px;margin-top: -75px;margin-left: 0px;border: solid 2px palegoldenrod;box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;border-radius: 10px;">
     <script>
         var currentClicks = 0;
         var currentLevel = 0;
