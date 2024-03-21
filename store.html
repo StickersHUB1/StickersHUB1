@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Tienda de NFTs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .title-animation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title-animation img {
+            width: 250px;
+        }
+
+        .section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 5px #ff6e40) drop-shadow(0 0 10px #ff3d00) drop-shadow(0 0 15px #d50000);
+            border: solid 1px #486b62;
+            border-radius: 10px;
+            background-image: url(https://i.imgur.com/0PWVZ7a.jpeg);
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .tooltip img {
+            width: 20px;
+        }
+
+        .info-box {
+            font-size: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            width: auto; /* Ajustamos el ancho automáticamente */
+            max-width: 300px; /* Límite máximo de ancho */
+            display: none;
+            white-space: normal; /* Permitimos saltos de línea */
+        }
+
+        .tooltip:hover .info-box {
+            display: block;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nft-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            flex: 0 0 calc(33.33% - 20px);
+            max-width: calc(33.33% - 20px);
+            position: static;
+        }
+
+        .nft-card:hover {
+            transform: scale(1.05);
+        }
+
+        .nft-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .nft-title {
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+        .nft-title:hover {
+            color: blue;
+        }
+
+        .nft-category {
+            font-size: 14px;
+            text-align: center;
+            color: #333;
+        }
+
+        .nft-price {
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+            color: #333;
+            margin-top: auto;
+        }
+
+        @media screen and (max-width: 600px) {
+            .nft-card {
+                flex-basis: calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+
+            .title-animation img {
+                width: 250px;
+            }
+        }
+
+        #background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }        
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+
+        .neon-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
+            max-width: 80%;
+            max-height: 80%;
+            filter: drop-shadow(0 0 5px #ff99cc) drop-shadow(0 0 10px #ff6633) drop-shadow(0 0 15px #ff3300);
+            z-index: -2;
+        }
+
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
+            }
+            to {
+                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 5px #ffcc80) drop-shadow(0 0 10px #ffab40) drop-shadow(0 0 15px #ff8f00);
+            }
+            to {
+                filter: drop-shadow(0 0 5px #ff6e40) drop-shadow(0 0 10px #ff3d00) drop-shadow(0 0 15px #d50000);
+            }
+        }
+
+        /* Botón verde */
+        .go-back-btn {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+            bottom: 0;
+            
+        }
+        
+        /* Centro del botón Go Back */
+        .go-back-btn {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: -15px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<img class="neon-image" src="https://i
+
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
+<div class="container">
+    <div class="title-animation">
+        <img src="https://i.imgur.com/Z1miBpW.png">
+        <img src="https://i.imgur.com/FUAzPF9.png">
+</div>
+
+<div class="go-back-btn">
+<a href="index.html" class="version-button" style="
+    color: white;
+    text-decoration: none;
+">Go Back</a>
+
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">Profit Tracker Critters<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌟 Discover the Profit Tracker Critters! 🌟<br><br>
+
+Dive into the thrilling world of Profit Tracker Critters, demon hunters battling against the forces of evil and distributing generous rewards among their loyal followers.<br><br>
+
+🔥 Special Feature: Profit Tracker Critters are exclusive NFTs that unlock the benefits of the Profit Tracker System, allowing you to participate in hunting down malicious creatures and earning profits while doing so.<br><br>
+
+🎉 Benefits for Holders: The rewards don't end there! As a proud owner of a Profit Tracker Critter, you'll receive a 5% share of the game's royalty pool every month. Additionally, you'll have privileged access to exclusive events and special airdrops, providing you with even more opportunities to enjoy and maximize your investment in these valuable NFTs.<br><br>
+
+Join the battle against evil and secure your place in history alongside the Profit Tracker Critters!</span></span></h2>
+        <div class="grid">
+            <div class="nft-card">
+                <img class="nft-image" src="https://i.imgur.com/BCkJSGb.gif" alt="Profit Tracker Critter (Standard)">
+                <h3 class="nft-title">Profit Tracker Critter (Standard)</h3>
+                <span class="nft-price">50 WAX</span>
+            </div>
+            <div class="nft-card">
+                <img class="nft-image" src="https://i.imgur.com/U59FAuj.gif" alt="Profit Tracker Critter (Premium)">
+                <h3 class="nft-title">Profit Tracker Critter (Premium)</h3>
+                <span class="nft-price">75 WAX</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Divines<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌌 Explore the Majestic Divines! 🌌<br><br>
+
+Enter the enchanting realm of Divines, majestic creatures serving as the intergalactic companions of the BotPod. These guardians are entrusted with the task of nurturing and safeguarding the universe, making them extraordinary allies to have by your side.<br><br>
+
+⭐ Divine Abilities: As divine beings, these creatures possess the remarkable ability to grant wishes. With a Divine in your inventory, you can test your luck by making a wish and claiming one random prize daily, ranging from 0.1 WAX to 80 WAX.<br><br>
+
+🎁 Exclusive Rewards: But that's not all! In addition to wish-granting, Divines offer their owners exclusive airdrops and access to special events, ensuring that every day brings new surprises and opportunities for adventure.<br><br>
+
+Embrace the magic of the universe and embark on an extraordinary journey with your Divine companion today!</span></span></h2>
+        <div class="grid">
+            <div class="nft-card">
+                <img class="nft-image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Infernal Purr">
+                <h3 class="nft-title">Infernal Purr (Divine)</h3>
+                <span class="nft-price">80 WAX</span>
+            </div>
+            <div class="nft-card">
+                <img class="nft-image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Cosmic Purr">
+                <h3 class="nft-title">Cosmic Purr (Divine)</h3>
+                <span class="nft-price">80 WAX</span>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const numStars = 100;
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            vx: Math.random() * 0.5,
+            vy: Math.random() * 0.5
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ff1744';
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            star.x += star.vx;
+            star.y += star.vy;
+
+            if (star.x < 0 || star.x > canvas.width) {
+                star.vx = -star.vx;
+            }
+
+            if (star.y < 0 || star.y > canvas.height) {
+                star.vy = -star.vy;
+            }
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+</body>
+</html>
+</body>
+</html>
+
