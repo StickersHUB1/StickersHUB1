@@ -8,419 +8,136 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Press Start 2P', cursive;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin-top: 350px;
             background-color: #000; /* Color de fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Evita que el contenido se desplace más allá de la ventana */
+        }
+
+        .content-container {
+            text-align: center;
+            z-index: 1; /* Asegura que el contenido esté por encima del canvas */
         }
 
         .title-container {
-            margin-bottom: -575px;
-            margin-top: 225px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: solid 2px #dc3030;
+            background-color: #666;
+            border-radius: 10pc;
+            margin-top: 10px;
         }
 
         .version-button-container {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column; /* Cambia la dirección de los elementos a vertical */
-            align-items: center; /* Centra los elementos horizontalmente */
+            display: none; /* Inicialmente oculto */
+            flex-direction: column; /* Botones dispuestos verticalmente */
+            gap: 10px; /* Espacio entre los botones */
+            align-items: center; /* Alinea los botones en el centro */
         }
 
         .version-button {
             padding: 10px 20px;
             font-size: 18px;
-            margin: 5px 0; /* Ajusta la separación vertical entre los botones */
             cursor: pointer;
-            background-color: #4caf50;
             color: white;
             border: none;
             border-radius: 5px;
             text-decoration: none;
+            width: 200px;
+            background-color: #444;
+            border: solid 2px darkred;
+            transition: background-color 0.3s ease; /* Transición suave del color de fondo */
         }
 
-        #game-container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 610px;
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            width: 250px;
-            margin-bottom: -60px;
-            background-color: dimgray;
-    z-index: 1;
+        /* Cambia el color de fondo y agrega un resplandor al pasar el mouse sobre los botones */
+        .version-button:hover {
+            background-color: #666;
+            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7); /* Resplandor blanco */
+            background-image: none;
         }
 
-        #logo {
-            width: 50px;
-            height: 50px;
-            margin-top: 20px;
-            margin-left: 0px;
-            border: 2px solid royalblue;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+        /* Imagen al pasar el ratón sobre el botón */
+        .version-button:hover.free-version {
+            background-image: url('https://i.imgur.com/bIWWXDn.jpeg');
+            background-size: cover;
         }
 
-        #protagonist {
-            width: 100px;
-            height: 200px;
-            margin-top: -75px;
-            margin-left: 0px;
-            border: solid 2px palegoldenrod;
-            box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
+        .version-button:hover.normal-version {
+            background-image: url('https://i.imgur.com/BCkJSGb.gif');
+            background-size: cover;
         }
 
-        #play-button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        .version-button:hover.premium-version {
+            background-image: url('https://i.imgur.com/U59FAuj.gif');
+            background-size: cover;
         }
 
-        #wallet-input {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #fffdfa;
-            border: none;
-            border-radius: 5px;
-            color: black;
-        }
-
-        #wallet-label {
-            color: #ff8c00;
-        }
-
-        #progress-bar-container {
-            margin-top: 20px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #progress-bar {
-            width: 80%;
-            background: #555;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        #progress {
-            width: 0;
-            height: 20px;
-            background: #4CAF50;
-            border-radius: 10px;
-            text-align: center;
-            line-height: 20px;
-            color: black;
-        }
-
-        #level-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        #level-counter {
-            font-size: 18px;
-            margin-bottom: 0;
-        }
-
-        #progress-percentage {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: white;
-            margin-top: 30px;
-        }
-
-        #prizes {
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 0px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            text-align: center;
-            background-size: 1000px;
-            background-position: center;
-        }
-
-        #prizes ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #prizes li {
-            margin-bottom: 10px;
-            font-size: 9px;
-        }
-
-        #gameplay {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #result {
-            margin-top: 5px;
-            font-size: 14px;
-            text-shadow: 0 0 10px #fff, 0 0 20px #ffdb58, 0 0 30px #fff;
-            margin-bottom: 30px;
-        }
-
-        #timestamp {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            color: #ffffff;
-            font-size: 12px;
-            padding: 5px 10px;
-            background-color: #d31cda;
-            border-radius: 5px;
-            box-shadow: 0 0 10px #d31cda;
-            Z-INDEX: 2;
-        }
-
-        #info {
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 40px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            text-align: left;
-            background-size: 1000px;
-            background-position: center;
-        }
-
-        #info ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #info li {
-            margin-bottom: 10px;
-            font-size: 9px;
-        }
-
- #background-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
+        .version-button:hover.divine-version {
+                background-image: url(https://i.imgur.com/DWmXHZS.jpeg);
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    background-position: 0px;
+    background-position-y: 250px;
 
-@media only screen and (max-width: 600px) {
-    #background-container {
-        background-attachment: scroll;
-    }
-}
+        }
 
-        canvas {
-              position: fixed;
+        .version-button:hover.store {
+            background-image: url('https://i.imgur.com/VljKftf.jpeg');
+            background-size: cover;
+        }
+
+        #canvas {
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-        }
-
-        .neon-image {
-               position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
-    max-width: 80%;
-    max-height: 80%;
-    filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
-    z-index: -2;
-        }
-
-        @keyframes neon {
-            from {
-                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
-            }
-            to {
-                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
-            }
-        }
-
-        @keyframes pulse {
-            from {
-                filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
-            }
-            to {
-                filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
-            }
+            z-index: 0; /* Asegura que el canvas esté detrás del contenido */
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P">
     <title>Free Profit Tracker Adventure</title>
 </head>
 
 <body>
     <canvas id="canvas"></canvas>
-    <img class="neon-image" src="https://i.imgur.com/piRY1CC.png" alt="Neon Image">
-    <div class="title-container">
-        <img src="https://i.imgur.com/I1wnsYi.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: 0px;">
-        <div class="version-button-container">
-            <a href="normal_version.html" class="version-button" style="
-                background: url(https://i.imgur.com/r5RLdRW.jpeg);
-                background-position: 150px;
-            ">Normal Version</a>
-            <a href="premium_version.html" class="version-button" style="
-                background: url(https://i.imgur.com/hqG7kuT.jpeg);
-                background-position: center;
-            ">Premium Version</a>
-            <a href="divine_version.html" class="version-button" style="
-                background: url(https://i.imgur.com/rJEawSz.jpeg);
-                background-position: center;
-                background-size: 400px;
-            ">Divine Version</a>
+    <div class="content-container">
+        <div class="title-container">
+            <img src="https://i.imgur.com/Z1miBpW.png" alt="Title Image" style="width: 370px;">
         </div>
-    </div>
 
-    <div id="game-container">
-        <button id="play-button" onclick="incrementCounter()">👉Click Profit👈</button>
-        <div id="wallet-input-container">
-            <label id="wallet-label" for="wallet-input">WAX Wallet:</label>
-            <input type="text" id="wallet-input" placeholder="Enter your WAX Wallet">
+        <div class="section-header" onclick="toggleSection('profit')">Profit Tracker Adventure</div>
+        <div class="version-button-container" id="profit-buttons">
+            <a href="free_version.html" class="version-button free-version" style="background-position: center;background-position-y: 250px;">Free Version</a>
+            <a href="normal_version.html" class="version-button normal-version" style="
+    background-position: center;
+">Normal Version</a>
+            <a href="premium_version.html" class="version-button premium-version" style="
+    background-position: center;
+">Premium Version</a>
         </div>
-        <div id="progress-bar-container">
-            <div id="progress-bar">
-                <div id="progress"></div>
-            </div>
-            <div id="level-container">
-                <div id="level-counter">Level 0</div> <!-- Iniciando en nivel 0 -->
-                <div id="progress-percentage">100%</div>
-            </div>
+
+        <div class="section-header" onclick="toggleSection('divine')">Divine Prizes Bag</div>
+        <div class="version-button-container" id="divine-buttons">
+            <a href="divine_version.html" class="version-button divine-version">Divine Version</a>
+        </div>
+
+        <div class="section-header" onclick="toggleSection('store')">Store</div>
+        <div class="version-button-container" id="store-buttons">
+            <a href="store.html" class="version-button store">Store</a>
         </div>
     </div>
-    <div id="gameplay">
-        <h2 style="margin-top: 90px;">Your Prize:</h2>
-        <!-- Display player's progress here -->
-    </div>
-    <div id="result"></div>
-    <div id="prizes">
-        <h2>Prizes:</h2>
-        <!-- Lista de premios -->
-        <ul>
-            <li>CLAIM YOUR PRIZES HERE: <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;font-size: 8px;">https://discord.gg/NeUgxfuSZQ</a></li>
-            <li>Level 1: 1 NFT FROM 0.1 TO 1 WAX.</li>
-        </ul>
-        <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
-    </div>
-    <div id="info">
-        <h2 style="text-align: center;">📍READ ME</h2>
-        <ul>
-            <li>📌To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
-            <li>📌 Don't forget to include your WAX wallet address to receive your FREE prize!</li>
-            <li>📌Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗
-<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;font-size: 8px;">https://discord.gg/NeUgxfuSZQ</a></li>
-        </ul>
-    </div>
-    <p id="timestamp"><span id="current-time"></span></p>
-    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image" style="
-        width: 400px;
-    ">
 
     <script>
-        var currentClicks = 0;
-        var currentLevel = 0;
-        var levelThresholds = [500];
-
-        function incrementCounter() {
-            currentClicks++;
-
-            if (currentClicks >= levelThresholds[currentLevel]) {
-                currentLevel++;
-                currentClicks = 0;
-
-                var randomPrizes = getRandomPrizes(currentLevel);
-                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
-
-                document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-                document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
-                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
-
-                // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
-                setTimeout(function () {
-                    document.getElementById('winMessage').innerHTML = "";
-                }, 2000);
-            }
-
-            // Actualizar la barra de progreso
-            document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
-
-            // Actualizar el contador de nivel
-            document.getElementById('level-counter').innerText = "Level " + currentLevel;
-
-            // Actualizar el porcentaje de progreso (de 100 a 0)
-            document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
+        function toggleSection(section) {
+            const buttons = document.getElementById(`${section}-buttons`);
+            buttons.style.display = (buttons.style.display === 'none' || buttons.style.display === '') ? 'flex' : 'none';
         }
 
-        function getRandomPrizes(level) {
-            var prizes = [
-                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-
-            ];
-
-            return prizes[level - 1];
-        }
-
-        // Mostrar la hora actual
-        function updateCurrentTime() {
-            var now = new Date();
-            var day = now.getDate().toString().padStart(2, '0');
-            var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
-            var year = now.getFullYear();
-            var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().padStart(2, '0');
-            var seconds = now.getSeconds().toString().padStart(2, '0');
-
-            var formattedDate = day + ' - ' + month + ' - ' + year;
-            var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
-            document.getElementById('current-time').innerText = currentTime;
-        }
-
-        // Actualizar cada segundo
-        setInterval(updateCurrentTime, 1000);
-
-        // Mostrar la hora actual al cargar la página
-        window.onload = updateCurrentTime;
-    </script>
-
-    <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -442,7 +159,7 @@
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = '#0ff';
+            ctx.fillStyle = '#FF4500';
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
