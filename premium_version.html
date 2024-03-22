@@ -57,7 +57,7 @@
             font-size: 18px;
             margin-top: 20px;
             cursor: pointer;
-            background: royalblue;
+            background-color: #4caf50;
             color: white;
             border: none;
             border-radius: 5px;
@@ -234,7 +234,7 @@
     font-size: 18px;
     margin-right: 10px;
     cursor: pointer;
-    background: royalblue;
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -288,6 +288,8 @@
         @keyframes pulse {
             from {
                 filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
+
+
             }
             to {
                 filter: drop-shadow(0 0 10px #9c27b0) drop-shadow(0 0 15px #2196f3) drop-shadow(0 0 20px #ff00ff);
@@ -306,7 +308,8 @@
 </div>
     <div id="game-container">
         <button id="play-button" onclick="startAutoIncrement()" style="
-    background: royalblue;
+    background: url(https://i.imgur.com/hqG7kuT.jpeg);
+    background-position: center;
 ">👉Click Profit👈(👑Premium)</button>
         <div id="wallet-input-container">
             <label id="wallet-label" for="wallet-input">WAX Wallet:</label>
@@ -323,7 +326,7 @@
         </div>
     </div>
     <div id="gameplay">
-        <h2 style="margin-top: 70px;margin-bottom: -10px;">Your Prize:</h2>
+        <h2 style="margin-top: 70px;margin-bottom: -20px;">Your Prize:</h2>
     </div>
     <div id="result"></div>
     <div id="winMessage"></div> <!-- agregado por Rodo -->
@@ -331,7 +334,7 @@
         <a href="index.html" class="version-button">Go Back</a>
     </div>
     <div id="prizes">
-    <h2 style="margin-top: 70px;margin-bottom: -10px;">Prizes:</h2>
+    <h2>Prizes:</h2>
     <!-- Lista de premios -->
     <ul>
         <li>Level 1: 1 CRITTER.</li>
