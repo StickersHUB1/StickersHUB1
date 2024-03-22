@@ -17,7 +17,7 @@
             justify-content: center;
             height: 100vh;
             background-color: #000;
-                margin-top: 570px;
+            margin-top: 570px;
         }
         #game-container {
              padding: 20px;
@@ -120,26 +120,52 @@
             margin-top: 30px;
         }
         #prizes {
-                border: 3px solid #1d83e8;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-    margin-top: 50px;
-    background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    text-align: center;
-    background-size: 1000px;
-    background-position: center;
+            border: 3px solid #1d83e8;
+            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+            margin-top: 50px;
+            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            text-align: center;
+            background-size: 1000px;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Para alinear los elementos horizontalmente */
+            text-align: center; /* Para centrar el texto */
         }
+
         #prizes ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: left;
         }
+
         #prizes li {
             margin-bottom: 10px;
             font-size: 9px;
+            text-align: left;
+        }
+
+        #prizes h2 {
+            text-align: center;
+        }
+
+        #logo {
+            display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 55px;
+        }
+
+        #claim-prizes {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: orange;        
         }
         #gameplay {
             margin-top: 20px;
@@ -287,22 +313,20 @@
         <a href="index.html" class="version-button">Go Back</a>
     </div>
     <div id="prizes">
-        <h2>Prizes:</h2>
-        <!-- Lista de premios
--->
-        <ul>
-            <li>Claim Prizes Here:
-<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;">https://discord.gg/NeUgxfuSZQ</a>⬅️</li>
-            <li>Level 1: 1 NFT FROM 0.1 TO 1 WAX.</li>
-            <li>Level 2: 1 NFT FROM 1 TO 5 WAX.</li>
-            <li>Level 3: 1 NFT FROM 5 TO 10 WAX.</li>
-            <li>Level 4: 1 NFT FROM 10 TO 20 WAX.</li>
-            <li>Level 5: 1 NFT FROM 20 TO 40 WAX.</li>
-            <li>Level 6: 1 NFT FROM 40 TO 60 WAX.</li>
-            <li>Level 7: 1 NFT FROM 60 TO 80 WAX.</li>
-        </ul>
-        <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
-    </div>
+    <h2>Prizes:</h2>
+    <!-- Lista de premios -->
+    <ul>
+        <li>Level 1: 1 CRITTER.</li>
+        <li>Level 2: 1 BASIC.</li>
+        <li>Level 3: 1 RARE.</li>
+        <li>Level 4: 1 PIZZA CRITTER.</li>
+        <li>Level 5: 1 COSMIC CRITTER.</li>
+        <li>Level 6: 1 LEGEND.</li>
+        <li>Level 7: 1 ELITE CRITTER.</li>
+    </ul>
+    <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" id="claim-prizes">Claim Prizes Here</a>
+    <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
+</div>
     <div id="info">
         <h2 style="text-align: center;">📍READ ME</h2>
         <ul>
@@ -356,10 +380,10 @@
                 ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
                 ["BotPod Knight", "BotPod Joy"],
                 ["BotPod Prime", "BotPod Warrior"],
-                ["BotPod Elite Guard", "BotPod Definitive"],
-                ["BotPod Sovereign Sentinel", "BotPod Ascendant"],
-                ["PACK OF 3 COSMIC TENTACLES"],
-                ["Cosmic Purr", "Infernal Purr"]
+                ["Infernal Pizza Critter", "Noble Pizza Critter"],
+                ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
+                ["BotPod Definitive", "BotPod Elite Guard"],
+                ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
             ];
 
             return prizes[level - 1];
