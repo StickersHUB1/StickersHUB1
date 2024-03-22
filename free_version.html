@@ -45,27 +45,18 @@
         }
 
         #game-container {
-                padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 590px;
-    border: 3px solid #1d83e8;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-    width: 250px;
-    margin-bottom: -60px;
-    background-color: dimgray;
-    z-index: 1;
-        }
-
-        #logo {
-            width: 50px;
-            height: 50px;
-            margin-top: 20px;
-            margin-left: 0px;
-            border: 2px solid royalblue;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 610px;
+            border: 3px solid #1d83e8;
+            border-radius: 10px;
             box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+            width: 250px;
+            margin-bottom: -60px;
+            background-color: dimgray;
+    z-index: 1;
         }
 
         #protagonist {
@@ -148,30 +139,47 @@
             margin-top: 30px;
         }
 
-        #prizes {
-                border: 3px solid #1d83e8;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-    margin-top: 0px;
-    background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    text-align: center;
-    background-size: 1000px;
-    background-position: center;
-    margin-top: 30px;
+       #prizes {
+            border: 3px solid #1d83e8;
+            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+            margin-top: 50px;
+            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            text-align: center;
+            background-size: 1000px;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Para alinear los elementos horizontalmente */
+            text-align: center; /* Para centrar el texto */
         }
 
         #prizes ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: left;
         }
 
         #prizes li {
             margin-bottom: 10px;
             font-size: 9px;
+            text-align: left;
+        }
+
+        #prizes h2 {
+            text-align: center;
+        }
+
+        #logo {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            width: 55px;
+            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
+
         }
 
         #gameplay {
@@ -321,14 +329,17 @@
             ">Go Back</a>
         </div>
     <div id="prizes">
-        <h2>Prizes:</h2>
-        <!-- Lista de premios -->
-        <ul>
-            <li>CLAIM YOUR PRIZES HERE: <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;font-size: 8px;">https://discord.gg/NeUgxfuSZQ</a></li>
-            <li>Level 1: 1 NFT FROM 0.1 TO 1 WAX.</li>
-        </ul>
-        <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
-    </div>
+    <h2>Prizes:</h2>
+    <!-- Lista de premios -->
+    <ul>
+        <li>Level 1: 1 CRITTER.</li>
+    </ul>
+    <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" id="claim-prizes" style="
+    color: orange;
+    font-size: 12px;
+">Claim Prizes Here</a>
+    <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
+</div>
     <div id="info">
         <h2 style="text-align: center;">📍READ ME</h2>
         <ul>
