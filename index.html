@@ -81,11 +81,10 @@
         }
 
         .version-button:hover.divine-version {
-                background-image: url(https://i.imgur.com/DWmXHZS.jpeg);
-    background-size: cover;
-    background-position: 0px;
-    background-position-y: 250px;
-
+            background-image: url(https://i.imgur.com/DWmXHZS.jpeg);
+            background-size: cover;
+            background-position: 0px;
+            background-position-y: 250px;
         }
 
         .version-button:hover.store {
@@ -129,6 +128,19 @@
         <div class="section-header" onclick="toggleSection('store')">Store</div>
         <div class="version-button-container" id="store-buttons">
             <a href="store.html" class="version-button store">Store</a>
+        </div>
+
+        <!-- Nuevas secciones -->
+        <div class="section-header" onclick="toggleSection('about-faq')">FAQ / Help</div>
+        <div class="version-button-container" id="about-faq-buttons">
+            <a href="about_us.html" class="version-button about-us">FAQ</a>
+            <a href="faq.html" class="version-button faq">Support</a>
+        </div>
+
+        <div class="section-header" onclick="toggleSection('contact')">About Us / Contact</div>
+        <div class="version-button-container" id="contact-buttons">
+            <a href="contact.html" class="version-button contact">About Us</a>
+            <a href="help.html" class="version-button help">Contact</a>
         </div>
     </div>
 
@@ -181,6 +193,11 @@
         }
 
         draw();
+
+        function toggleSection(section) {
+            const buttons = document.getElementById(`${section}-buttons`);
+            buttons.style.display = (buttons.style.display === 'none' || buttons.style.display === '') ? 'flex' : 'none';
+        }
     </script>
 </body>
 
