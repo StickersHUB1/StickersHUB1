@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StickersHUB1 FAQs</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            width: 300px;
+            position: relative;
+        }
+
+        .section h2 {
+            cursor: pointer;
+            background-color: #994242;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: -190px;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section:hover img {
+            opacity: 1;
+        }
+
+        .question {
+            display: none;
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        h3 {
+            cursor: pointer;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .section.active .question {
+            display: block;
+        }
+
+        .version-button-container {
+            margin-top: 20px;
+        }
+
+        .version-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FAQs</h1>
+    <div class="container">
+        <!-- StickersHUB1 Section -->
+        <div class="section" onclick="toggleSection('stickers')">
+            <h2>🎨 StickersHUB1<img src="https://i.imgur.com/bIWWXDn.jpeg" alt=""></h2>
+            <div class="question" id="stickers">
+                <!-- What is StickersHUB1? -->
+                <h3 onclick="toggleQuestion('q1')">What is StickersHUB1?</h3>
+                <p id="q1">StickersHUB1 is a collection of NFTs hosted on the Wax blockchain. It features a theme of cartoons and fantastic characters, including various fantastic creatures.</p>
+            </div>
+        </div>
+
+        <!-- Profit Tracker Section -->
+        <div class="section" onclick="toggleSection('profit')">
+            <h2>💰 Profit Tracker<img src="https://i.imgur.com/BCkJSGb.gif" alt=""></h2>
+            <div class="question" id="profit">
+                <!-- What are the Profit Tracker Critters and what can I do with them? -->
+                <h3 onclick="toggleQuestion('q5')">What are the Profit Tracker Critters and what can I do with them?</h3>
+                <p id="q5">Profit Tracker Critters are creatures that remain on Earth and are responsible for eliminating evil creatures to protect it. By financially supporting the Profit Tracker Critters, you can benefit from a percentage of the royalty pool and access Profit Tracker Adventure.</p>
+
+                <!-- What is Profit Tracker Adventure and how does it work? -->
+                <h3 onclick="toggleQuestion('q6')">What is Profit Tracker Adventure and how does it work?</h3>
+                <p id="q6">Profit Tracker Adventure is a game based on clicking through levels and uses a pay-to-win system. It offers different levels with associated prizes that you can claim once a day. It's an opportunity to earn daily rewards and enjoy an interactive experience.</p>
+
+                <!-- What are the daily benefits of owning a Profit Tracker Critter? -->
+                <h3 onclick="toggleQuestion('q7')">What are the daily benefits of owning a Profit Tracker Critter?</h3>
+                <p id="q7">With a Profit Tracker Critter, you can receive different daily rewards linked to each level of the game. These rewards may include NFTs or other digital assets, and you can claim one reward per level once a day.</p>
+
+                <!-- How can I claim prizes in Profit Tracker Adventure? -->
+                <h3 onclick="toggleQuestion('q8')">How can I claim prizes in Profit Tracker Adventure?</h3>
+<p id="q8">To claim prizes in Profit Tracker Adventure, you must submit a screenshot to Discord in the appropriate channel, showing your Wax Wallet and the prize you've won. Prizes can only be claimed once per day.</p>
+</div>
+</div>
+    <!-- Divine Section -->
+    <div class="section" onclick="toggleSection('divine')">
+        <h2>✨ Divine<img src="https://i.imgur.com/DWmXHZS.jpeg" alt=""></h2>
+        <div class="question" id="divine">
+            <!-- What are the Divine in StickersHUB1? -->
+            <h3 onclick="toggleQuestion('q3')">What are the Divine in StickersHUB1?</h3>
+            <p id="q3">The Divine are divine animals from the StickersHUB1 universe that accompany the BotPods on their adventures. These divine beings possess unique qualities and can grant wishes, aiding the BotPods in their mission and offering special benefits to their owners.</p>
+
+            <!-- What benefits do I get from owning a Divine in my inventory? -->
+            <h3 onclick="toggleQuestion('q4')">What benefits do I get from owning a Divine in my inventory?</h3>
+            <p id="q4">By owning a Divine in your inventory, you can enjoy various benefits, including the ability to make a daily wish in the Divine Prizes Bag section, participate in exclusive airdrops, and attend special events for Divine holders.</p>
+        </div>
+    </div>
+
+    <!-- BotPod Section -->
+    <div class="section" onclick="toggleSection('botpods')">
+        <h2>🤖 BotPods<img src="https://i.imgur.com/CogQPGJ.jpeg" alt=""></h2>
+        <div class="question" id="botpods">
+            <!-- What are the BotPods and their versions? -->
+            <h3 onclick="toggleQuestion('q2')">What are the BotPods and their versions?</h3>
+            <p id="q2">The BotPods are characters that oversee, clean, and protect the StickersHUB1 universe. There are four versions of BotPods: Basic, Rare, Legend, and Mythic, each representing a different level of development and power.</p>
+
+            <!-- What advantages do BotPods have? -->
+            <h3 onclick="toggleQuestion('q11')">What advantages do BotPods have?</h3>
+            <p id="q11">BotPods have the ability to perform blends to obtain a DIVINE NFT at a much more affordable price than buying it in the store.</p>
+
+            <!-- What BotPods do I need to obtain a DIVINE NFT? -->
+            <h3 onclick="toggleQuestion('q12')">What BotPods do I need to obtain a DIVINE NFT?</h3>
+            <p id="q12">For the Infernal Purr, you need 1 BotPod Elite Guard and 1 BotPod Sovereign Sentinel.</p>
+
+            <!-- Where can I perform the blends to obtain the DIVINE NFT? -->
+            <h3 onclick="toggleQuestion('q13')">Where can I perform the blends to obtain the DIVINE NFT?</h3>
+            <p id="q13">Infernal Purr: <a href="https://neftyblocks.com/collection/stickershub1/blends/blend.nefty/35444" style="color: blue;">Blend Link</a><br>
+                Cosmic Purr: <a href="https://neftyblocks.com/collection/stickershub1/blends/blend.nefty/35443" style="color: blue;">Blend Link</a></p>
+        </div>
+    </div>
+</div>
+<div class="version-button-container">
+    <a href="index.html" class="version-button">Go Back</a>
+</div>
+<script>
+    function toggleSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        if (section.style.display === 'none' || section.style.display === '') {
+            section.style.display = 'grid';
+        } else {
+            section.style.display = 'none';
+        }
+    }
+
+    function toggleQuestion(questionId) {
+        var question = document.getElementById(questionId);
+        question.style.display = (question.style.display === 'none' || question.style.display === '') ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>
