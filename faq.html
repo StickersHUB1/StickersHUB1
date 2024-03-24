@@ -7,10 +7,11 @@
     <title>StickersHUB1 FAQs</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
+                background-color: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    MARGIN-TOP: -30px;
         }
 
         .container {
@@ -86,10 +87,42 @@
             border-radius: 5px;
             text-decoration: none;
         }
+.neon-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
+            max-width: 80%;
+            max-height: 80%;
+            filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+            z-index: -2;
+        }
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
+            }
+            to {
+                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
+            }
+        }
+        @keyframes pulse {
+            from {
+                filter: drop-shadow(0 0 10px #ff8c00) drop-shadow(0 0 15px #ff5733) drop-shadow(0 0 20px #ff7f50);
+
+            }
+            to {
+                filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 15px #ff3333) drop-shadow(0 0 20px #ff6666);
+
+            }
+        }
     </style>
+    <title>FAQs</title>
 </head>
 
 <body>
+    <canvas id="canvas"></canvas>
+    <img class="neon-image" src="https://i.imgur.com/Z1miBpW.png" alt="Neon Image">
     <h1>FAQs</h1>
     <div class="container">
         <!-- StickersHUB1 Section -->
@@ -177,6 +210,50 @@
         var question = document.getElementById(questionId);
         question.style.display = (question.style.display === 'none' || question.style.display === '') ? 'block' : 'none';
     }
-</script>
+<script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const numStars = 250;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ff0000';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
+
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
 </body>
 </html>
