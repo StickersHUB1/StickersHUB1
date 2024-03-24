@@ -19,7 +19,7 @@
         }
 
         header img {
-            width: 200px;
+            max-width: 100%;
             height: auto;
             border-radius: 50%;
             margin-bottom: 20px;
@@ -68,6 +68,7 @@
             text-decoration: none;
             width: 300px; /* Mismo ancho para ambos botones */
             box-sizing: border-box; /* Esto asegura que el padding no aumente el tamaño total */
+            margin-bottom: 10px; /* Espacio entre los botones */
         }
 
         input[type="submit"]:hover,
@@ -75,9 +76,19 @@
             background-color: #45a049;
         }
 
+        .logo-container {
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
         .logo {
-            margin-top: 110px;
-            animation: neonGlow 2s infinite alternate;
+                max-width: 100%;
+    height: auto;
+    animation: neonGlow 2s infinite alternate;
+    margin-top: 110px;
         }
 
         @keyframes neonGlow {
@@ -89,11 +100,13 @@
             }
         }
 
-        .version-button-container {
-            margin-top: 20px;
-            display: flex; /* Hacer que los botones estén en la misma línea */
-            justify-content: space-between; /* Espacio entre los botones */
-            width: 300px; /* Igual ancho que los botones */
+        /* Media queries para ajustar los botones en pantallas más pequeñas */
+        @media screen and (max-width: 600px) {
+            input[type="submit"],
+            .version-button {
+                width: 80%; /* Cambia el ancho de los botones al 80% */
+                max-width: 200px; /* Establece un ancho máximo */
+            }
         }
     </style>
 </head>
@@ -107,11 +120,11 @@
         <input type="text" name="email" placeholder="Your Email" required>
         <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
         <input type="submit" value="Submit">
-        <div class="version-button-container">
-            <a href="index.html" class="version-button">Go Back</a>
-        </div>
+        <a href="index.html" class="version-button">Go Back</a>
     </form>
-    <img src="https://i.imgur.com/Z1miBpW.png" alt="StickersHUB1 Logo" class="logo">
+    <div class="logo-container">
+        <img src="https://i.imgur.com/Z1miBpW.png" alt="StickersHUB1 Logo" class="logo">
+    </div>
 </body>
 
 </html>
