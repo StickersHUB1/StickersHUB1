@@ -7,11 +7,11 @@
     <title>StickersHUB1 FAQs</title>
     <style>
         body {
-                background-color: black;
-    color: white;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    MARGIN-TOP: -30px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px; /* Ajuste el margen superior para centrar verticalmente */
         }
 
         .container {
@@ -19,6 +19,8 @@
             flex-direction: column;
             align-items: center;
             margin-top: 50px;
+            position: relative; /* Añadir posición relativa para poder posicionar el fondo de estrellas */
+            z-index: 1; /* Asegurar que los elementos dentro de .container estén sobre el fondo de estrellas */
         }
 
         .section {
@@ -61,6 +63,8 @@
             padding: 10px;
             border-radius: 5px;
             width: 100%;
+            position: relative; /* Ajustar posición */
+            z-index: 1; /* Asegurar que los elementos dentro de .question estén sobre el fondo de estrellas */
         }
 
         h3 {
@@ -75,6 +79,8 @@
 
         .version-button-container {
             margin-top: 20px;
+            position: relative; /* Ajustar posición */
+            z-index: 1; /* Asegurar que los elementos dentro de .version-button-container estén sobre el fondo de estrellas */
         }
 
         .version-button {
@@ -87,43 +93,22 @@
             border-radius: 5px;
             text-decoration: none;
         }
-.neon-image {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
-            max-width: 80%;
-            max-height: 80%;
-            filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
-            z-index: -2;
-        }
-        @keyframes neon {
-            from {
-                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
-            }
-            to {
-                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
-            }
-        }
-        @keyframes pulse {
-            from {
-                filter: drop-shadow(0 0 10px #ff8c00) drop-shadow(0 0 15px #ff5733) drop-shadow(0 0 20px #ff7f50);
 
-            }
-            to {
-                filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 15px #ff3333) drop-shadow(0 0 20px #ff6666);
-
-            }
+        .neon-image {
+               position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
+    z-index: -1;
         }
     </style>
-    <title>FAQs</title>
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
     <img class="neon-image" src="https://i.imgur.com/Z1miBpW.png" alt="Neon Image">
-    <h1>FAQs</h1>
     <div class="container">
         <!-- StickersHUB1 Section -->
         <div class="section" onclick="toggleSection('stickers')">
@@ -153,16 +138,17 @@
 
                 <!-- How can I claim prizes in Profit Tracker Adventure? -->
                 <h3 onclick="toggleQuestion('q8')">How can I claim prizes in Profit Tracker Adventure?</h3>
-<p id="q8">To claim prizes in Profit Tracker Adventure, you must submit a screenshot to Discord in the #🤑ptc-screenshots, showing your Wax Wallet and the prize you've won. Prizes can only be claimed once per day.</p>
-</div>
-</div>
-    <!-- Divine Section -->
-    <div class="section" onclick="toggleSection('divine')">
-        <h2>✨ Divine<img src="https://i.imgur.com/DWmXHZS.jpeg" alt=""></h2>
-        <div class="question" id="divine">
-            <!-- What are the Divine in StickersHUB1? -->
-            <h3 onclick="toggleQuestion('q3')">What are the Divine in StickersHUB1?</h3>
-            <p id="q3">The Divine are divine animals from the StickersHUB1 universe that accompany the BotPods on their adventures. These divine beings possess unique qualities and can grant wishes, aiding the BotPods in their mission and offering special benefits to their owners.</p>
+                <p id="q8">To claim prizes in Profit Tracker Adventure, you must submit a screenshot to Discord in the #🤑ptc-screenshots, showing your Wax Wallet and the prize you've won. Prizes can only be claimed once per day.</p>
+            </div>
+        </div>
+
+        <!-- Divine Section -->
+        <div class="section" onclick="toggleSection('divine')">
+            <h2>✨ Divine<img src="https://i.imgur.com/DWmXHZS.jpeg" alt=""></h2>
+            <div class="question" id="divine">
+                <!-- What are the Divine in StickersHUB1? -->
+<h3 onclick="toggleQuestion('q3')">What are the Divine in StickersHUB1?</h3>
+<p id="q3">The Divine are divine animals from the StickersHUB1 universe that accompany the BotPods on their adventures. These divine beings possess unique qualities and can grant wishes, aiding the BotPods in their mission and offering special benefits to their owners.</p>
 
             <!-- What benefits do I get from owning a Divine in my inventory? -->
             <h3 onclick="toggleQuestion('q4')">What benefits do I get from owning a Divine in my inventory?</h3>
@@ -210,50 +196,6 @@
         var question = document.getElementById(questionId);
         question.style.display = (question.style.display === 'none' || question.style.display === '') ? 'block' : 'none';
     }
-<script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-        const numStars = 250;
-
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                vx: Math.random() * 0.5,
-                vy: Math.random() * 0.5
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#ff0000';
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                star.x += star.vx;
-                star.y += star.vy;
-
-                if (star.x < 0 || star.x > canvas.width) {
-                    star.vx = -star.vx;
-                }
-
-                if (star.y < 0 || star.y > canvas.height) {
-                    star.vy = -star.vy;
-                }
-            });
-
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-    </script>
+</script>
 </body>
 </html>
