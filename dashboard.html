@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #dashboard {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            max-width: 800px; /* Ajustar el ancho del dashboard */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        #wallet-input {
+            padding: 10px;
+            width: calc(100% - 120px);
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            width: 160px;
+        }
+
+        #search-button {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 42px;
+            margin-top: 51px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dashboard">
+        <h1>User Dashboard</h1>
+        <div class="section">
+            <div id="wax-wallet">
+                <p class="section-title">WAX WALLET:</p>
+                <input type="text" id="wallet-input" placeholder="Enter your WAX Wallet">
+            </div>
+            <button id="search-button">Search</button>
+        </div>
+        <div class="section">
+            <div id="account-level">
+                <p class="section-title">Account Level:</p>
+            </div>
+        </div>
+        <div class="section">
+            <div id="levels">
+                <p class="section-title">Activity Log:</p>
+                <!-- Aquí va el registro de actividad de los niveles -->
+            </div>
+            <div id="prizes">
+                <p class="section-title">Prizes Obtained:</p>
+                <!-- Aquí van los premios obtenidos -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar el SDK de Firebase -->
+    <script type="module">
+        // Importar las funciones necesarias desde los SDKs necesarios
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        // TODO: Agregar SDKs de los productos de Firebase que desees utilizar
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Configuración de tu aplicación Firebase
+        const firebaseConfig = {
+            apiKey: "TuClaveAPI",
+            authDomain: "TuDominio.firebaseapp.com",
+            projectId: "TuIDdeProyecto",
+            storageBucket: "TuBucket.appspot.com",
+            messagingSenderId: "TuIDdeMensajería",
+            appId: "TuAppID",
+            measurementId: "TuIDdeMedición"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
+    <script>
+        // Función para mostrar los datos en el dashboard
+        function displayLevels(activityLog) {
+            const levelsContainer = document.getElementById('levels');
+            levelsContainer.innerHTML = '';
+
+            activityLog.forEach(entry => {
+                const logEntry = document.createElement('p');
+                logEntry.textContent = `${entry.date} - ${entry.levels} LEVELS`;
+                levelsContainer.appendChild(logEntry);
+            });
+        }
+
+        function displayPrizes(prizes) {
+            const prizesContainer = document.getElementById('prizes');
+            prizesContainer.innerHTML = '';
+
+            prizes.forEach(entry => {
+                const prizeEntry = document.createElement('p');
+                prizeEntry.textContent = `${entry.date} - ${entry.prize
+                prizesContainer.appendChild(prizeEntry);
+            });
+        }
+
+        // Agregar un evento de clic al botón de búsqueda
+        const searchButton = document.getElementById('search-button');
+        searchButton.addEventListener('click', function () {
+            // Simular búsqueda
+            const walletInput = document.getElementById('wallet-input').value;
+
+            // Actualizar el nivel de la cuenta (simulado)
+            const accountLevel = document.getElementById('account-level');
+            accountLevel.innerHTML = `<p class="section-title">Account Level: 12</p>`;
+
+            // Aquí iría la lógica para buscar en la base de datos
+            // Por ahora, solo mostraremos los datos simulados
+            const activityLogData = [
+                { date: '23/03/2024', levels: 4 },
+                { date: '24/03/2024', levels: 2 },
+                { date: '25/03/2024', levels: 6 }
+            ];
+            const prizesData = [
+                { date: '23/03/2024', prize: 'Demon Critter' },
+                { date: '24/03/2024', prize: 'Silver Soul' },
+                { date: '25/03/2024', prize: 'Critter Gato' }
+            ];
+
+            displayLevels(activityLogData);
+            displayPrizes(prizesData);
+        });
+    </script>
+</body>
+
+</html>
