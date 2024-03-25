@@ -374,89 +374,89 @@
     <img id="protagonist" src="https://i.imgur.com/U59FAuj.gif" alt="protagonist">
     <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
 </body>
-
 <script>
-    var currentClicks = 0;
-    var currentLevel = 0;
-    var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
-    var autoIncrementInterval;
+        var currentClicks = 0;
+        var currentLevel = 0;
+        var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
+        var autoIncrementInterval;
 
-    function startAutoIncrement() {
-        document.getElementById('play-button').disabled = true;
-        autoIncrementInterval = setInterval(incrementCounter, 100);
-    }
-
-    function incrementCounter() {
-        currentClicks++;
-
-        if (currentClicks >= levelThresholds[currentLevel]) {
-            clearInterval(autoIncrementInterval);
-            currentClicks = 0;
-
-            var randomPrizes = getRandomPrizes(currentLevel + 1);
-            var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-            var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
-
-            document.getElementById('result').innerHTML = "You've completed Level " + (currentLevel + 1) + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-            document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
-            document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
-
-            setTimeout(function () {
-                document.getElementById('winMessage').innerHTML = "";
-            }, 2000);
-
-            document.getElementById('play-button').disabled = false;
-            currentLevel++;
-
-            // Reiniciar la barra de progreso al llegar al último nivel
-            if (currentLevel === levelThresholds.length) {
-                currentLevel = 0;
-                document.getElementById('progress').style.width = '0%';
-                document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
-                document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
-            }
+        function startAutoIncrement() {
+            document.getElementById('play-button').disabled = true;
+            autoIncrementInterval = setInterval(incrementCounter, 100);
         }
 
-        var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
-       
-        document.getElementById('progress').style.width = progressPercentage + "%";
+        function incrementCounter() {
+            currentClicks++;
 
-        document.getElementById('level-counter').innerText = "Level " + currentLevel;
-        document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
-    }
+            if (currentClicks >= levelThresholds[currentLevel]) {
+                clearInterval(autoIncrementInterval);
+                currentClicks = 0;
 
-    function getRandomPrizes(level) {
-        var prizes = [
-            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-            ["BotPod Knight", "BotPod Joy"],
-            ["BotPod Prime", "BotPod Warrior"],
-            ["Infernal Pizza Critter", "Noble Pizza Critter"],
-            ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
-            ["BotPod Definitive", "BotPod Elite Guard"],
-            ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
-        ];
+                var randomPrizes = getRandomPrizes(currentLevel + 1);
+                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
+                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
 
-        return prizes[level - 1];
-    }
+                document.getElementById('result').innerHTML = "You've completed Level " + (currentLevel + 1) + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
+                document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
+                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
 
-    function updateCurrentTime() {
-        var now = new Date();
-        var day = now.getDate().toString().padStart(2, '0');
-        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
-        var year = now.getFullYear();
-        var hours = now.getHours().toString().padStart(2, '0');
-        var minutes = now.getMinutes().toString().padStart(2, '0');
-        var seconds = now.getSeconds().toString().padStart(2, '0');
+                setTimeout(function() {
+                    document.getElementById('winMessage').innerHTML = "";
+                }, 2000);
 
-        var formattedDate = day + ' - ' + month + ' - ' + year;
-        var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
-        document.getElementById('current-time').innerText = currentTime;
-    }
+                document.getElementById('play-button').disabled = false;
+                currentLevel++;
 
-    setInterval(updateCurrentTime, 1000);
-    updateCurrentTime();
-</script>
-<script>
+                // Reiniciar la barra de progreso al llegar al último nivel
+                if (currentLevel === levelThresholds.length) {
+                    currentLevel = 0;
+                    document.getElementById('progress').style.width = '0%';
+                    document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
+                    document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
+                }
+            }
+
+            var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
+
+            document.getElementById('progress').style.width = progressPercentage + "%";
+
+            document.getElementById('level-counter').innerText = "Level " + currentLevel;
+            document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
+        }
+
+        function getRandomPrizes(level) {
+            var prizes = [
+                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
+                ["BotPod Knight", "BotPod Joy"],
+                ["BotPod Prime", "BotPod Warrior"],
+                ["Infernal Pizza Critter", "Noble Pizza Critter"],
+                ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
+                ["BotPod Definitive", "BotPod Elite Guard"],
+                ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
+            ];
+
+            return prizes[level - 1];
+        }
+
+        function updateCurrentTime() {
+            var now = new Date();
+            var day = now.getDate().toString().padStart(2, '0');
+                        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
+            var year = now.getFullYear();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+
+            var formattedDate = day + ' - ' + month + ' - ' + year;
+            var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
+            document.getElementById('current-time').innerText = currentTime;
+        }
+
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
+    </script>
+
+    <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -501,28 +501,31 @@
 
         draw();
     </script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
-    authDomain: "stickershub1-e7192.firebaseapp.com",
-    projectId: "stickershub1-e7192",
-    storageBucket: "stickershub1-e7192.appspot.com",
-    messagingSenderId: "893978353658",
-    appId: "1:893978353658:web:896666f7a750905e6bce43",
-    measurementId: "G-E5Y5CVPXJT"
-  };
+    <!-- Firebase JavaScript SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
+            authDomain: "stickershub1-e7192.firebaseapp.com",
+            projectId: "stickershub1-e7192",
+            storageBucket: "stickershub1-e7192.appspot.com",
+            messagingSenderId: "893978353658",
+            appId: "1:893978353658:web:896666f7a750905e6bce43",
+            measurementId: "G-E5Y5CVPXJT"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
 </body>
+
 </html>
+
