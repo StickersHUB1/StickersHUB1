@@ -219,124 +219,134 @@
         .go-back-btn {
             position: relative;
             left: 50%;
-            transform: translateX(-50%);
-            margin-top: -15px;
-        }
-    </style>
+            transform: translateX(-50
+            .go-back-btn {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: -15px;
+            }
+        </style>
 
-</head>
-<body>
-<canvas id="canvas"></canvas>
-<img class="neon-image" src="https://i.imgur.com/Z1miBpW.png" alt="Neon Image">
-<div class="container">
-    <div class="title-animation">
-        <img src="https://i.imgur.com/Z1miBpW.png">
-        <img src="https://i.imgur.com/FUAzPF9.png">
-</div>
+    </head>
+    <body>
+    <canvas id="canvas"></canvas>
+    <img class="neon-image" src="https://i.imgur.com/Z1miBpW.png" alt="Neon Image">
+    <div class="container">
+        <div class="title-animation">
+            <img src="https://i.imgur.com/Z1miBpW.png">
+            <img src="https://i.imgur.com/FUAzPF9.png">
+        </div>
 
-<div class="go-back-btn">
-<a href="index.html" class="version-button" style="
-    color: white;
-    text-decoration: none;
-">Go Back</a>
+        <div class="go-back-btn">
+            <a href="index.html" class="version-button" style="
+                color: white;
+                text-decoration: none;
+            ">Go Back</a>
+        </div>
 
+        <section class="section">
+            <h2 class="section-title">Profit Tracker Critters<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌟 Discover the Profit Tracker Critters! 🌟<br><br>
+
+        Dive into the thrilling world of Profit Tracker Critters, demon hunters battling against the forces of evil and distributing generous rewards among their loyal followers.<br><br>
+
+        🔥 Special Feature: Profit Tracker Critters are exclusive NFTs that unlock the benefits of the Profit Tracker System, allowing you to participate in hunting down malicious creatures and earning profits while doing so.<br><br>
+
+        🎉 Benefits for Holders: The rewards don't end there! As a proud owner of a Profit Tracker Critter, you'll receive a 5% share of the game's royalty pool every month. Additionally, you'll have privileged access to exclusive events and special airdrops, providing you with even more opportunities to enjoy and maximize your investment in these valuable NFTs.<br><br>
+
+        Join the battle against evil and secure your place in history alongside the Profit Tracker Critters!</span></span></h2>
+            <div class="grid">
+                                <div class="nft-card">
+                    <a href="https://neftyblocks.com/collection/stickershub1/drops/215737" target="_blank">
+                        <img class="nft-image" src="https://i.imgur.com/BCkJSGb.gif" alt="Profit Tracker Critter (Standard)">
+                    </a>
+                    <h3 class="nft-title">Profit Tracker Critter (Standard)</h3>
+                    <span class="nft-price">50 WAX</span>
+                </div>
+
+                <div class="nft-card">
+                    <a href="https://neftyblocks.com/collection/stickershub1/drops/215833" target="_blank">
+                        <img class="nft-image" src="https://i.imgur.com/U59FAuj.gif" alt="Profit Tracker Critter (Premium)">
+                    </a>
+                    <h3 class="nft-title">Profit Tracker Critter (Premium)</h3>
+                    <span class="nft-price">75 WAX</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Divines<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌌 Explore the Majestic Divines! 🌌<br><br>
+
+        Enter the enchanting realm of Divines, majestic creatures serving as the intergalactic companions of the BotPod. These guardians are entrusted with the task of nurturing and safeguarding the universe, making them extraordinary allies to have by your side.<br><br>
+
+        ⭐ Divine Abilities: As divine beings, these creatures possess the remarkable ability to grant wishes. With a Divine in your inventory, you can test your luck by making a wish and claiming one random prize daily, ranging from 0.1 WAX to 80 WAX.<br><br>
+
+        🎁 Exclusive Rewards: But that's not all! In addition to wish-granting, Divines offer their owners exclusive airdrops and access to special events, ensuring that every day brings new surprises and opportunities for adventure.<br><br>
+
+        Embrace the magic of the universe and embark on an extraordinary journey with your Divine companion today!</span></span></h2>
+            <div class="grid">
+                <div class="nft-card">
+                    <a href="https://neftyblocks.com/collection/stickershub1/drops/215966" target="_blank">
+                        <img class="nft-image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Infernal Purr">
+                    </a>
+                    <h3 class="nft-title">Infernal Purr (Divine)</h3>
+                    <span class="nft-price">80 WAX</span>
+                </div>
+                               <div class="nft-card">
+                    <a href="https://neftyblocks.com/collection/stickershub1/drops/215965" target="_blank">
+                        <img class="nft-image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Cosmic Purr">
+                    </a>
+                    <h3 class="nft-title">Cosmic Purr (Divine)</h3>
+                    <span class="nft-price">80 WAX</span>
+                </div>
+
+            </div>
+        </section>
     </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    <section class="section">
-        <h2 class="section-title">Profit Tracker Critters<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌟 Discover the Profit Tracker Critters! 🌟<br><br>
+        const stars = [];
+        const numStars = 100;
 
-Dive into the thrilling world of Profit Tracker Critters, demon hunters battling against the forces of evil and distributing generous rewards among their loyal followers.<br><br>
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
 
-🔥 Special Feature: Profit Tracker Critters are exclusive NFTs that unlock the benefits of the Profit Tracker System, allowing you to participate in hunting down malicious creatures and earning profits while doing so.<br><br>
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-🎉 Benefits for Holders: The rewards don't end there! As a proud owner of a Profit Tracker Critter, you'll receive a 5% share of the game's royalty pool every month. Additionally, you'll have privileged access to exclusive events and special airdrops, providing you with even more opportunities to enjoy and maximize your investment in these valuable NFTs.<br><br>
+            ctx.fillStyle = '#ff1744';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
 
-Join the battle against evil and secure your place in history alongside the Profit Tracker Critters!</span></span></h2>
-        <div class="grid">
-            <div class="nft-card">
-                <img class="nft-image" src="https://i.imgur.com/BCkJSGb.gif" alt="Profit Tracker Critter (Standard)">
-                <h3 class="nft-title">Profit Tracker Critter (Standard)</h3>
-                <span class="nft-price">50 WAX</span>
-            </div>
-            <div class="nft-card">
-                <img class="nft-image" src="https://i.imgur.com/U59FAuj.gif" alt="Profit Tracker Critter (Premium)">
-                <h3 class="nft-title">Profit Tracker Critter (Premium)</h3>
-                <span class="nft-price">75 WAX</span>
-            </div>
-        </div>
-    </section>
+                star.x += star.vx;
+                star.y += star.vy;
 
-    <section class="section">
-        <h2 class="section-title">Divines<span class="tooltip"><img src="https://i.imgur.com/ExfTt3S.png"><span class="info-box">🌌 Explore the Majestic Divines! 🌌<br><br>
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
 
-Enter the enchanting realm of Divines, majestic creatures serving as the intergalactic companions of the BotPod. These guardians are entrusted with the task of nurturing and safeguarding the universe, making them extraordinary allies to have by your side.<br><br>
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
 
-⭐ Divine Abilities: As divine beings, these creatures possess the remarkable ability to grant wishes. With a Divine in your inventory, you can test your luck by making a wish and claiming one random prize daily, ranging from 0.1 WAX to 80 WAX.<br><br>
+            requestAnimationFrame(draw);
+        }
 
-🎁 Exclusive Rewards: But that's not all! In addition to wish-granting, Divines offer their owners exclusive airdrops and access to special events, ensuring that every day brings new surprises and opportunities for adventure.<br><br>
-
-Embrace the magic of the universe and embark on an extraordinary journey with your Divine companion today!</span></span></h2>
-        <div class="grid">
-            <div class="nft-card">
-                <img class="nft-image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Infernal Purr">
-                <h3 class="nft-title">Infernal Purr (Divine)</h3>
-                <span class="nft-price">80 WAX</span>
-            </div>
-            <div class="nft-card">
-                <img class="nft-image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Cosmic Purr">
-                <h3 class="nft-title">Cosmic Purr (Divine)</h3>
-                <span class="nft-price">80 WAX</span>
-            </div>
-        </div>
-    </section>
-</div>
-<script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const stars = [];
-    const numStars = 100;
-
-    for (let i = 0; i < numStars; i++) {
-        stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 1.5,
-            vx: Math.random() * 0.5,
-            vy: Math.random() * 0.5
-        });
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#ff1744';
-        stars.forEach(star => {
-            ctx.beginPath();
-            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            star.x += star.vx;
-            star.y += star.vy;
-
-            if (star.x < 0 || star.x > canvas.width) {
-                star.vx = -star.vx;
-            }
-
-            if (star.y < 0 || star.y > canvas.height) {
-                star.vy = -star.vy;
-            }
-        });
-
-        requestAnimationFrame(draw);
-    }
-
-    draw();
-</script>
+        draw();
+    </script>
 </body>
 </html>
-</body>
-</html>
-
