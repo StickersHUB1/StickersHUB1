@@ -99,30 +99,29 @@
     </div>
 
     <!-- Agregar el SDK de Firebase -->
-    <script type="module">
-        // Importar las funciones necesarias desde los SDKs necesarios
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-        // TODO: Agregar SDKs de los productos de Firebase que desees utilizar
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Configuración de tu aplicación Firebase
-        const firebaseConfig = {
-            apiKey: "TuClaveAPI",
-            authDomain: "TuDominio.firebaseapp.com",
-            projectId: "TuIDdeProyecto",
-            storageBucket: "TuBucket.appspot.com",
-            messagingSenderId: "TuIDdeMensajería",
-            appId: "TuAppID",
-            measurementId: "TuIDdeMedición"
-        };
-
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"></script>
+    <!-- TODO: Agregar SDKs de los productos de Firebase que desees utilizar -->
+    <!-- https://firebase.google.com/docs/web/setup#available-libraries -->
 
     <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
+            authDomain: "stickershub1-e7192.firebaseapp.com",
+            projectId: "stickershub1-e7192",
+            storageBucket: "stickershub1-e7192.appspot.com",
+            messagingSenderId: "893978353658",
+            appId: "1:893978353658:web:896666f7a750905e6bce43",
+            measurementId: "G-E5Y5CVPXJT"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics();
+        const database = firebase.database();
+
         // Función para mostrar los datos en el dashboard
         function displayLevels(activityLog) {
             const levelsContainer = document.getElementById('levels');
@@ -141,7 +140,7 @@
 
             prizes.forEach(entry => {
                 const prizeEntry = document.createElement('p');
-                prizeEntry.textContent = `${entry.date} - ${entry.prize
+                prizeEntry.textContent = `${entry.date} - ${entry.prize}`;
                 prizesContainer.appendChild(prizeEntry);
             });
         }
@@ -149,28 +148,23 @@
         // Agregar un evento de clic al botón de búsqueda
         const searchButton = document.getElementById('search-button');
         searchButton.addEventListener('click', function () {
-            // Simular búsqueda
+            // Obtener el valor del input del usuario
             const walletInput = document.getElementById('wallet-input').value;
 
-            // Actualizar el nivel de la cuenta (simulado)
-            const accountLevel = document.getElementById('account-level');
-            accountLevel.innerHTML = `<p class="section-title">Account Level: 12</p>`;
-
-            // Aquí iría la lógica para buscar en la base de datos
-            // Por ahora, solo mostraremos los datos simulados
-            const activityLogData = [
-                { date: '23/03/2024', levels: 4 },
-                { date: '24/03/2024', levels: 2 },
-                { date: '25/03/2024', levels: 6 }
-            ];
-            const prizesData = [
-                { date: '23/03/2024', prize: 'Demon Critter' },
-                { date: '24/03/2024', prize: 'Silver Soul' },
-                { date: '25/03/2024', prize: 'Critter Gato' }
-            ];
-
-            displayLevels(activityLogData);
-            displayPrizes(prizesData);
+            // Buscar datos en la base de datos de Firebase
+            const userRef = database.ref('users/' + walletInput);
+            userRef.once('value', (snapshot) => {
+                const userData = snapshot.val();
+                if (userData) {
+                    // Mostrar los datos en el dashboard
+                    document.getElementById('account-level').innerHTML = `<p class="section-title">Account Level: ${userData.level}</p>`;
+                    displayLevels(userData.activityLog);
+                    displayPrizes(userData.prizes);
+                } else {
+                    // Mostrar un mensaje de error si el usuario no existe
+                    alert('User not found!');
+                }
+            });
         });
     </script>
 </body>
