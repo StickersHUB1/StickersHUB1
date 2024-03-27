@@ -101,26 +101,26 @@
     <!-- Agregar el SDK de Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"></script>
     <!-- TODO: Agregar SDKs de los productos de Firebase que desees utilizar -->
     <!-- https://firebase.google.com/docs/web/setup#available-libraries -->
 
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
-            authDomain: "stickershub1-e7192.firebaseapp.com",
-            projectId: "stickershub1-e7192",
-            storageBucket: "stickershub1-e7192.appspot.com",
-            messagingSenderId: "893978353658",
-            appId: "1:893978353658:web:896666f7a750905e6bce43",
-            measurementId: "G-E5Y5CVPXJT"
+            apiKey: "TuClaveAPI",
+            authDomain: "TuDominio.firebaseapp.com",
+            projectId: "TuIDdeProyecto",
+            storageBucket: "TuBucket.appspot.com",
+            messagingSenderId: "TuIDdeMensajería",
+            appId: "TuAppID",
+            measurementId: "TuIDdeMedición"
         };
 
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const analytics = firebase.analytics();
-        const database = firebase.database();
+        const db = firebase.firestore();
 
         // Función para mostrar los datos en el dashboard
         function displayLevels(activityLog) {
@@ -129,7 +129,7 @@
 
             activityLog.forEach(entry => {
                 const logEntry = document.createElement('p');
-                logEntry.textContent = `${entry.date} - ${entry.levels} LEVELS`;
+                logEntry.textContent = `${entry.date} - ${entry.level} LEVELS`;
                 levelsContainer.appendChild(logEntry);
             });
         }
@@ -138,9 +138,9 @@
             const prizesContainer = document.getElementById('prizes');
             prizesContainer.innerHTML = '';
 
-            prizes.forEach(entry => {
+            prizes.forEach(prize => {
                 const prizeEntry = document.createElement('p');
-                prizeEntry.textContent = `${entry.date} - ${entry.prize}`;
+                prizeEntry.textContent = prize;
                 prizesContainer.appendChild(prizeEntry);
             });
         }
@@ -151,22 +151,31 @@
             // Obtener el valor del input del usuario
             const walletInput = document.getElementById('wallet-input').value;
 
-            // Buscar datos en la base de datos de Firebase
-            const userRef = database.ref('users/' + walletInput);
-            userRef.once('value', (snapshot) => {
-                const userData = snapshot.val();
-                if (userData) {
-                    // Mostrar los datos en el dashboard
-                    document.getElementById('account-level').innerHTML = `<p class="section-title">Account Level: ${userData.level}</p>`;
-                    displayLevels(userData.activityLog);
-                    displayPrizes(userData.prizes);
-                } else {
-                    // Mostrar un mensaje de error si el usuario no existe
-                    alert('User not found!');
-                }
-            });
-        });
-    </script>
-</body>
+            // Buscar datos en Firestore
+            const userRef = db.collection('waxwallets').doc(walletInput);
+            userRef.get().then((doc) => {
+                if (doc.exists)
+{
+    // Obtener el valor del input del usuario
+    const walletInput = document.getElementById('wallet-input').value;
 
+    // Buscar datos en Firestore
+    const userRef = db.collection('waxwallets').doc(walletInput);
+    userRef.get().then((doc) => {
+        if (doc.exists) {
+            const userData = doc.data();
+            // Mostrar los datos en el dashboard
+            document.getElementById('account-level').innerHTML = `<p class="section-title">Account Level: ${userData.accountLevel}</p>`;
+            displayLevels(userData.activityLog);
+            displayPrizes(userData.prizes);
+        } else {
+            // Mostrar un mensaje de error si el usuario no existe
+            alert('User not found!');
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+});
+</script>
+</body>
 </html>
