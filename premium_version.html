@@ -374,177 +374,251 @@
     <img id="protagonist" src="https://i.imgur.com/U59FAuj.gif" alt="protagonist">
     <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
 </body>
+<!-- Scripts del juego -->
 <script>
-        var currentClicks = 0;
-        var currentLevel = 0;
-        var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
-        var autoIncrementInterval;
+    var currentClicks = 0;
+    var currentLevel = 0;
+    var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
+    var autoIncrementInterval;
 
-        function startAutoIncrement() {
-            document.getElementById('play-button').disabled = true;
-            autoIncrementInterval = setInterval(incrementCounter, 100);
+    function startAutoIncrement() {
+        document.getElementById('play-button').disabled = true;
+        autoIncrementInterval = setInterval(incrementCounter, 100);
+    }
+
+    function incrementCounter() {
+        currentClicks++;
+
+        if (currentClicks >= levelThresholds[currentLevel]) {
+            clearInterval(autoIncrementInterval);
+            currentClicks = 0;
+
+            var randomPrizes = getRandomPrizes(currentLevel + 1);
+            var randomIndex = Math.floor(Math.random() * randomPrizes.length);
+            var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
+
+            document.getElementById('result').innerHTML = "You've completed Level " + (currentLevel + 1) + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
+            document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
+            document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+
+            setTimeout(function() {
+                document.getElementById('winMessage').innerHTML = "";
+            }, 2000);
+
+            document.getElementById('play-button').disabled = false;
+            currentLevel++;
+
+            // Reiniciar la barra de progreso al llegar al último nivel
+            if (currentLevel === levelThresholds.length) {
+                currentLevel = 0;
+                document.getElementById('progress').style.width = '0%';
+                document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
+                document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
+            }
         }
 
-        function incrementCounter() {
-            currentClicks++;
+        var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
 
-            if (currentClicks >= levelThresholds[currentLevel]) {
-                clearInterval(autoIncrementInterval);
-                currentClicks = 0;
+        document.getElementById('progress').style.width = progressPercentage + "%";
 
-                var randomPrizes = getRandomPrizes(currentLevel + 1);
-                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
+        document.getElementById('level-counter').innerText = "Level " + currentLevel;
+        document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
+    }
 
-                document.getElementById('result').innerHTML = "You've completed Level " + (currentLevel + 1) + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-                document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
-                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+    function getRandomPrizes(level) {
+        var prizes = [
+            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
+            ["BotPod Knight", "BotPod Joy"],
+            ["BotPod Prime", "BotPod Warrior"],
+            ["Infernal Pizza Critter", "Noble Pizza Critter"],
+            ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
+            ["BotPod Definitive", "BotPod Elite Guard"],
+            ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
+        ];
 
-                setTimeout(function() {
-                    document.getElementById('winMessage').innerHTML = "";
-                }, 2000);
+        return prizes[level - 1];
+    }
 
-                document.getElementById('play-button').disabled = false;
-                currentLevel++;
+    function updateCurrentTime() {
+        var now = new Date();
+        var day = now.getDate().toString().padStart(2, '0');
+        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
+        var year = now.getFullYear();
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var seconds = now.getSeconds().toString().padStart(2, '0');
 
-                // Reiniciar la barra de progreso al llegar al último nivel
-                if (currentLevel === levelThresholds.length) {
-                    currentLevel = 0;
-                    document.getElementById('progress').style.width = '0%';
-                    document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
-                    document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
-                }
+        var formattedDate = day + ' - ' + month + ' - ' + year;
+        var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
+        document.getElementById('current-time').innerText = currentTime;
+    }
+
+    setInterval(updateCurrentTime, 1000);
+    updateCurrentTime();
+</script>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const numStars = 250;
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            vx + "🎉";
+            document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
+            document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+
+            setTimeout(function() {
+                document.getElementById('winMessage').innerHTML = "";
+            }, 2000);
+
+            document.getElementById('play-button').disabled = false;
+            currentLevel++;
+
+            // Reiniciar la barra de progreso al llegar al último nivel
+            if (currentLevel === levelThresholds.length) {
+                currentLevel = 0;
+                document.getElementById('progress').style.width = '0%';
+                document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
+                document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
+            }
+        }
+
+        var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
+
+        document.getElementById('progress').style.width = progressPercentage + "%";
+
+        document.getElementById('level-counter').innerText = "Level " + currentLevel;
+        document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
+
+        // Obtener el valor del WAX Wallet ingresado por el usuario
+        const waxWallet = document.getElementById('wallet-input').value;
+        // Registrar la actividad del juego en Firestore
+        handleNivelCompletadoYPremioGanado(currentLevel + 1, randomPrizes[randomIndex], waxWallet);
+    }
+
+    function getRandomPrizes(level) {
+        var prizes = [
+            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
+            ["BotPod Knight", "BotPod Joy"],
+            ["BotPod Prime", "BotPod Warrior"],
+            ["Infernal Pizza Critter", "Noble Pizza Critter"],
+            ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
+            ["BotPod Definitive", "BotPod Elite Guard"],
+            ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
+        ];
+
+        return prizes[level - 1];
+    }
+
+    function updateCurrentTime() {
+        var now = new Date();
+        var day = now.getDate().toString().padStart(2, '0');
+        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
+        var year = now.getFullYear();
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var seconds = now.getSeconds().toString().padStart(2, '0');
+
+        var formattedDate = day + ' - ' + month + ' - ' + year;
+        var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
+        document.getElementById('current-time').innerText = currentTime;
+    }
+
+    setInterval(updateCurrentTime, 1000);
+    updateCurrentTime();
+</script>
+
+<script>
+    // Función para manejar el evento de completar un nivel y ganar un premio
+    function handleNivelCompletadoYPremioGanado(nivel, premio, waxWallet) {
+        // Registrar la actividad del juego en Firestore
+        registrarActividadJuego(nivel, premio, waxWallet);
+    }
+</script>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const numStars = 250;
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            vx: Math.random() * 0.5,
+            vy: Math.random() * 0.5
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#FFD700';
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            star.x += star.vx;
+            star.y += star.vy;
+
+            if (star.x < 0 || star.x > canvas.width) {
+                star.vx = -star.vx;
             }
 
-            var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
+            if (star.y < 0 || star.y > canvas.height) {
+                star.vy = -star.vy;
+            }
+        });
 
-            document.getElementById('progress').style.width = progressPercentage + "%";
+        requestAnimationFrame(draw);
+    }
 
-            document.getElementById('level-counter').innerText = "Level " + currentLevel;
-            document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
-        }
+    draw();
+</script>
 
-        function getRandomPrizes(level) {
-            var prizes = [
-                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-                ["BotPod Knight", "BotPod Joy"],
-                ["BotPod Prime", "BotPod Warrior"],
-                ["Infernal Pizza Critter", "Noble Pizza Critter"],
-                ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
-                ["BotPod Definitive", "BotPod Elite Guard"],
-                ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
-            ];
+<script type="module">
+    // Importar las funciones necesarias de Firebase SDK
+    import { initializeApp } from "firebase/app";
+    import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-            return prizes[level - 1];
-        }
+    // Tu configuración de Firebase
+    const firebaseConfig = {
+        // Tu configuración de Firebase aquí
+    };
 
-        function updateCurrentTime() {
-            var now = new Date();
-            var day = now.getDate().toString().padStart(2, '0');
-                        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
-            var year = now.getFullYear();
-            var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().padStart(2, '0');
-            var seconds = now.getSeconds().toString().padStart(2, '0');
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-            var formattedDate = day + ' - ' + month + ' - ' + year;
-            var currentTime = hours + ':' + minutes + ':' + seconds + ' (' + formattedDate + ')';
-            document.getElementById('current-time').innerText = currentTime;
-        }
-
-        setInterval(updateCurrentTime, 1000);
-        updateCurrentTime();
-    </script>
-
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-        const numStars = 250;
-
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                vx: Math.random() * 0.5,
-                vy: Math.random() * 0.5
+    // Función para registrar la actividad del juego en Firestore
+    async function registrarActividadJuego(nivel, premio, waxWallet) {
+        try {
+            const docRef = await addDoc(collection(db, "users", "waxwallets", "activityLog"), {
+                date: new Date().toISOString(),
+                level: nivel,
+                prize: premio,
+                waxWallet: waxWallet
             });
+            console.log("Actividad registrada con ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error al registrar la actividad: ", e);
         }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#FFD700';
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                star.x += star.vx;
-                star.y += star.vy;
-
-                if (star.x < 0 || star.x > canvas.width) {
-                    star.vx = -star.vx;
-                }
-
-                if (star.y < 0 || star.y > canvas.height) {
-                    star.vy = -star.vy;
-                }
-            });
-
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-   <script type="module">
-        // Importar las funciones necesarias de Firebase SDK
-        import { initializeApp } from "firebase/app";
-        import { getAnalytics } from "firebase/analytics";
-        import { getDatabase, ref, push } from "firebase/database";
-
-        // Tu configuración de Firebase
-        const firebaseConfig = {
-            // Tu configuración de Firebase aquí
-        };
-
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
-
-        // Función para registrar la actividad del juego en Firebase
-        function registrarActividadJuego(nivel, premio, waxWallet) {
-            const nuevaActividadRef = push(ref(database, 'actividadJuego'));
-            nuevaActividadRef.set({
-                nivel: nivel,
-                premio: premio,
-                waxWallet: waxWallet,
-                timestamp: new Date().toISOString()
-            });
-        }
-
-        // Función para manejar el evento de completar un nivel y ganar un premio
-        function handleNivelCompletadoYPremioGanado(nivel, premio) {
-            // Obtener el valor del WAX Wallet ingresado por el usuario
-            const waxWallet = document.getElementById('wallet-input').value;
-            // Registrar la actividad del juego en Firebase
-            registrarActividadJuego(nivel, premio, waxWallet);
-        }
-    </script>
-
-    <script>
-        // Función para manejar el evento de completar un nivel y ganar un premio
-        function handleNivelCompletadoYPremioGanado(nivel, premio) {
-            // Obtener el valor del WAX Wallet ingresado por el usuario
-            const waxWallet = document.getElementById('wallet-input').value;
-            // Registrar la actividad del juego en Firebase
-            registrarActividadJuego(nivel, premio, waxWallet);
-        }
-    </script>
+    }
+</script>
 </body>
-
 </html>
+
