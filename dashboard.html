@@ -63,7 +63,7 @@
             border-radius: 5px;
             box-sizing: border-box;
             height: 42px;
-            margin-top: 51px;
+            margin-top: 5px; /* Ajuste del margen */
             background-color: #007bff;
             color: white;
             cursor: pointer;
@@ -89,11 +89,11 @@
         <div class="section">
             <div id="levels">
                 <p class="section-title">Activity Log:</p>
-                <!-- Aquí va el registro de actividad de los niveles -->
+                <ul id="activity-log"></ul> <!-- Cambiado a una lista desordenada -->
             </div>
             <div id="prizes">
                 <p class="section-title">Prizes Obtained:</p>
-                <!-- Aquí van los premios obtenidos -->
+                <ul id="prizes-list"></ul> <!-- Cambiado a una lista desordenada -->
             </div>
         </div>
     </div>
@@ -102,15 +102,13 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"></script>
-    <!-- TODO: Agregar SDKs de los productos de Firebase que desees utilizar -->
-    <!-- https://firebase.google.com/docs/web/setup#available-libraries -->
 
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
             authDomain: "stickershub1-e7192.firebaseapp.com",
-            projectId: "stickershub1-e719",
+            projectId: "stickershub1-e7192",
             storageBucket: "stickershub1-e7192.appspot.com",
             messagingSenderId: "893978353658",
             appId: "1:893978353658:web:896666f7a750905e6bce43",
@@ -119,30 +117,34 @@
 
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
-        const analytics = firebase.analytics();
         const db = firebase.firestore();
 
         // Función para mostrar los datos en el dashboard
-        function displayLevels(activityLog) {
-            const levelsContainer = document.getElementById('levels');
-            levelsContainer.innerHTML = '';
+        function displayUserData(userData) {
+            if (userData) {
+                // Mostrar el nivel de la cuenta
+                document.getElementById('account-level').innerHTML = `<p class="section-title">Account Level: ${userData.accountLevel}</p>`;
+                
+                // Mostrar el registro de actividad
+                const activityLog = document.getElementById('activity-log');
+                activityLog.innerHTML = ''; // Limpiar lista
+                userData.activityLog.forEach(entry => {
+                    const logItem = document.createElement('li');
+                    logItem.textContent = `${entry.date} - ${entry.level} LEVELS`;
+                    activityLog.appendChild(logItem);
+                });
 
-            activityLog.forEach(entry => {
-                const logEntry = document.createElement('p');
-                logEntry.textContent = `${entry.date} - ${entry.level} LEVELS`;
-                levelsContainer.appendChild(logEntry);
-            });
-        }
-
-        function displayPrizes(prizes) {
-            const prizesContainer = document.getElementById('prizes');
-            prizesContainer.innerHTML = '';
-
-            prizes.forEach(prize => {
-                const prizeEntry = document.createElement('p');
-                prizeEntry.textContent = prize;
-                prizesContainer.appendChild(prizeEntry);
-            });
+                // Mostrar los premios obtenidos
+                const prizesList = document.getElementById('prizes-list');
+                prizesList.innerHTML = ''; // Limpiar lista
+                userData.prizes.forEach(prize => {
+                    const prizeItem = document.createElement('li');
+                    prizeItem.textContent = prize;
+                    prizesList.appendChild(prizeItem);
+                });
+            } else {
+                alert('User not found!');
+            }
         }
 
         // Agregar un evento de clic al botón de búsqueda
@@ -154,28 +156,18 @@
             // Buscar datos en Firestore
             const userRef = db.collection('waxwallets').doc(walletInput);
             userRef.get().then((doc) => {
-                if (doc.exists)
-{
-    // Obtener el valor del input del usuario
-    const walletInput = document.getElementById('wallet-input').value;
-
-    // Buscar datos en Firestore
-    const userRef = db.collection('waxwallets').doc(walletInput);
-    userRef.get().then((doc) => {
-        if (doc.exists) {
-            const userData = doc.data();
-            // Mostrar los datos en el dashboard
-            document.getElementById('account-level').innerHTML = `<p class="section-title">Account Level: ${userData.accountLevel}</p>`;
-            displayLevels(userData.activityLog);
-            displayPrizes(userData.prizes);
-        } else {
-            // Mostrar un mensaje de error si el usuario no existe
-            alert('User not found!');
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-});
-</script>
+                if (doc.exists) {
+                    const userData = doc.data();
+                    displayUserData(userData);
+                } else {
+                    displayUserData(null);
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+                displayUserData(null);
+            });
+        });
+    </script>
 </body>
+
 </html>
