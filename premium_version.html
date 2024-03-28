@@ -500,24 +500,18 @@
         }
 
         draw();
-    <script type="module">
+   <script type="module">
         // Importar las funciones necesarias de Firebase SDK
         import { initializeApp } from "firebase/app";
         import { getAnalytics } from "firebase/analytics";
         import { getDatabase, ref, push } from "firebase/database";
 
-        // Your web app's Firebase configuration
+        // Tu configuración de Firebase
         const firebaseConfig = {
-            apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
-            authDomain: "stickershub1-e7192.firebaseapp.com",
-            projectId: "stickershub1-e7192",
-            storageBucket: "stickershub1-e7192.appspot.com",
-            messagingSenderId: "893978353658",
-            appId: "1:893978353658:web:896666f7a750905e6bce43",
-            measurementId: "G-E5Y5CVPXJT"
+            // Tu configuración de Firebase aquí
         };
 
-        // Initialize Firebase
+        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
@@ -531,6 +525,14 @@
                 waxWallet: waxWallet,
                 timestamp: new Date().toISOString()
             });
+        }
+
+        // Función para manejar el evento de completar un nivel y ganar un premio
+        function handleNivelCompletadoYPremioGanado(nivel, premio) {
+            // Obtener el valor del WAX Wallet ingresado por el usuario
+            const waxWallet = document.getElementById('wallet-input').value;
+            // Registrar la actividad del juego en Firebase
+            registrarActividadJuego(nivel, premio, waxWallet);
         }
     </script>
 
