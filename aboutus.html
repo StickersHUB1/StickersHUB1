@@ -71,15 +71,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 0; /* Poner las imágenes detrás del contenido */
+            z-index: 0;
         }
 
         .image {
-           width: 100%;
-    height: 650px;
-    filter: opacity(0.7);
-    position: absolute;
-    transition: opacity 1s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: opacity(0.7);
+            position: absolute;
+            transition: opacity 1s ease;
+            opacity: 0;
         }
 
         .image.active {
@@ -87,15 +89,15 @@
         }
 
         button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #00ff03;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 2;
+           position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #03a505;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
         }
     </style>
 </head>
@@ -140,26 +142,23 @@
         <img class="image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Image 3">
         <img class="image" src="https://i.imgur.com/CogQPGJ.jpeg" alt="Image 4">
         <img class="image" src="https://i.imgur.com/U59FAuj.gif" alt="Image 5">        
-        <img class="image" src="https://i.imgur.com/bvB4QMC.gif" alt="Image 7">
-        <img class="image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Image 8">
-        <img class="image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Image 9">
+        <img class="image" src="https://i.imgur.com/bvB4QMC.gif" alt="Image 6">
+        <img class="image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Image 7">
+        <img class="image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Image 8">
     </div>
 
-    <button onclick="goBack()">Go Back</button>
+    <button onclick="goBack()" style="
+    color: white;
+">Go Back</button>	
 
     <script>
         const images = document.querySelectorAll('.image');
         let currentIndex = 0;
 
         function showNextImage() {
-            // Ocultar todas las imágenes
-            images.forEach(image => image.classList.remove('active'));
-
-            // Mostrar la siguiente imagen
-            images[currentIndex].classList.add('active');
-
-            // Actualizar el índice para la próxima imagen
+            images[currentIndex].classList.remove('active');
             currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
         }
 
         function animateImages() {
