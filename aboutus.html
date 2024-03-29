@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #content-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .section h2 {
+            cursor: pointer;
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section.active .section-content {
+            display: block;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0; /* Poner las imágenes detrás del contenido */
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+            filter: opacity(0.7);
+            position: absolute;
+            transition: opacity 1s ease;
+            opacity: 0;
+        }
+
+        .image.active {
+            opacity: 1;
+        }
+
+        button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #00ff03;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content-container">
+        <h1>About Us</h1>
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Our Mission</h2>
+            <div class="section-content">
+                <p>Our mission is to obtain benefits by benefiting others. We aim to create a wide range of services to share the benefits with users, thereby attracting more people and increasing traffic to our program.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Our Values</h2>
+            <div class="section-content">
+                <p>We embrace values that provide opportunities to all kinds of users, both wealthy and less fortunate. We believe in the importance of benefiting others while benefiting ourselves.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Our Team</h2>
+            <div class="section-content">
+                <p>We are composed of a diverse team of young entrepreneurs striving to be as professional as possible. Our founder, Miguel Ángel, is passionate about the digital world and dreams of creating a successful project to benefit people.</p>
+                <p>Additionally, we have our co-founder, Begoña Albaladejo Javaloyes, who plays a crucial role in developing ideas and designs, as well as moderating social networks and making decisions.</p>
+                <p>We also have a dedicated team of administrators ensuring the smooth operation of our project.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleSection(this)">Commitment to the Community</h2>
+            <div class="section-content">
+                <p>In the long term, we aim to dedicate a percentage of the profits from our collection to philanthropic actions decided by the community.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img class="image active" src="https://i.imgur.com/bIWWXDn.jpeg" alt="Image 1">
+        <img class="image" src="https://i.imgur.com/BCkJSGb.gif" alt="Image 2">
+        <img class="image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Image 3">
+        <img class="image" src="https://i.imgur.com/CogQPGJ.jpeg" alt="Image 4">
+        <img class="image" src="https://i.imgur.com/U59FAuj.gif" alt="Image 5">        
+        <img class="image" src="https://i.imgur.com/bvB4QMC.gif" alt="Image 7">
+        <img class="image" src="https://i.imgur.com/DWmXHZS.jpeg" alt="Image 8">
+        <img class="image" src="https://i.imgur.com/MULy4QM.jpeg" alt="Image 9">
+    </div>
+
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        const images = document.querySelectorAll('.image');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            // Ocultar todas las imágenes
+            images.forEach(image => image.classList.remove('active'));
+
+            // Mostrar la siguiente imagen
+            images[currentIndex].classList.add('active');
+
+            // Actualizar el índice para la próxima imagen
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        function animateImages() {
+            setInterval(showNextImage, 3000); // Intervalo de cambio de imagen: 3000ms (3 segundos)
+        }
+
+        // Iniciar la animación después de que la página se haya cargado completamente
+        window.onload = animateImages;
+
+        function toggleSection(element) {
+            const section = element.parentElement;
+            section.classList.toggle('active');
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // Reemplaza 'index.html' con la ruta correcta si es necesario
+        }
+    </script>
+</body>
+
+</html>
