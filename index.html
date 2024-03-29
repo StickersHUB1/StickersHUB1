@@ -14,11 +14,28 @@
             align-items: center;
             height: 100vh;
             overflow: hidden; /* Evita que el contenido se desplace más allá de la ventana */
+            position: relative; /* Establece la posición relativa para alinear el canvas correctamente */
+        }
+
+        canvas {
+            position: absolute; /* Establece la posición absoluta para el canvas */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Asegura que el canvas esté detrás de los demás elementos */
+            width: 100%; /* Ajusta el ancho del canvas al ancho de la ventana */
+            height: 100%; /* Ajusta la altura del canvas a la altura de la ventana */
         }
 
         .content-container {
             text-align: center;
             z-index: 1; /* Asegura que el contenido esté por encima del canvas */
+            width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+            max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+            padding: 0 20px; /* Añade relleno horizontal */
+            box-sizing: border-box; /* Incluye el relleno y el borde en el ancho y alto del elemento */
+            display: flex;
+            flex-direction: column; /* Establece la dirección de los elementos como columna */
+            align-items: center; /* Alinea los elementos en el centro horizontalmente */
         }
 
         .title-container {
@@ -32,8 +49,10 @@
             cursor: pointer;
             border: solid 2px #dc3030;
             background-color: #666;
-            border-radius: 10pc;
+            border-radius: 10px;
             margin-top: 10px;
+            width: 100%; /* Ajusta el ancho de la sección al 100% */
+            padding: 10px 0; /* Añade relleno superior e inferior */
         }
 
         .version-button-container {
@@ -41,6 +60,7 @@
             flex-direction: column; /* Botones dispuestos verticalmente */
             gap: 10px; /* Espacio entre los botones */
             align-items: center; /* Alinea los botones en el centro */
+            width: 100%; /* Ajusta el ancho del contenedor al 100% */
         }
 
         .version-button {
@@ -68,16 +88,22 @@
         .version-button:hover.free-version {
             background-image: url('https://i.imgur.com/bIWWXDn.jpeg');
             background-size: cover;
+            background-position: 0px;
+            background-position-y: 250px;
         }
 
         .version-button:hover.normal-version {
             background-image: url('https://i.imgur.com/BCkJSGb.gif');
             background-size: cover;
+            background-position: 0px;
+            background-position-y: 250px;
         }
 
         .version-button:hover.premium-version {
             background-image: url('https://i.imgur.com/U59FAuj.gif');
             background-size: cover;
+            background-position: 0px;
+            background-position-y: 250px;
         }
 
         .version-button:hover.divine-version {
@@ -94,14 +120,35 @@
             background-position-y: 250px;
         }
 
-        #canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0; /* Asegura que el canvas esté detrás del contenido */
+        /* Estilo para el contenedor de contacto */
+        .contact-container {
+            width: 100%; /* Ajusta el ancho al 100% */
+            padding: 20px 0; /* Añade relleno superior e inferior */
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center; /* Alinea los elementos en el centro horizontalmente */
+            margin-top: 30px;
+        }
+
+        .contact-methods a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+            margin: 0 10px; /* Añadir margen entre los íconos */
+        }
+
+        .contact-methods a:hover {
+            color: #00ff03;
+        }
+
+        .icon {
+            font-size: 36px;
         }
     </style>
     <title>Free Profit Tracker Adventure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -113,13 +160,9 @@
 
         <div class="section-header" onclick="toggleSection('profit')">Profit Tracker Adventure</div>
         <div class="version-button-container" id="profit-buttons">
-            <a href="free_version.html" class="version-button free-version" style="background-position: center;background-position-y: 250px;">Free Version</a>
-            <a href="normal_version.html" class="version-button normal-version" style="
-    background-position: center;
-">Normal Version</a>
-            <a href="premium_version.html" class="version-button premium-version" style="
-    background-position: center;
-">Premium Version</a>
+            <a href="free_version.html" class="version-button free-version">Free Version</a>
+            <a href="normal_version.html" class="version-button normal-version">Normal Version</a>
+            <a href="premium_version.html" class="version-button premium-version">Premium Version</a>
         </div>
 
         <div class="section-header" onclick="toggleSection('divine')">Divine Prizes Bag</div>
@@ -138,10 +181,19 @@
             <a href="faq.html" class="version-button about-us">FAQs</a>
             <a href="support.html" class="version-button faq">Support</a>
         </div>
-
-        <div class="section-header" onclick="toggleSection('contact')">About Us</div>
-        <div class="version-button-container" id="contact-buttons">
-            <a href="aboutus.html" class="version-button contact">About Us</a>
+        
+        <div class="contact-container">
+            <h1 style="
+    color: white;
+    font-size: 20px;
+">Follow Us and Stay Tuned</h1>
+            <div class="contact-methods">
+                <a href="mailto:stickershuboficial@gmail.com"><i class="fas fa-envelope icon"></i></a>
+                <a href="https://chat.whatsapp.com/IOkajfYaJpRLlNYWms8dzq"><i class="fab fa-whatsapp icon"></i></a>
+                <a href="https://twitter.com/StickersHubWAX" target="_blank"><i class="fab fa-twitter icon"></i></a>
+                <a href="https://www.facebook.com/people/Stickershub1/100071760019083/" target="_blank"><i class="fab fa-facebook icon"></i></a>
+                <a href="https://discord.gg/NeUgxfuSZQ" target="_blank"><i class="fab fa-discord icon"></i></a>
+            </div>
         </div>
     </div>
 
