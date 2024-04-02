@@ -120,6 +120,14 @@
             background-position-y: 250px;
         }
 
+        /* Agrega el efecto hover para la clase .botpod-version */
+        .version-button:hover.botpod-version {
+            background-image: url('https://i.imgur.com/U5Ty20Y.jpeg');
+            background-size: cover;
+            background-position: 0px;
+            background-position-y: 250px;
+        }
+
         /* Estilo para el contenedor de contacto */
         .contact-container {
             width: 100%; /* Ajusta el ancho al 100% */
@@ -176,6 +184,11 @@
         </div>
 
         <!-- Nuevas secciones -->
+        <div class="section-header" onclick="toggleSection('botpod')">BOTPOD</div>
+        <div class="version-button-container" id="botpod-buttons">
+            <a href="botpod_version.html" class="version-button botpod-version">BOTPOD for Discord</a>
+        </div>
+        
         <div class="section-header" onclick="toggleSection('about-faq')">FAQ / Support</div>
         <div class="version-button-container" id="about-faq-buttons">
             <a href="faq.html" class="version-button about-us">FAQs</a>
