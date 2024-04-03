@@ -7,23 +7,23 @@
     <style>
         body {
             margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    margin-top: 10px;
+            padding: 0;
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin-top: 10px;
         }
 
         /* Estilo para el encabezado */
         header {
-              text-align: center;
-    padding: 20px;
-    margin-bottom: -40px;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: -40px;
         }
 
         /* Estilo para el logo */
@@ -34,14 +34,14 @@
 
         /* Estilo para el contenido principal */
         .content {
-                max-width: 800px;
-    padding: 20px;
-    text-align: center;
-    margin-top: -20px;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            margin-top: -20px;
         }
 
-        /* Estilo para el botón */
-        .invite-button {
+        /* Estilo para los botones */
+        .invite-button, .go-back-button {
             display: inline-block;
             padding: 10px 20px;
             background-color: #dc3030;
@@ -52,9 +52,14 @@
             margin-top: 20px; /* Espacio superior */
         }
 
-        /* Cambiar color de fondo al pasar el ratón sobre el botón */
-        .invite-button:hover {
+        /* Cambiar color de fondo al pasar el ratón sobre los botones */
+        .invite-button:hover, .go-back-button:hover {
             background-color: #ff4d4d;
+        }
+
+        /* Espaciado entre los botones */
+        .go-back-button {
+            margin-top: 10px;
         }
     </style>
     <title>BotPod - A Discord Bot</title>
@@ -68,6 +73,8 @@
     <!-- Botón de invitación -->
     <a href="https://discord.com/oauth2/authorize?client_id=1223357724734001222"
         class="invite-button">Invite BotPod</a>
+    <!-- Botón de regresar -->
+    <a href="index.html" class="go-back-button">Go Back</a>
     <div class="content">
         <h2>🤖 BOTPOD Discord</h2>
         <p>With our Discord bot "BOTPOD," you have the possibility to register all the prizes you obtain on the websites and get more prizes for registering these prizes. Additionally, BOTPOD features a leveling system where you can earn exclusive rewards and withdrawable WAX prizes directly to your wallet.</p>
