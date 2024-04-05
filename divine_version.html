@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIVINE Prizes Bag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -13,10 +14,10 @@
             background-color: #1b1b1b;
             color: white;
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            overflow-y: auto;
+            /* Aplica el scroll solo al cuerpo de la página */
+            position: relative;
         }
 
         #canvas-bg {
@@ -25,23 +26,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
         }
 
         .container {
-                background-color: #292929;
-    border-radius: 15px;
-    padding: 20px;
-    max-width: 600px;
-    box-shadow: 10px 4px 8px rgb(255 0 0 / 50%);
-    position: relative;
-    z-index: 3;
-    width: 250px;
+            background-color: #292929;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(255, 140, 8, 95); /* Cambiado a naranja */
+            position: relative;
+            z-index: 1;
         }
 
-        h1 {
-            font-size: 36px;
+        h2 {
+            font-size: 24px;
             margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 20px;
+            font-size: 16px;
         }
 
         .custom-button {
@@ -54,9 +70,8 @@
             border-radius: 5px;
             margin-bottom: 20px;
             transition: background-color 0.3s ease;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 10px 4px 8px rgb(255 0 0 / 50%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            display: inline-block;
         }
 
         .custom-button:hover {
@@ -65,8 +80,8 @@
 
         .toggle-container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-around;
             margin-top: 20px;
         }
 
@@ -79,7 +94,7 @@
             display: none;
             margin: 20px auto 0;
             position: relative;
-            z-index: 4;
+            z-index: 2;
         }
 
         .toggle-container.active .toggle-content {
@@ -100,27 +115,39 @@
 
         ul li {
             margin-bottom: 10px;
-            font-size: 11px;
+            font-size: 14px;
         }
 
         #prize-display {
-            font-size: 24px;
+            font-size: 20px;
     font-weight: bold;
-    margin-top: 0px;
+    margin-top: 20px;
     color: greenyellow;
     text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);
+        }
+
+        .contact-container {
+            margin-top: 20px;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: #ff8c08;
+        }
+
+        .contact-methods a {
+            color: inherit;
+            font-size: 24px;
         }
 
         .floating-image {
             position: absolute;
             opacity: 0;
             transition: opacity 2s ease;
-            width: 100px;            
-            z-index: 0;
-        }
-
-        .neon {
-            animation: neonAnimation 1.5s alternate infinite;
+            width: 100px;
+            z-index: -1;
         }
 
         @keyframes neonAnimation {
@@ -174,17 +201,13 @@
 <body>
     <canvas id="canvas-bg"></canvas>
 
-        
     <div class="container">
-        <h2 style="
-    font-family: impact;
-    text-shadow: 0px 0px 8px rgb(248 0 0);
-">Divine Prizes Bag</h2>
-        <label for="wax-wallet-input" style="COLOR: ORANGE;">WAX Wallet:</label>
+        <h2>Divine Prizes Bag</h2>
+        <label for="wax-wallet-input" style="color: orange;">WAX Wallet:</label>
         <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
         <button class="custom-button" onclick="makeAWish()" style="margin-top: 10px;">Make a Wish</button>
         <div id="already-made-wish" style="display: none;">You've already made a wish in this session!</div>
-        <div id="prize-display"></div>        
+        <div id="prize-display"></div>
         <div class="toggle-container">
             <div class="read-me-prizes-container">
                 <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
@@ -211,7 +234,16 @@
             </div>
         </div>
     </div>
-    
+
+    <div class="contact-container">
+        <h1 style="color: #ffffff; font-size: 20px;">Follow Us and Stay Tuned</h1>
+        <div class="contact-methods">
+            <a href="https://chat.whatsapp.com/IOkajfYaJpRLlNYWms8dzq" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://twitter.com/StickersHubWAX" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/people/Stickershub1/100071760019083/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://discord.gg/NeUgxfuSZQ" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+    </div>
 
     <img id="image1" class="floating-image neon" src="https://i.imgur.com/y05NUNC.png" alt="Floating Image 1">
     <img id="image2" class="floating-image neon" src="https://i.imgur.com/6v4s29E.png" alt="Floating Image 2">
@@ -221,7 +253,6 @@
     <img id="image6" class="floating-image neon" src="https://i.imgur.com/6v4s29E.png" alt="Floating Image 6">
     <img id="image7" class="floating-image neon" src="https://i.imgur.com/Z1miBpW.png" alt="Floating Image 7">
     <img id="image8" class="floating-image neon" src="https://i.imgur.com/RPjkoxK.gif" alt="Floating Image 8">
-
 
     <script>
         let wishMade = false;
