@@ -58,6 +58,7 @@
             border: none;
             margin-bottom: 20px;
             font-size: 16px;
+            width: 180px;
         }
 
         .custom-button {
@@ -120,10 +121,10 @@
 
         #prize-display {
             font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    color: greenyellow;
-    text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);
+            font-weight: bold;
+            margin-top: 20px;
+            color: greenyellow;
+            text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);
         }
 
         .contact-container {
@@ -195,6 +196,21 @@
                 filter: drop-shadow(0 0 10px #9c27b0) drop-shadow(0 0 15px #800080) drop-shadow(0 0 20px #dc143c);
             }
         }
+
+        /* Estilos adicionales */
+        #wax-wallet-input {
+            margin-bottom: 10px; /* Agregado */
+        }
+
+        #wax-wallet-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #make-a-wish-container {
+            margin-top: 10px; /* Agregado */
+        }
     </style>
 </head>
 
@@ -203,15 +219,19 @@
 
     <div class="container">
         <h2>Divine Prizes Bag</h2>
-        <label for="wax-wallet-input" style="color: orange;">WAX Wallet:</label>
-        <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
-        <button class="custom-button" onclick="makeAWish()" style="margin-top: 10px;">Make a Wish</button>
+        <div id="wax-wallet-container">
+            <label for="wax-wallet-input" style="color: orange;">WAX Wallet:</label>
+            <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
+        </div>
+        <div id="make-a-wish-container">
+            <button class="custom-button" onclick="makeAWish()">Make a Wish</button>
+        </div>
         <div id="already-made-wish" style="display: none;">You've already made a wish in this session!</div>
         <div id="prize-display"></div>
         <div class="toggle-container">
             <div class="read-me-prizes-container">
                 <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
-                <button class="custom-button" onclick="toggleReadMeVisibility()">HOW TO CLAIM</button>
+                <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
                 <div id="prize-list" class="prize-list toggle-content">
                     <ul>
                         <li>1 NFT CRITTER. = 65%</li>
