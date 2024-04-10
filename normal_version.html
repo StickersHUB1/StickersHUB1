@@ -1,353 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P">
+    <title>Profit Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Press Start 2P', cursive;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #000;
-            margin-top: 600px;
-        }
-        #game-container {
-             padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 3px solid #1d83e8;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-    width: 250px;
-    background-color: dimgray;
-    margin-top: 100px;
-    margin-bottom: -70px;
-        }
-        #title-image {
-                 width: 100%;
-    max-width: 400px;
-    margin-top: -35px;
-    margin-left: 0px;
-        }
-        #logo {
-            width: 50px;
-            height: 50px;
-            margin-top: 20px;
-            margin-left: 0px;
-            border: 2px solid royalblue;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-        }
-        #protagonist {
-               width: 120px;
-    height: 200px;
-    margin-top: 50px;
-    margin-left: 0px;
-    border: solid 2px palegoldenrod;
-    box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;
-    border-radius: 10px;
-    margin-bottom: 0px;
-        }
-        #play-button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            background: royalblue;
-            background-position: 150px;
-        }
-        #wallet-input {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #fffdfa;
-            border: none;
-            border-radius: 5px;
-            color: black;
-        }
-        #wallet-label {
-            color: #ff8c00;
-        }
-        #progress-bar-container {
-            margin-top: 20px;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #progress-bar {
-            width: 80%;
-            background: #555;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        #progress {
-            width: 0;
-            height: 20px;
-            background: #4CAF50;
-            border-radius: 10px;
-            text-align: center;
-            line-height: 20px;
-            color: black;
-        }
-        #level-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        #level-counter {
-            font-size: 18px;
-            margin-bottom: 0;
-        }
-        #progress-percentage {
-            font-size: 18px;
-            margin-bottom: 10px;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #1b1b1b;
             color: white;
-            margin-top: 30px;
-        }
-        #prizes {
-            border: 3px solid #1d83e8;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 50px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 60%;
             text-align: center;
-            background-size: 1000px;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Para alinear los elementos horizontalmente */
-            text-align: center; /* Para centrar el texto */
+            overflow-y: auto;
+            position: relative;
+            margin-top: 105px;
         }
 
-        #prizes ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        #prizes li {
-            margin-bottom: 10px;
-            font-size: 9px;
-            text-align: left;
-        }
-
-        #prizes h2 {
-            text-align: center;
-        }
-
-        #logo {
-            display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 55px;
-        }
-
-        #claim-prizes {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: orange;        
-        }
-        #gameplay {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #result {
-             margin-top: 35px;
-    font-size: 12px;
-    text-shadow: 0 0 10px #fff, 0 0 20px #ffdb58, 0 0 30px #fff;
-    margin-bottom: 25px;
-        }
-        #timestamp {
+        #canvas-bg {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            color: #ffffff;
-            font-size: 12px;
-            padding: 5px 10px;
-            background-color: #d31cda;
-            border-radius: 5px;
-            box-shadow: 0 0 10px #d31cda;
-        }
-        .version-button-container {
-            margin-top: 20px;
-        }
-        .version-button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin-right: 10px;
-            cursor: pointer;
-           
-            background: royalblue;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        #info {
-            border: 3px solid #1d83e8;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #2219f0, 0 0 20px #2081ea, 0 0 30px #d31cda;
-            margin-top: 40px;
-            background: url(https://i.imgur.com/0PWVZ7a.jpeg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            text-align: left;
-            background-size: 1000px;
-            background-position: center;
-        }
-        #info ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        #info li {
-            margin-bottom: 10px;
-            font-size: 9px;
-        }
-        #background-container {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background-image: url('https://i.imgur.com/0PWVZ7a.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        @media only screen and (max-width: 600px) {
-            #background-container {
-                background-attachment: scroll;
-            }
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
             z-index: -2;
         }
-        .neon-image {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: neon 1.5s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite alternate;
-            max-width: 80%;
-            max-height: 80%;
-            filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 10px #00f) drop-shadow(0 0 15px #f0f);
-            z-index: -2;
-        }
-        @keyframes neon {
-            from {
-                text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #f0f;
-            }
-            to {
-                text-shadow: 0 0 10px #0ff, 0 0 15px #00f, 0 0 20px #f0f;
-            }
-        }
-        @keyframes pulse {
-            from {
-                filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 15px #00f) drop-shadow(0 0 20px #f0f);
-            }
-            to {
-                filter: drop-shadow(0 0 10px #9c27b0) drop-shadow(0 0 15px #2196f3) drop-shadow(0 0 20px #ff00ff);
-            }
-        }
-    </style>
-    <title>Normal Profit Tracker Adventure</title>
-    <link rel="icon" href="https://i.imgur.com/6S0jtGc.png" type="image/png">
-    
-</head>
-<body>
-    <canvas id="canvas"></canvas>
-    <img class="neon-image" src="https://i.imgur.com/Z1miBpW.png" alt="Neon Image">
-    <img src="https://i.imgur.com/lngXzrK.png" style="width: 370px;margin-left: 0px;margin-top: -90px;MARGIN-BOTTOM: -80px;">
-    </div>
 
-        <div id="game-container">
-        <button id="play-button" onclick="incrementCounter()">👉Click Profit👈</button>
-        <div id="wallet-input-container">
-            <label id="wallet-label" for="wallet-input">WAX Wallet:</label>
-            <input type="text" id="wallet-input" placeholder="Enter your WAX Wallet">
+        .container {
+            background-color: #292929;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 0px 10px rgba(46, 45, 136, 0.95);
+
+
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            width: 180px;
+        }
+
+        .custom-button {
+            padding: 10px 0;
+            width: 200px;
+            font-size: 18px;
+            cursor: pointer;
+            color: black;
+            border: SOLID 2PX;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+        }
+
+        .custom-button:hover {
+            background-color: #00ff00;
+        }
+
+        .toggle-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .toggle-content {
+            background-color: #292929;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+    margin: 20px auto 0;
+    position: relative;
+    z-index: 2;
+    font-size: 12px;
+        }
+
+        .toggle-container.active .toggle-content {
+            display: block;
+        }
+
+        .contact-container {
+            margin-top: 20px;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: #2E2D88;
+        }
+
+        .contact-methods a {
+            color: inherit;
+            font-size: 24px;
+        }
+
+        .floating-image {
+    position: fixed;
+    opacity: 0.6;
+    transition: opacity 2s ease;
+    max-width: 10%; /* Porcentaje o unidades relativas */
+    z-index: -1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .goback-button {
+            position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2E2D88;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    z-index: 3;
+        }
+
+        #timestamp {
+            position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: #white;
+    font-size: 12px;
+    padding: 5px 10px;
+    background-color: #2E2D88;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #2E2D88;
+    z-index: 3;
+
+        }
+
+        #progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #292929;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 100%; /* Cambiado a 100% */
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+        }
+
+        #progress {
+            width: 0;
+            height: 100%;
+            background-color: #00ff00;
+            transition: width 0.3s ease;
+        }
+
+#crypto-prices {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    z-index: 3;
+}
+
+.crypto-price-item {
+    margin-bottom: 5px;
+}
+    </style>
+</head>
+<div id="crypto-prices">
+    <div class="crypto-price-item" id="wax-price"></div>
+    <div class="crypto-price-item" id="eos-price"></div>
+</div>
+<body>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container">
+        <h2>Normal Profit Tracker</h2>
+        <div id="wax-wallet-container">
+            <label for="wax-wallet-input" style="
+    color: orange;
+">WAX Wallet:</label>
+            <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
+            <button class="custom-button" onclick="incrementCounter()">👉Click Profit👈</button>
         </div>
+        <p id="progress-percentage">100% : For Next Level</p>
+        <p id="level-counter"></p>
+        <p id="result" style="color: greenyellow;text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);font-size: 10px;"></p>
         <div id="progress-bar-container">
             <div id="progress-bar">
                 <div id="progress"></div>
             </div>
-            <div id="level-container">
-                <div id="level-counter">Level 0</div> <!-- Iniciando en nivel 0 -->
-                <div id="progress-percentage">100%</div>
+        </div>
+<div class="contact-container">
+        <h1 style="
+    font-size: 12px;
+">💎Follow Us and Stay Tuned💎</h1>
+        <div class="contact-methods">
+            <a href="https://chat.whatsapp.com/IOkajfYaJpRLlNYWms8dzq" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://twitter.com/StickersHubWAX" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/people/Stickershub1/100071760019083/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://discord.gg/NeUgxfuSZQ" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+        <p id="timestamp"><span id="current-time"></span></p>
+        <div id="live-chat-container"></div>
+        <a href="index.html" class="goback-button">Go Back</a>
+    </div>
+        <div class="toggle-container">
+            <div class="read-me-prizes-container">
+                <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
+                <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
+                <div id="prize-list" class="prize-list toggle-content">
+                    <ul id="prizes">
+                        <li>Level 1: 1 CRITTER.</li>
+                        <li>Level 2: 1 BASIC.</li>
+                        <li>Level 3: 1 RARE.</li>
+                        <li>Level 4: 1 PIZZA CRITTER.</li>
+                        <li>Level 5: 1 COSMIC CRITTER.</li>
+                        <li>Level 6: 1 LEGEND.</li>
+                        <li>Level 7: 1 ELITE CRITTER.</li>
+                    </ul>
+                </div>
+
+                <div id="info" class="info toggle-content">
+                    <ul>
+                        <li style="margin: 10px;">To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
+                        <li style="margin: 10px;">Don't forget to include your wallet address in order to specify whether you are the owner of DIVINE RARITY. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
+                        <li style="margin: 10px;">Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗 <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: #00ff00;">https://discord.gg/NeUgxfuSZQ</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <div id="make-a-wish-container">
+        </div>
     </div>
-<div id="gameplay">
-        <h2 style="margin-top: 70px;margin-bottom: 10px;">Your Prize:</h2>
-        <!-- Display player's progress here -->
-    </div>
-    <div id="result"></div>
-<div class="version-button-container">
-        <a href="index.html" class="version-button">Go Back</a>
-    </div>
-    <div id="prizes">
-    <h2>Prizes:</h2>
-    <!-- Lista de premios -->
-    <ul>
-        <li>Level 1: 1 CRITTER.</li>
-        <li>Level 2: 1 BASIC.</li>
-        <li>Level 3: 1 RARE.</li>
-        <li>Level 4: 1 PIZZA CRITTER.</li>
-        <li>Level 5: 1 COSMIC CRITTER.</li>
-        <li>Level 6: 1 LEGEND.</li>
-        <li>Level 7: 1 ELITE CRITTER.</li>
-    </ul>
-    <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" id="claim-prizes">Claim Prizes Here</a>
-    <img id="logo" src="https://i.imgur.com/TcualxR.gif" alt="Logo">
-</div>
-    <div id="info">
-        <h2 style="text-align: center;">📍READ ME</h2>
-        <ul>
-            <li>📌To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
-            <li>📌Don't forget to include your wallet address and indicate whether you are a proud owner of the Profit Tracker Critter. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
-            <li>📌Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗
-<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: orange;">https://discord.gg/NeUgxfuSZQ</a></li>
-        </ul>
-    </div>
-    <p id="timestamp"><span id="current-time"></span></p>
-    <img id="protagonist" src="https://i.imgur.com/BCkJSGb.gif" alt="protagonist" style="width: 120px;height: 200px;margin-top: 50px;margin-left: 0px;border: solid 2px palegoldenrod;box-shadow: 0 0 10px #ff8c00, 0 0 20px #cb8938, 0 0 30px #ffdb58;border-radius: 10px;margin-bottom: 0px;">
-    <img id="title-image" src="https://i.imgur.com/HKFDMJE.jpg" alt="Title Image">
-<div id="tawk-container" style="z-index: 1000;">
-    <!-- Aquí va el código del widget de tawk.to -->
-</div>
+
+
+    <!-- Agrega las imágenes flotantes -->
+    <img src="https://i.imgur.com/Z1miBpW.png" alt="Floating Image 1" class="floating-image">
+    <img src="https://i.imgur.com/I1wnsYi.png" alt="Floating Image 2" class="floating-image">
+    <img src="https://i.imgur.com/TcualxR.gif" alt="Floating Image 3" class="floating-image">
+    <img src="https://i.imgur.com/HKFDMJE.jpg" alt="Floating Image 4" class="floating-image">
+    <img src="https://i.imgur.com/BCkJSGb.gif" alt="Floating Image 5" class="floating-image">
+    <img src="https://i.imgur.com/BCkJSGb.gif" alt="Floating Image 6" class="floating-image">
+    <img src="https://i.imgur.com/Z1miBpW.png" alt="Floating Image 7" class="floating-image">
+    <img src="https://i.imgur.com/I1wnsYi.png" alt="Floating Image 8" class="floating-image">
+    <img src="https://i.imgur.com/TcualxR.gif" alt="Floating Image 9" class="floating-image">
+    <img src="https://i.imgur.com/HKFDMJE.jpg" alt="Floating Image 10" class="floating-image">
+    <img src="https://i.imgur.com/BCkJSGb.gif" alt="Floating Image 11" class="floating-image">
+    <img src="https://i.imgur.com/BCkJSGb.gif" alt="Floating Image 12" class="floating-image">
+
     <script>
         var currentClicks = 0;
         var currentLevel = 0;
-        var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
+        var levelThresholds = [5, 1000, 1500, 2000, 2500, 3000, 3500];
 
         function incrementCounter() {
             currentClicks++;
@@ -360,7 +309,7 @@
                 var randomIndex = Math.floor(Math.random() * randomPrizes.length);
                 var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
 
-                document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
+                document.getElementById('result').innerHTML = "Level " + currentLevel + " Succes. Prize: 🎉" + randomPrizes[randomIndex] + "🎉";
                 document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
                 document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
 
@@ -401,8 +350,7 @@
             var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 porque los meses van de 0 a 11
             var year = now.getFullYear();
             var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().
-padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
             var seconds = now.getSeconds().toString().padStart(2, '0');
 
             var formattedDate = day + ' - ' + month + ' - ' + year;
@@ -415,10 +363,10 @@ padStart(2, '0');
 
         // Mostrar la hora actual al cargar la página
         window.onload = updateCurrentTime;
-
     </script>
+
     <script>
-        const canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -439,7 +387,7 @@ padStart(2, '0');
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = '#0ff';
+            ctx.fillStyle = '#2E2D88';
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
@@ -462,30 +410,127 @@ padStart(2, '0');
 
         draw();
     </script>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
-    authDomain: "stickershub1-e7192.firebaseapp.com",
-    projectId: "stickershub1-e7192",
-    storageBucket: "stickershub1-e7192.appspot.com",
-    messagingSenderId: "893978353658",
-    appId: "1:893978353658:web:896666f7a750905e6bce43",
-    measurementId: "G-E5Y5CVPXJT"
-  };
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
+            authDomain: "stickershub1-e7192.firebaseapp.com",
+            projectId: "stickershub1-e7192",
+            storageBucket: "stickershub1-e7192.appspot.com",
+            messagingSenderId: "893978353658",
+            appId: "1:893978353658:web:896666f7a750905e6bce43",
+            measurementId: "G-5V1TH10FMT"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
+    <script>
+        function togglePrizeVisibility() {
+            var prizeList = document.getElementById('prize-list');
+            var info = document.getElementById('info');
+            var readMe = document.getElementsByClassName('read-me-prizes-container')[0];
+
+            // Toggle visibility of prize list
+            if (prizeList.style.display === 'block') {
+                prizeList.style.display = 'none';
+                readMe.classList.remove('active'); // Modificado
+            } else {
+                prizeList.style.display = 'block';
+                info.style.display = 'none';
+                readMe.classList.add('active'); // Modificado
+
+                // Oculta el otro contenedor si está abierto
+                var readMeContainer = document.getElementById('info');
+                readMeContainer.style.display = 'none';
+            }
+        }
+
+        function toggleReadMeVisibility() {
+            var prizeList = document.getElementById('prize-list');
+            var info = document.getElementById('info');
+            var readMe = document.getElementsByClassName('read-me-prizes-container')[0];
+
+            // Toggle visibility of read-me info
+            if (info.style.display === 'block') {
+                info.style.display = 'none';
+                readMe.classList.remove('active'); // Modificado
+            } else {
+                info.style.display = 'block';
+                prizeList.style.display = 'none';
+                readMe.classList.add('active'); // Modificado
+
+                // Oculta el otro contenedor si está abierto
+                var prizeListContainer = document.getElementById('prize-list');
+                prizeListContainer.style.display = 'none';
+            }
+        }
+    </script>
+<script>
+ function startFloatingAnimation() {
+        const images = document.querySelectorAll('.floating-image');
+
+        images.forEach((image, index) => {
+            const speedX = (Math.random() - 0.5) * 2; // Velocidad horizontal aleatoria
+            const speedY = (Math.random() - 0.5) * 2; // Velocidad vertical aleatoria
+
+            const initialX = Math.random() * (window.innerWidth - image.width);
+            const initialY = Math.random() * (window.innerHeight - image.height);
+
+            image.style.left = `${initialX}px`;
+            image.style.top = `${initialY}px`;
+
+            animateImage(image, speedX, speedY);
+        });
+    }
+
+    function animateImage(image, speedX, speedY) {
+        const updatePosition = () => {
+            let newX = parseFloat(image.style.left) + speedX;
+            let newY = parseFloat(image.style.top) + speedY;
+
+            // Restringir la posición horizontal dentro de los límites de la ventana del navegador
+            if (newX < 0) {
+                newX = 0;
+                speedX *= -1; // Cambiar dirección en el borde izquierdo
+            } else if (newX + image.width > window.innerWidth) {
+                newX = window.innerWidth - image.width;
+                speedX *= -1; // Cambiar dirección en el borde derecho
+            }
+
+            // Restringir la posición vertical dentro de los límites de la ventana del navegador
+            if (newY < 0) {
+                newY = 0;
+                speedY *= -1; // Cambiar dirección en el borde superior
+            } else if (newY + image.height > window.innerHeight) {
+                newY = window.innerHeight - image.height;
+                speedY *= -1; // Cambiar dirección en el borde inferior
+            }
+
+            image.style.left = `${newX}px`;
+            image.style.top = `${newY}px`;
+        };
+
+        const animationLoop = () => {
+            updatePosition();
+            requestAnimationFrame(animationLoop);
+        };
+
+        animationLoop();
+    }
+
+    startFloatingAnimation();
 </script>
-<!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -498,5 +543,46 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<script>
+
+    </script>
+<script>
+        // Función para obtener el precio de una criptomoneda desde CoinGecko
+        async function getCryptoPrice(coinId) {
+            try {
+                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`);
+                const data = await response.json();
+                return data[coinId].usd;
+            } catch (error) {
+                console.error("Error al obtener el precio de la criptomoneda:", error);
+            }
+        }
+
+        // Función para actualizar los precios de las criptomonedas
+        async function updateCryptoPrices() {
+            const waxpPrice = await getCryptoPrice('wax');
+            const eosPrice = await getCryptoPrice('eos');
+            const btcPrice = await getCryptoPrice('bitcoin');
+
+            // Mostrar los precios actualizados en los elementos HTML
+            document.getElementById("wax-price").textContent = `WAX: $${waxpPrice.toFixed(6)}`;
+            document.getElementById("eos-price").textContent = `EOS: $${eosPrice.toFixed(3)}`;
+            document.getElementById("btc-price").textContent = `BTC: $${btcPrice.toFixed(0)}`;
+        }
+
+        // Llamar a la función de actualización inicialmente cuando el DOM esté listo
+        document.addEventListener("DOMContentLoaded", () => {
+            updateCryptoPrices();
+            // Llamar a la función de actualización cada 5 minutos (300,000 milisegundos)
+            setInterval(updateCryptoPrices, 300000);
+        });
+
+    // Llamar a la función para actualizar los precios de las criptomonedas cuando se carga la página
+    window.onload = function() {
+        updateCryptoPrices();
+        // Actualizar los precios cada 60 segundos
+        setInterval(updateCryptoPrices, 60000);
+    };
+</script>
 </body>
 </html>
