@@ -251,6 +251,24 @@
     background-color: #00cc00; /* Cambia el color al pasar el mouse */
 }
 
+#prize-image {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75px;
+    height: 100px;
+    z-index: 3;
+    outline: none;
+    margin-top: 70px;
+    margin-bottom: -30px;
+        }
+
+#prize-image:not([src]) {
+    /* Oculta el contorno si no hay una imagen cargada */
+    outline: none;
+}
+
     </style>
 </head>
         <div id="crypto-prices">
@@ -264,7 +282,9 @@
         <h2>🆓Free Profit Tracker🆓</h2>
 
         <div id="wax-wallet-container">
-            <label for="wax-wallet-input">WAX Wallet:</label>
+            <label for="wax-wallet-input" style="
+    color: orange;
+">WAX Wallet:</label>
             <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
             <button class="custom-button" onclick="incrementCounter()">👉Click Profit👈</button>
         </div>
@@ -274,6 +294,8 @@
     color: greenyellow;
     text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);
 "></p>
+        <img id="prize-image" src="prize-image" style="display: none;">
+
         <div id="progress-bar-container">
             <div id="progress-bar">
                 <div id="progress"></div>
@@ -295,7 +317,7 @@
                 <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
                 <div id="prize-list" class="prize-list toggle-content">
                     <ul>
-                        <li>1 NFT CRITTER. = 65%</li>
+                        <li>1 NFT CRITTER. = 100%</li>
                         <li>CLAIM HERE:<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: #00ff00;">https://discord.gg/NeUgxfuSZQ</a></li>
                     </ul>
                 </div>
@@ -334,49 +356,102 @@
     <script>
          var currentClicks = 0;
         var currentLevel = 0;
-        var levelThresholds = [500];
+        var levelThresholds = [5];
 
         function incrementCounter() {
-            currentClicks++;
+    currentClicks++;
 
-            if (currentClicks >= levelThresholds[currentLevel]) {
-                currentLevel++;
-                currentClicks = 0;
+    if (currentClicks >= levelThresholds[currentLevel]) {
+        currentLevel++;
+        currentClicks = 0;
 
-                var randomPrizes = getRandomPrizes(currentLevel);
-                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
+        var prize = getRandomPrize();
+        var randomPrizeName = prize.name;
+        var randomPrizeImage = prize.image;
 
-                document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-                document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
-                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+        document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizeName + "🎉";
+        document.getElementById('prize-image').src = randomPrizeImage; // Actualiza la URL de la imagen del premio
+    }
 
-                // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
-                setTimeout(function () {
-                    document.getElementById('winMessage').innerHTML = "";
-                }, 2000);
-            }
+    // Actualizar la barra de progreso
+    document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
 
-            // Actualizar la barra de progreso
-            document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+    // Actualizar el contador de nivel
+    document.getElementById('level-counter').innerText = "Level " + currentLevel;
 
-            // Actualizar el contador de nivel
-            document.getElementById('level-counter').innerText = "Level " + currentLevel;
-
-            // Actualizar el porcentaje de progreso (de 100 a 0)
-            document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
+    // Actualizar el porcentaje de progreso (de 100 a 0)
+    document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
+}
+</script>
+<script>
+     function getRandomPrize() {
+    var prizes = [
+        {
+            name: "Metallic Blaze Critter",
+            image: "https://i.imgur.com/yUfH5kU.jpg"
+        },
+        {
+            name: "Silver Demon Critter",
+            image: "https://i.imgur.com/UPOQ8wz.jpg"
+        },
+        {
+            name: "Gato Noir Critter",
+            image: "https://i.imgur.com/6L94525.jpg"
+        },
+        {
+            name: "Abyssal Serpent Critter",
+            image: "https://i.imgur.com/IQQAjz4.jpg"
+        },
+        {
+            name: "Bad Bot Critter",
+            image: "https://i.imgur.com/LZ2Ib7P.jpg"
+        },
+        {
+            name: "Spark Gray Critter",
+            image: "https://i.imgur.com/kdvQCm3.jpg"
+        },
+        {
+            name: "Celestial Particle Critter",
+            image: "https://i.imgur.com/caqX08u.jpg"
+        },
+        {
+            name: "BotPod Joy Critter",
+            image: "https://i.imgur.com/Zk2E1hI.jpg"
+        },
+        {
+            name: "Sharkcoil Serpent Critter",
+            image: "https://i.imgur.com/jSsLUEv.jpg"
+        },
+        {
+            name: "Diablo Visage Critter",
+            image: "https://i.imgur.com/iuWqa5X.jpg"
+        },
+        {
+            name: "Gato Inferno Critter",
+            image: "https://i.imgur.com/kfvGRsB.jpg"
+        },
+        {
+            name: "Skull Blaze Critter",
+            image: "https://i.imgur.com/2wHDVGf.jpg"
+        },
+        {
+            name: "Diablotronic Chaos Critter",
+            image: "https://i.imgur.com/tS2J1Tk.jpg"
+        },
+        {
+            name: "Astro Folly Critter",
+            image: "https://i.imgur.com/30E341X.jpg"
         }
+    ];
 
+    // Escoge un índice aleatorio dentro del rango de la lista de premios
+    var randomIndex = Math.floor(Math.random() * prizes.length);
 
-        function getRandomPrizes(level) {
-            var prizes = [
-                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-
-            ];
-
-            return prizes[level - 1];
-        }
-
+    // Devuelve el premio aleatorio seleccionado
+    return prizes[randomIndex];
+}
+</script>
+<script>
         // Mostrar la hora actual
         function updateCurrentTime() {
             var now = new Date();
@@ -618,6 +693,12 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
     </script>
+<script>
+    var prizeImage = document.getElementById('prize-image');
+    prizeImage.onload = function() {
+        prizeImage.style.display = 'block';
+    };
+</script>
 </body>
 
 </html>
