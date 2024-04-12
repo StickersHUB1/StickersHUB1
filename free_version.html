@@ -356,7 +356,7 @@
     <script>
          var currentClicks = 0;
         var currentLevel = 0;
-        var levelThresholds = [5];
+        var levelThresholds = [500];
 
         function incrementCounter() {
     currentClicks++;
@@ -369,18 +369,22 @@
         var randomPrizeName = prize.name;
         var randomPrizeImage = prize.image;
 
-        document.getElementById('result').innerHTML = "You've completed Level " + currentLevel + " and won 🎉" + randomPrizeName + "🎉";
+        document.getElementById('result').innerHTML = "You have completed Level " + currentLevel + "<br>🎉You won " + randomPrizeName + "🎉";
         document.getElementById('prize-image').src = randomPrizeImage; // Actualiza la URL de la imagen del premio
+
+        // Ocultar el porcentaje de progreso
+        document.getElementById('progress-percentage').style.display = 'none';
+
+        // Actualizar el contador de nivel
+        document.getElementById('level-counter').innerText = "Level " + currentLevel;
     }
 
     // Actualizar la barra de progreso
-    document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+    var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
+    document.getElementById('progress').style.width = progressPercentage + "%";
 
-    // Actualizar el contador de nivel
-    document.getElementById('level-counter').innerText = "Level " + currentLevel;
-
-    // Actualizar el porcentaje de progreso (de 100 a 0)
-    document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
+    // Actualizar el porcentaje restante para subir de nivel
+    document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "% : For Next Level";
 }
 </script>
 <script>
