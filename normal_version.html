@@ -37,8 +37,6 @@
             max-width: 80%;
             margin: 20px auto;
             box-shadow: 0 0px 10px rgba(46, 45, 136, 0.95);
-
-
             position: relative;
             z-index: 1;
         }
@@ -209,6 +207,19 @@
 .crypto-price-item {
     margin-bottom: 5px;
 }
+
+#prizes {
+    display: flex; /* Utilizar flexbox para organizar las imágenes */
+    justify-content: center; /* Centrar las imágenes horizontalmente */
+    list-style-type: none; /* Quitar viñetas de la lista */
+    padding: 0;
+}
+
+#prizes img {
+    width: 75px; /* Establecer el ancho de las imágenes */
+    height: 100px; /* Establecer la altura de las imágenes */
+    margin: 0 10px; /* Añadir margen a cada imagen */
+
     </style>
 </head>
 <div id="crypto-prices">
@@ -216,6 +227,7 @@
     <div class="crypto-price-item" id="eos-price"></div>
 </div>
 <body>
+
     <canvas id="canvas-bg"></canvas>
 
     <div class="container">
@@ -230,6 +242,7 @@
         <p id="progress-percentage">100% : For Next Level</p>
         <p id="level-counter"></p>
         <p id="result" style="color: greenyellow;text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);font-size: 10px;"></p>
+
         <div id="progress-bar-container">
             <div id="progress-bar">
                 <div id="progress"></div>
@@ -254,7 +267,8 @@
                 <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
                 <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
                 <div id="prize-list" class="prize-list toggle-content">
-                    <ul id="prizes">
+                     <ul>
+                        
                         <li>Level 1: 1 CRITTER.</li>
                         <li>Level 2: 1 BASIC.</li>
                         <li>Level 3: 1 RARE.</li>
@@ -275,9 +289,9 @@
             </div>
         </div>
         <div id="make-a-wish-container">
+<ul id="prizes">
         </div>
     </div>
-
 
     <!-- Agrega las imágenes flotantes -->
     <img src="https://i.imgur.com/Z1miBpW.png" alt="Floating Image 1" class="floating-image">
@@ -296,52 +310,103 @@
     <script>
         var currentClicks = 0;
         var currentLevel = 0;
-        var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
+        var levelThresholds = [5, 10, 15, 20, 25, 30, 35];
 
-        function incrementCounter() {
-            currentClicks++;
+        // Variable para mantener un registro de si ya se ha mostrado un premio para el nivel actual
+var prizeShown = false;
+// Variable para mantener una referencia a la imagen mostrada actualmente
+var currentPrizeImage = null;
 
-            if (currentClicks >= levelThresholds[currentLevel]) {
-                currentLevel++;
-                currentClicks = 0;
+function incrementCounter() {
+    currentClicks++;
 
-                var randomPrizes = getRandomPrizes(currentLevel);
-                var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-                var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
+    if (currentClicks >= levelThresholds[currentLevel]) {
+        currentLevel++;
+        currentClicks = 0;
 
-                document.getElementById('result').innerHTML = "Level " + currentLevel + " Succes. Prize: 🎉" + randomPrizes[randomIndex] + "🎉";
-                document.getElementById('prizes').getElementsByTagName('li')[currentLevel - 1].classList.add('achieved');
-                document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+        var randomPrizes = getRandomPrizes(currentLevel);
+        var randomIndex = Math.floor(Math.random() * randomPrizes.length);
 
-                // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
-                setTimeout(function () {
-                    document.getElementById('winMessage').innerHTML = "";
-                }, 2000);
-            }
+        // Crear una imagen para mostrar el premio
+        var prizeImage = document.createElement('img');
 
-            // Actualizar la barra de progreso
-            document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+        // Configurar la imagen con la URL del premio, el atributo alt y el tamaño deseado
+        prizeImage.src = randomPrizes[randomIndex].imageUrl;
+        prizeImage.alt = randomPrizes[randomIndex].name;
+        prizeImage.style.width = '75px'; // Establecer el ancho de la imagen
+        prizeImage.style.height = '100px'; // Establecer la altura de la imagen
 
-            // Actualizar el contador de nivel
-            document.getElementById('level-counter').innerText = "Level " + currentLevel;
+        // Agregar la imagen después del elemento <p id="result">
+        var resultParagraph = document.getElementById('result');
+        resultParagraph.parentNode.insertBefore(prizeImage, resultParagraph.nextSibling);
 
-            // Actualizar el porcentaje de progreso (de 100 a 0)
-            document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
-        }
+        // Mostrar el mensaje de éxito
+        resultParagraph.innerHTML = "Level " + currentLevel + " Success. Prize: 🎉" + randomPrizes[randomIndex].name + "🎉";
+        document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
 
-        function getRandomPrizes(level) {
-            var prizes = [
-                ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-                ["BotPod Knight", "BotPod Joy"],
-                ["BotPod Prime", "BotPod Warrior"],
-                ["Infernal Pizza Critter", "Noble Pizza Critter"],
-                ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
-                ["BotPod Definitive", "BotPod Elite Guard"],
-                ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
-            ];
+        // Después de 2 segundos, borrar el mensaje de felicitación y ocultar el "TASK DONE!"
+        setTimeout(function () {
+            document.getElementById('winMessage').innerHTML = "";
+        }, 2000);
+    }
 
-            return prizes[level - 1];
-        }
+    // Actualizar la barra de progreso
+    document.getElementById('progress').style.width = (currentClicks / levelThresholds[currentLevel]) * 100 + "%";
+
+    // Actualizar el contador de nivel
+    document.getElementById('level-counter').innerText = "Level " + currentLevel;
+
+    // Actualizar el porcentaje de progreso (de 100 a 0)
+    document.getElementById('progress-percentage').innerText = (100 - ((currentClicks / levelThresholds[currentLevel]) * 100)).toFixed(2) + "%";
+}
+
+function getRandomPrizes(level) {
+    var prizes = [
+        [
+            { name: "Metallic Blaze Critter", imageUrl: "https://i.imgur.com/yUfH5kU.jpg" },
+            { name: "Silver Demon Critter", imageUrl: "https://i.imgur.com/UPOQ8wz.jpg" },
+            { name: "Gato Noir Critter", imageUrl: "https://i.imgur.com/6L94525.jpg" },
+            { name: "Abyssal Serpent Critter", imageUrl: "https://i.imgur.com/IQQAjz4.jpg" },
+            { name: "Bad Bot Critter", imageUrl: "https://i.imgur.com/LZ2Ib7P.jpg" },
+            { name: "Spark Gray Critter", imageUrl: "https://i.imgur.com/kdvQCm3.jpg" },
+            { name: "Celestial Particle Critter", imageUrl: "https://i.imgur.com/caqX08u.jpg" },
+            { name: "BotPod Joy Critter", imageUrl: "https://i.imgur.com/Zk2E1hI.jpg" },
+            { name: "Sharkcoil Serpent Critter", imageUrl: "https://i.imgur.com/jSsLUEv.jpg" },
+            { name: "Diablo Visage Critter", imageUrl: "https://i.imgur.com/iuWqa5X.jpg" },
+            { name: "Gato Inferno Critter", imageUrl: "https://i.imgur.com/kfvGRsB.jpg" },
+            { name: "Skull Blaze Critter", imageUrl: "https://i.imgur.com/2wHDVGf.jpg" },
+            { name: "Diablotronic Chaos Critter", imageUrl: "https://i.imgur.com/tS2J1Tk.jpg" },
+            { name: "Astro Folly Criter", imageUrl: "https://i.imgur.com/30E341X.jpg" }
+        ],
+        [
+            { name: "BotPod Knight", imageUrl: "https://i.imgur.com/1fkR0Wx.jpeg" },
+            { name: "BotPod Joy", imageUrl: "https://i.imgur.com/M8MJg9O.jpeg" }
+        ],
+        [
+            { name: "BotPod Prime", imageUrl: "https://i.imgur.com/GRA0TFg.jpeg" },
+            { name: "BotPod Warrior", imageUrl: "https://i.imgur.com/g4rS6V4.jpeg" }
+        ],
+        [
+            { name: "Infernal Pizza Critter", imageUrl: "https://i.imgur.com/nSPm0EU.jpeg" },
+            { name: "Noble Pizza Critter", imageUrl: "https://i.imgur.com/xSUPYs3.jpeg" }
+        ],
+        [
+            { name: "Green Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/ns0WiZV.jpeg" },
+            { name: "Red Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/wmOSHAD.jpeg" },
+            { name: "Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/EHPaYzW.jpeg" }
+        ],
+        [
+            { name: "BotPod Definitive", imageUrl: "https://i.imgur.com/9vezvbZ.jpeg" },
+            { name: "BotPod Elite Guard", imageUrl: "https://i.imgur.com/h9vqVfZ.jpeg" }
+        ],
+        [
+            { name: "Cosmic Demon Elite Critter", imageUrl: "https://i.imgur.com/S0meokE.jpeg" },
+            { name: "Furious Demon Elite Critter", imageUrl: "https://i.imgur.com/5WbVHBj.jpeg" }
+        ]
+    ];
+
+    return prizes[level - 1];
+}
 
         // Mostrar la hora actual
         function updateCurrentTime() {
