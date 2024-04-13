@@ -330,6 +330,18 @@
     margin-bottom: 5px;
 }
 
+#prizes {
+    display: flex; /* Utilizar flexbox para organizar las imágenes */
+    justify-content: center; /* Centrar las imágenes horizontalmente */
+    list-style-type: none; /* Quitar viñetas de la lista */
+    padding: 0;
+}
+
+#prizes img {
+    width: 75px; /* Establecer el ancho de las imágenes */
+    height: 100px; /* Establecer la altura de las imágenes */
+    margin: 0 10px; /* Añadir margen a cada imagen */
+
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P">
     <title>Premium Profit Tracker Adventure</title>
@@ -346,7 +358,7 @@
     <h2>👑Premium Profit Tracker👑</h2>
     
             <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
-    <button id="custom-button" onclick="startAutoIncrement()" enabled="" style="
+    <button id="custom-button" onclick="startGame()" enabled="" style="
     padding: 10px 0;
     width: 200px;
     font-size: 18px;
@@ -388,7 +400,7 @@
                 <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
                 <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
                 <div id="prize-list" class="prize-list toggle-content">
-                    <ul id="prizes">
+                    
                         <li>Level 1: 1 CRITTER.</li>
                         <li>Level 2: 1 BASIC.</li>
                         <li>Level 3: 1 RARE.</li>
@@ -409,6 +421,7 @@
             </div>
         </div>
         <div id="make-a-wish-container">
+<ul id="prizes">
         </div>
     </div>
  <div id="winMessage"></div> <!-- agregado por Rodo -->
@@ -432,60 +445,107 @@
     var currentLevel = 0;
     var levelThresholds = [500, 1000, 1500, 2000, 2500, 3000, 3500];
     var autoIncrementInterval;
+    var isGameRunning = false; // Definir la variable isGameRunning
 
-    function startAutoIncrement() {
-        document.getElementById('custom-button').disabled = true;
-        autoIncrementInterval = setInterval(incrementCounter, 100);
-    }
-
-    function incrementCounter() {
-        currentClicks++;
-
-        if (currentClicks >= levelThresholds[currentLevel]) {
-            clearInterval(autoIncrementInterval);
-            currentClicks = 0;
-
-            var randomPrizes = getRandomPrizes(currentLevel + 1);
-            var randomIndex = Math.floor(Math.random() * randomPrizes.length);
-            var prizeHTML = "🎉¡YEAH!🎉 CLAIM A " + randomPrizes[randomIndex] + "! ON OUR DISCORD! ❤️ <a href='https://discord.gg/Txasq3jqRe' target='_blank'>Discord Link🔗</a>";
-
-            document.getElementById('result').innerHTML = "You've completed Level " + (currentLevel + 1) + " and won 🎉" + randomPrizes[randomIndex] + "🎉";
-            document.getElementById('prizes').getElementsByTagName('li')[currentLevel].classList.add('achieved');
-            document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
-
-            setTimeout(function() {
-                document.getElementById('winMessage').innerHTML = "";
-            }, 2000);
-
-            document.getElementById('custom-button').disabled = false;
-            currentLevel++;
-
-            // Reiniciar la barra de progreso al llegar al último nivel
-            if (currentLevel === levelThresholds.length) {
-                currentLevel = 0;
-                document.getElementById('progress').style.width = '0%';
-                document.getElementById('level-counter').innerText = "Level 0"; // Corregir el contador de nivel
-                document.getElementById('progress-percentage').innerText = "100.00%"; // Corregir el porcentaje de progreso
-            }
+    // Iniciar el juego
+    function startGame() {
+        if (!isGameRunning) {
+            autoIncrementInterval = setInterval(incrementCounter, 100);
+            isGameRunning = true;
+            document.getElementById('play-button').disabled = true;
         }
-
-        var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
-
-        document.getElementById('progress').style.width = progressPercentage + "%";
-
-        document.getElementById('level-counter').innerText = "Level " + currentLevel;
-        document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "%";
     }
 
+    // Función que avanza al siguiente nivel
+    function avanzarAlSiguienteNivel() {
+        currentLevel++; // Incrementar el nivel
+        currentClicks = 0; // Reiniciar los clics para el nuevo nivel
+        document.getElementById('progress').style.width = '0%'; // Reiniciar la barra de progreso
+        document.getElementById('level-counter').innerText = "Level " + currentLevel; // Actualizar el contador de nivel
+        mostrarPremio(); // Mostrar premio para el nuevo nivel
+        clearInterval(autoIncrementInterval); // Detener el incremento automático
+        isGameRunning = false; // Restablecer isGameRunning
+        document.getElementById('play-button').disabled = false; // Habilitar el botón nuevamente
+    }
+
+    // Función que se ejecuta cada vez que se incrementa el contador de clics
+    function incrementCounter() {
+    currentClicks++; // Incrementar el contador de clics
+    var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100; // Calcular el porcentaje de progreso
+    var remainingPercentage = 100 - progressPercentage; // Calcular el porcentaje restante para el próximo nivel
+    document.getElementById('progress').style.width = progressPercentage + "%"; // Actualizar la barra de progreso
+    document.getElementById('progress-percentage').innerText = remainingPercentage.toFixed(2) + "% for next level"; // Actualizar el porcentaje de progreso mostrado
+    document.getElementById('level-counter').innerText = "Level " + currentLevel; // Actualizar el contador de nivel
+
+    // Verificar si se ha alcanzado el 100% del umbral del nivel actual
+    if (currentClicks >= levelThresholds[currentLevel]) {
+        clearInterval(autoIncrementInterval); // Detener el incremento automático
+        avanzarAlSiguienteNivel(); // Avanzar al siguiente nivel
+    }
+}
+
+    // Función para mostrar un premio para el nivel actual
+    function mostrarPremio() {
+        var randomPrizes = getRandomPrizes(currentLevel);
+        var randomIndex = Math.floor(Math.random() * randomPrizes.length);
+        var resultParagraph = document.getElementById('result');
+        var prizeImage = document.createElement('img');
+        prizeImage.src = randomPrizes[randomIndex].imageUrl;
+        prizeImage.alt = randomPrizes[randomIndex].name;
+        prizeImage.style.width = '75px';
+        prizeImage.style.height = '100px';
+        resultParagraph.parentNode.insertBefore(prizeImage, resultParagraph.nextSibling);
+        resultParagraph.innerHTML = "Level " + currentLevel + " Success. Prize: 🎉" + randomPrizes[randomIndex].name + "🎉";
+        document.getElementById('winMessage').innerHTML = "TASK DONE!🎉";
+        setTimeout(function () {
+            document.getElementById('winMessage').innerHTML = "";
+        }, 2000);
+    }
+
+    // Función para obtener premios aleatorios para un nivel dado
     function getRandomPrizes(level) {
         var prizes = [
-            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-            ["BotPod Knight", "BotPod Joy"],
-            ["BotPod Prime", "BotPod Warrior"],
-            ["Infernal Pizza Critter", "Noble Pizza Critter"],
-            ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
-            ["BotPod Definitive", "BotPod Elite Guard"],
-            ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
+            [
+                { name: "Metallic Blaze Critter", imageUrl: "https://i.imgur.com/yUfH5kU.jpg" },
+                { name: "Silver Demon Critter", imageUrl: "https://i.imgur.com/UPOQ8wz.jpg" },
+                { name: "Gato Noir Critter", imageUrl: "https://i.imgur.com/6L94525.jpg" },
+                { name: "Abyssal Serpent Critter", imageUrl: "https://i.imgur.com/IQQAjz4.jpg" },
+                { name: "Bad Bot Critter", imageUrl: "https://i.imgur.com/LZ2Ib7P.jpg" },
+                { name: "Spark Gray Critter", imageUrl: "https://i.imgur.com/kdvQCm3.jpg" },
+                { name: "Celestial Particle Critter", imageUrl: "https://i.imgur.com/caqX08u.jpg" },
+                { name: "BotPod Joy Critter", imageUrl: "https://i.imgur.com/Zk2E1hI.jpg" },
+                { name: "Sharkcoil Serpent Critter", imageUrl: "https://i.imgur.com/jSsLUEv.jpg" },
+                { name: "Diablo Visage Critter", imageUrl: "https://i.imgur.com/iuWqa5X.jpg" },
+                { name: "Gato Inferno Critter", imageUrl: "https://i.imgur.com/kfvGRsB.jpg" },
+                { name: "Skull Blaze Critter", imageUrl: "https://i.imgur.com/2wHDVGf.jpg" },
+                { name: "Diablotronic Chaos Critter", imageUrl: "https://i.imgur.com/tS2J1Tk.jpg" },
+                { name: "Astro Folly Criter", imageUrl: "https://i.imgur.com/30E341X.jpg" }
+            ],
+            [
+                { name: "BotPod Knight", imageUrl: "https://i.imgur.com/1fkR0Wx.jpeg" },
+                { name: "BotPod Joy", imageUrl: "https://i.imgur.com/M8MJg9O.jpeg" }
+            ],
+            [
+                { name: "BotPod Prime", imageUrl: "https://i.imgur.com/GRA0TFg.jpeg" },
+                { name: "BotPod Warrior", imageUrl: "https://i.imgur.com/g4rS6V4.jpeg" }
+            ],
+            [
+                { name: "Infernal Pizza Critter", imageUrl: "https://i.imgur.com/nSPm0EU.jpeg" },
+                { name: "Noble Pizza Critter", imageUrl: "https://i.imgur.com/xSUPYs3.jpeg" }
+            ],
+            [
+                { name: "Green Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/ns0WiZV.jpeg" },
+                { name: "Red Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/wmOSHAD.jpeg" },
+                { name: "Cosmic Tentacle Critter", imageUrl: "https://i.imgur.com/EHPaYzW.jpeg" }
+            ],
+            [
+                { name: "BotPod Definitive", imageUrl: "https://i.imgur.com/9vezvbZ.jpeg" },
+                { name: "BotPod Elite Guard", imageUrl: "https://i.imgur.com/h9vqVfZ.jpeg" }
+            ],
+            [
+                { name: "Cosmic Demon Elite Critter", imageUrl: "https://i.imgur.com/S0meokE.jpeg" },
+                { name: "Furious Demon Elite Critter", imageUrl: "https://i.imgur.com/5WbVHBj.jpeg" }
+            ]
         ];
 
         return prizes[level - 1];
@@ -556,19 +616,7 @@
         handleNivelCompletadoYPremioGanado(currentLevel + 1, randomPrizes[randomIndex], waxWallet);
     }
 
-    function getRandomPrizes(level) {
-        var prizes = [
-            ["Metallic Blaze Critter", "Silver Demon Critter", "Gato Noir Critter", "Abyssal Serpent Critter", "Spark Gray Critter", "Celestial Particle Critter", "BotPod Joy Critter", "Sharkcoil Serpent Critter", "Diablo Visage Critter", "Gato Inferno Critter", "Skull Blaze Critter", "Diablotronic Chaos Critter", "Astro Folly Criter"],
-            ["BotPod Knight", "BotPod Joy"],
-            ["BotPod Prime", "BotPod Warrior"],
-            ["Infernal Pizza Critter", "Noble Pizza Critter"],
-            ["Green Cosmic Tentacle Critter", "Red Cosmic Tentacle Critter", "Cosmic Tentacle Critter"],
-            ["BotPod Definitive", "BotPod Elite Guard"],
-            ["Cosmic Demon Elite Critter", "Furious Demon Elite Critter"]
-        ];
-
-        return prizes[level - 1];
-    }
+    
 
     function updateCurrentTime() {
         var now = new Date();
@@ -586,6 +634,9 @@
 
     setInterval(updateCurrentTime, 1000);
     updateCurrentTime();
+
+
+
 </script>
 
 <script>
