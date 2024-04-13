@@ -450,7 +450,7 @@
     // Iniciar el juego
     function startGame() {
         if (!isGameRunning) {
-            autoIncrementInterval = setInterval(incrementCounter, 100);
+            autoIncrementInterval = setInterval(incrementCounter, 50);
             isGameRunning = true;
             document.getElementById('play-button').disabled = true;
         }
