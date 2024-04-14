@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+
+        .header {
+               background-color: #29266b;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    ALIGN-ITEMS: CENTER;
+        }
+
+        .album {
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Alinea el contenido verticalmente */
+            align-items: center; /* Alinea el contenido horizontalmente */
+        }
+
+        .category {
+            margin-bottom: 20px;
+            width: 500px;
+        }
+
+        .category h2 {
+            text-align: center;
+    font-size: 1.5em;
+    margin-top: 0;
+    color: white;
+    text-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
+        }
+
+.subcategory {
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+    color: white;
+    text-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
+}
+
+.subcategory h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .images img {
+             width: calc(25% - 10px);
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .navigation button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border: solid 2px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+@keyframes float {
+    /* Otras propiedades CSS existentes */
+
+    /* Ajustar la animación para limitar la posición horizontal */
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-20px) translateX(-20px); /* Limita la posición horizontal */
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+        #background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #background-container {
+                background-attachment: scroll;
+            }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
+
+
+@media only screen and (max-width: 600px) {
+            .category {
+                width: 90%; /* Reducir el ancho en dispositivos móviles */
+            }
+
+    </style>
+    <link rel="icon" href="https://i.imgur.com/6S0jtGc.png" type="image/png">
+</head>
+<body>
+<div class="header" style="display: flex; flex-direction: column;">
+    <img src="https://i.imgur.com/Z1miBpW.png" style="
+    width: 250px;
+    margin-top: 15px;
+">
+   <img src="https://i.imgur.com/55RH3bV.png" style="WIDTH: 75PX;">
+<h2 style="
+    margin-top: -10px;
+    margin-bottom: 5px;
+">(BETA)</h2>
+</div>
+<div class="album">
+    <div class="navigation">
+        <button onclick="showCategory('botPods')">BotPods</button>
+        <button onclick="showCategory('profitTakers')">Profit Takers</button>
+        <button onclick="showCategory('divines')">Divines</button>
+    </div>
+
+    <div class="category" id="botPods">
+        <h2>BotPods</h2>
+        <div class="images"></div>
+    </div>
+
+    <div class="category" id="profitTakers">
+        <h2>Profit Takers</h2>
+        <div class="images">
+            <!-- Aquí deberían estar las imágenes de Profit Takers -->
+        </div>
+        <div class="subcategory" id="profitTrackerCritters">
+            <h3>Profit Tracker Critters</h3>
+            <div class="images"></div>
+        </div>
+        <div class="subcategory" id="critters">
+            <h3>Critters</h3>
+            <div class="images"></div>
+        </div>
+        <div class="subcategory" id="cosmicTentacles">
+            <h3>Cosmic Tentacles</h3>
+            <div class="images"></div>
+        </div>
+        <div class="subcategory" id="pizzaCritters">
+            <h3>Pizza Critters</h3>
+            <div class="images"></div>
+        </div>
+        <div class="subcategory" id="eliteCritters">
+            <h3>Elite Critters</h3>
+            <div class="images"></div>
+        </div>
+    </div>
+
+    <div class="category" id="divines">
+        <h2>Divines</h2>
+        <div class="images"></div>
+    </div>
+</div>
+
+
+
+<div id="background-container"></div>
+
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+    function showCategory(category) {
+        const categories = ["botPods", "profitTakers", "divines"];
+        categories.forEach(cat => {
+            const element = document.getElementById(cat);
+            if (cat === category) {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const botPodsContainer = document.querySelector("#botPods .images");
+        const profitTakersContainer = document.querySelector("#profitTakers .images");
+        const divinesContainer = document.querySelector("#divines .images");
+
+        const botPodsImages = [
+            {url: "https://i.imgur.com/M8MJg9O.jpg", name: "BotPod Joy"},
+            {url: "https://i.imgur.com/GRA0TFg.jpg", name: "BotPod Prime"},
+            {url: "https://i.imgur.com/9vezvbZ.jpg", name: "BotPod Definitive"},
+            {url: "https://i.imgur.com/gB1RVkZ.jpeg", name: "BotPod Ascendant"},
+            {url: "https://i.imgur.com/1fkR0Wx.jpg", name: "Imagen 5"},
+            {url: "https://i.imgur.com/g4rS6V4.jpg", name: "Imagen 6"},
+            {url: "https://i.imgur.com/h9vqVfZ.jpg", name: "Imagen 7"},
+            {url: "https://i.imgur.com/H811oqk.jpeg", name: "Imagen 8"}
+        ];
+
+        botPodsImages.forEach(img => addImage(botPodsContainer, img.url, img.name));
+
+        // Agrega las imágenes de Profit Tracker Critters al contenedor correspondiente
+        const profitTrackerCrittersImages = [
+            {url: "https://i.imgur.com/PxZbPIj.gif", name: "Imagen 1"},
+            {url: "https://i.imgur.com/sF6MT9e.gif", name: "Imagen 2"}
+        ];
+        profitTrackerCrittersImages.forEach(img => addImage(document.querySelector("#profitTrackerCritters .images"), img.url, img.name));
+
+        // Agrega las imágenes de Critters al contenedor correspondiente
+        const crittersImages = [
+            {url: "https://i.imgur.com/Ve1BUF2.jpg", name: "Imagen 1"},
+            {url: "https://i.imgur.com/yUfH5kU.jpg", name: "Imagen 2"},
+            {url: "https://i.imgur.com/UPOQ8wz.jpg", name: "Imagen 3"},
+            {url: "https://i.imgur.com/6L94525.jpg", name: "Imagen 4"},
+            {url: "https://i.imgur.com/IQQAjz4.jpg", name: "Imagen 5"},
+            {url: "https://i.imgur.com/LZ2Ib7P.jpg", name: "Imagen 6"},
+            {url: "https://i.imgur.com/kdvQCm3.jpg", name: "Imagen 7"},
+            {url: "https://i.imgur.com/caqX08u.jpg", name: "Imagen 8"},
+            {url: "https://i.imgur.com/Zk2E1hI.jpg", name: "Imagen 9"},
+            {url: "https://i.imgur.com/jSsLUEv.jpg", name: "Imagen 10"},
+            {url: "https://i.imgur.com/iuWqa5X.jpg", name: "Imagen 11"},
+            {url: "https://i.imgur.com/kfvGRsB.jpg", name: "Imagen 12"},
+            {url: "https://i.imgur.com/2wHDVGf.jpg", name: "Imagen 13"},
+            {url: "https://i.imgur.com/tS2J1Tk.jpg", name: "Imagen 14"},
+            {url: "https://i.imgur.com/30E341X.jpg", name: "Imagen 15"},
+            {url: "https://i.imgur.com/9vLe38i.jpeg", name: "Imagen 16"},
+            {url: "https://i.imgur.com/hHqVQuf.jpeg", name: "Imagen 17"},
+            {url: "https://i.imgur.com/C9T5PYn.jpeg", name: "Imagen 18"},
+            {url: "https://i.imgur.com/bEuIDvw.jpeg", name: "Imagen 19"},
+            {url: "https://i.imgur.com/HE3w2i8.jpeg", name: "Imagen 20"}
+        ];
+        crittersImages.forEach(img => addImage(document.querySelector("#critters .images"), img.url, img.name));
+
+        // Agrega las imágenes de Cosmic Tentacles al contenedor correspondiente
+        const cosmicTentaclesImages = [
+            {url: "https://i.imgur.com/wmOSHAD.jpg", name: "Imagen 1"},
+            {url: "https://i.imgur.com/ns0WiZV.jpg", name: "Imagen 2"},
+            {url: "https://i.imgur.com/EHPaYzW.jpg", name: "Imagen 3"},
+            {url: "https://i.imgur.com/lmKOnGJ.jpeg", name: "Imagen 4"}
+
+        ];
+        cosmicTentaclesImages.forEach(img => addImage(document.querySelector("#cosmicTentacles .images"), img.url, img.name));
+
+        // Agrega las imágenes de Pizza Critters al contenedor correspondiente
+        const pizzaCrittersImages = [
+            {url: "https://i.imgur.com/nSPm0EU.jpg", name: "Imagen 1"},
+            {url: "https://i.imgur.com/xSUPYs3.jpg", name: "Imagen 2"}
+        ];
+        pizzaCrittersImages.forEach(img => addImage(document.querySelector("#pizzaCritters .images"), img.url, img.name));
+
+        // Agrega las imágenes de Elite Critters al contenedor correspondiente
+        const eliteCrittersImages = [
+            {url: "https://i.imgur.com/5WbVHBj.jpg", name: "Imagen 1"},
+            {url: "https://i.imgur.com/S0meokE.jpg", name: "Imagen 2"},
+            {url: "https://i.imgur.com/QF1YCgn.gif", name: "Imagen 3"}
+        ];
+        eliteCrittersImages.forEach(img => addImage(document.querySelector("#eliteCritters .images"), img.url, img.name));
+
+        // Agrega las imágenes de Divines al contenedor correspondiente
+        const divinesImages = [
+            {url: "https://i.imgur.com/GQjZYsR.jpg", name: "Imagen 1"},
+            {url: "https://i.imgur.com/3f4lGu7.jpg", name: "Imagen 2"}
+        ];
+        divinesImages.forEach(img => addImage(divinesContainer, img.url, img.name));
+
+        showCategory("botPods");
+    });
+
+    function addImage(container, imgUrl, title) {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        img.alt = title; // Se utiliza el atributo alt para almacenar el título
+        container.appendChild(img);
+    }
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const backgroundContainer = document.getElementById('background-container');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Ajustar el z-index del contenedor de fondo
+        backgroundContainer.style.zIndex = '-1';
+
+        // Ajustar el canvas para cubrir toda la ventana
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100vw';
+        canvas.style.height = '100vh';
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const numStars = 250;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                vx: Math.random() * 0.5,
+                vy: Math.random() * 0.5
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                // Generar un color aleatorio en formato hexadecimal
+                const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+                // Asignar el color aleatorio al contexto
+                ctx.fillStyle = randomColor;
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) {
+                    star.vx = -star.vx;
+                }
+
+                if (star.y < 0 || star.y > canvas.height) {
+                    star.vy = -star.vy;
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    });
+
+</script>
+</body>
+</html>
