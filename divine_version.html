@@ -14,11 +14,10 @@
             background-color: #1b1b1b;
             color: white;
             text-align: center;
-            min-height: 100vh;
-            overflow-y: auto;
-            /* Aplica el scroll solo al cuerpo de la página */
+            min-height: 100vh; /* Establece la altura mínima igual a la altura de la ventana */
+            overflow-y: auto; /* Permitir el scroll vertical solo cuando sea necesario */
             position: relative;
-            margin-top: 110px;
+            margin-top: 100px;
         }
 
         #canvas-bg {
@@ -32,13 +31,14 @@
 
         .container {
             background-color: #292929;
-    border-radius: 15px;
-    padding: 20px;
-    max-width: 80%;
-    margin: 20px auto;
-    box-shadow: 0 0px 10px rgba(255, 140, 8, 95);
-    position: relative;
-    z-index: 1;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0px 10px rgba(255, 140, 8, 95);
+            position: relative;
+            z-index: 1;
+            width: 300px;
         }
 
         h2 {
@@ -213,7 +213,7 @@
             margin-top: 10px; /* Agregado */
         }
 
-#crypto-prices {
+        #crypto-prices {
             position: fixed;
             top: 20px;
             left: 20px; /* Modificado */
@@ -230,7 +230,7 @@
             margin-bottom: 5px;
         }
 
-#timestamp {
+        #timestamp {
             position: fixed;
             bottom: 10px;
             right: 10px;
@@ -240,22 +240,37 @@
             background-color: #ff8c08;
             border-radius: 5px;
             box-shadow: 0 0 10px #ff8c08;
+        }
+
+        .goback-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #00ff00;
+            color: #1b1b1b;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            z-index: 3;
+        }
+
+        .goback-button:hover {
+            background-color: #00cc00; /* Cambia el color al pasar el mouse */
+        }
 
     </style>
 </head>
+
+<body>
 <div id="crypto-prices">
         <div class="crypto-price-item" id="wax-price">WAX: Loading...</div>
         <div class="crypto-price-item" id="eos-price">EOS: Loading...</div>
     </div>
-<body>
     <canvas id="canvas-bg"></canvas>
 
     <div class="container">
-        <h2 style="
-    text-shadow: 0px 0px 8px #ff9900;
-">Divine Prizes Bag</h2>
+        <h2 style="text-shadow: 0px 0px 8px #ff9900;">Divine Prizes Bag</h2>
         <div id="wax-wallet-container">
-            
             <input type="text" id="wax-wallet-input" placeholder="Enter your WAX Wallet...">
         </div>
         <div id="make-a-wish-container">
@@ -263,43 +278,45 @@
         </div>
         <div id="already-made-wish" style="display: none;">You've already made a wish in this session!</div>
         <div id="prize-display"></div>
-        <div class="toggle-container">
-            <div class="read-me-prizes-container">
-                <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
-                <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
-                <div id="prize-list" class="prize-list toggle-content">
-                    <ul>
-                        <li>1 NFT CRITTER. = 65%</li>
-                        <li>1 NFT BASIC. = 30%</li>
-                        <li>1 NFT RARE. = 15%</li>
-                        <li>1 NFT PIZZA CRITTER. = 10%</li>
-                        <li>1 NFT COSMIC CRITTER. = 5%</li>
-                        <li>1 NFT LEGEND. = 2.5%</li>
-                        <li>1 NFT DIVINE. = 0.9%</li>
-                    </ul>
-                </div>
+        <div class="contact-container">
+            <h1 style="color: #ffffff;font-size: 12px;text-shadow: 0px 0px 8px #ff9900;">Follow Us and Stay Tuned</h1>
+            <div class="contact-methods">
+                <a href="https://chat.whatsapp.com/IOkajfYaJpRLlNYWms8dzq" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://twitter.com/StickersHubWAX" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/people/Stickershub1/100071760019083/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://discord.gg/NeUgxfuSZQ" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+            <div class="toggle-container">
+                <div class="read-me-prizes-container">
+                    <button class="custom-button" onclick="togglePrizeVisibility()">AVAILABLE PRIZES</button>
+                    <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
+                    <div id="prize-list" class="prize-list toggle-content">
+                        <ul>
+                            <li>1 NFT CRITTER. = 65%</li>
+                            <li>1 NFT BASIC. = 30%</li>
+                            <li>1 NFT RARE. = 15%</li>
+                            <li>1 NFT PIZZA CRITTER. = 10%</li>
+                            <li>1 NFT COSMIC CRITTER. = 5%</li>
+                            <li>1 NFT LEGEND. = 2.5%</li>
+                            <li>1 NFT DIVINE. = 0.9%</li>
+                        </ul>
+                    </div>
 
-                <div id="info" class="info toggle-content">
-                    <ul>
-                        <li>To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
-                        <li>Don't forget to include your wallet address in order to specify whether you are the owner of DIVINE RARITY. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
-                        <li>Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗 <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: #00ff00;">https://discord.gg/NeUgxfuSZQ</a></li>
-                    </ul>
+                    <div id="info" class="info toggle-content">
+                        <ul>
+                            <li>To claim your prize, simply send a screenshot to our Discord channel, 🤑ptc-screenshots, within StickersHUB1, as you advance through each level.</li>
+                            <li>Don't forget to include your wallet address in order to specify whether you are the owner of DIVINE RARITY. Without this crucial information, we won't be able to award your well-deserved prizes.</li>
+                            <li>Join our Discord community to support our project and help us grow together! Purchase our NFTs to enhance content, increase prizes, develop more games, and continue improving and updating. Your participation is essential to our success! Connect here: Discord:🔗 <a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: #00ff00;">https://discord.gg/NeUgxfuSZQ</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="contact-container">
-        <h1 style="color: #ffffff;font-size: 20px;text-shadow: 0px 0px 8px #ff9900;">Follow Us and Stay Tuned</h1>
-        <div class="contact-methods">
-            <a href="https://chat.whatsapp.com/IOkajfYaJpRLlNYWms8dzq" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://twitter.com/StickersHubWAX" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.facebook.com/people/Stickershub1/100071760019083/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://discord.gg/NeUgxfuSZQ" target="_blank"><i class="fab fa-discord"></i></a>
+        <p id="timestamp"><span id="current-time"></span></p>
+        <div id="tawk-container" style="z-index: 1000;">
+            <a href="index.html" class="goback-button" style="position: fixed; top: 20px; right: 20px; background-color: #ff8c08; color: #1b1b1b; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 3;">Go Back</a>
         </div>
-<p id="timestamp"><span id="current-time"></span></p>
-<div id="tawk-container" style="z-index: 1000;">
     </div>
 
     <img id="image1" class="floating-image neon" src="https://i.imgur.com/y05NUNC.png" alt="Floating Image 1">
@@ -478,25 +495,48 @@
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/3.1.0/firebase-analytics.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js";
 
   // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyAiQIj8yucnph0QeBZ8JGbob8exMEm7z9c",
-    authDomain: "stickershub1-e7192.firebaseapp.com",
-    projectId: "stickershub1-e7192",
-    storageBucket: "stickershub1-e7192.appspot.com",
-    messagingSenderId: "893978353658",
-    appId: "1:893978353658:web:896666f7a750905e6bce43",
-    measurementId: "G-E5Y5CVPXJT"
+    apiKey: "AIzaSyD7dz7cmikjZiBOqobJKxeW2UY7jfnLUco",
+    authDomain: "stickershub-7c4b6.firebaseapp.com",
+    databaseURL: "https://stickershub-7c4b6.firebaseio.com",
+    projectId: "stickershub-7c4b6",
+    storageBucket: "stickershub-7c4b6.appspot.com",
+    messagingSenderId: "100805135036",
+    appId: "1:100805135036:web:15cc849faa4c5176"
   };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+  // Initialize Realtime Database
+  const db = getDatabase();
+
+  // Función para registrar un usuario en la base de datos
+  function registerUser(walletAddress) {
+    set(ref(db, `users/${walletAddress}`), {
+      registeredAt: new Date().toString(),
+      lastWish: new Date().toString()
+    }).then(() => {
+      console.log("User registered successfully!");
+    }).catch((error) => {
+      console.error("Error registering user: ", error);
+    });
+  }
+
+  // Event listener para el botón "Make a Wish"
+  document.getElementById("make-a-wish-container").addEventListener("click", () => {
+    const waxWallet = document.getElementById("wax-wallet-input").value.trim();
+    if (waxWallet !== "") {
+      registerUser(waxWallet);
+    } else {
+      alert("Please enter your WAX Wallet address!");
+    }
+  });
 </script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -512,4 +552,5 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 </body>
+
 </html>
