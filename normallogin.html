@@ -7,84 +7,161 @@
     <title>NORMAL LOGIN</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
 
-        }
+    .container {
+        max-width: 90%;
+    padding: 10px;
+    border: 2px solid orange;
+    border-radius: 10px;
+    background-color: rgb(0 0 0);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    margin: 10px;
+    }
 
-        .container {
-            max-width: 400px;
-            padding: 20px;
-            border: 2px solid orange;
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            text-align: center; /* Centrar contenido */
-        }
-
-        h2 {
-            margin-bottom: 20px;
+    h2 {
+        margin-bottom: 20px;
     text-shadow: 0 0 10px rgb(255 0 0);
-        }
+    font-size: 12px;
+    }
 
-        .user {
-            color: #ff9b00;
-            pointer-events: none;
-            font-size: 24px;
-            text-shadow: 0 0 10px rgb(255 0 0);
-        }
+    .user {
+        color: #ff9b00;
+        pointer-events: none;
+        font-size: 2em; 
+        text-shadow: 0 0 10px rgb(255 0 0);
+    }
 
-        img {
-            max-width: 20%;
-            height: auto;
-            border: 3px solid orange;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgb(255 0 0);
-            margin-bottom: 20px;
-        }
+    img {
+        max-width: 100%;
+    height: auto;
+    border: 3px solid orange;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(255 0 0);
+    margin-bottom: 20px;
+    width: 50px;
+    }
 
-        button {
-            font-size: 16px;
-            background-color: transparent;
-            color: orange;
-            border: 2px solid orange;
-            border-radius: 5px;
-            padding: 10px 20px;
-            margin: 10px auto; /* Centrar horizontalmente */
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 160px;
-        }
+    button {
+        font-size: 16px;
+        background-color: transparent;
+        color: orange;
+        border: 2px solid orange;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 10px auto; /* Centrar horizontalmente */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 160px;
+    }
 
-        button:hover {
-            background-color: orange;
-            color: black;
-        }
+    button:hover {
+        background-color: orange;
+        color: black;
+    }
 
-        .play {
-            display: none;
+    .play {
+        display: none;
+    }
+
+    /* Media Query para dispositivos con un ancho máximo de 600px */
+    @media screen and (max-width: 600px) {
+        .container {
+            max-width: 90%; /* Cambiado de 400px a 90% del ancho de la pantalla */
+        }
+    }
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.button-group button {
+    font-size: 16px;
+    background-color: transparent;
+    color: orange;
+    border: 2px solid orange;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 155px;
+}
+
+.button-group button:hover {
+    background-color: orange;
+    color: black;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.video-container video {
+    max-width: 100%;
+    height: auto;
+}
+
+#background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @media only screen and (max-width: 600px) {
+            #background-container {
+                background-attachment: scroll;
+            }
+        }
+        canvas {
+               position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
         }
     </style>
-</head>     
+</head>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">   
 <body>
+<canvas id="canvas"></canvas>
+<img src="https://i.imgur.com/Z1miBpW.png" alt="Title Image" style="width: 300px;margin-top: 40px;">
+<img src="https://i.imgur.com/hdVbWqI.gif" alt="Title Image" style="">
+</div>
     <div class="container">
-        <h2>Normal Profit Tracker Critter (LOGIN)</h2>
+        <h2>Profit Tracker Critter (LOGIN)</h2>
         <div>
-            <button id="log" onclick="login()">Login WCW</button>
-            <button id="log" onclick="logout()">Log Out WCW</button>
-        </div>
+        <div class="button-group">
+        <button onclick="login()">Login WCW</button>
+        <button onclick="logout()">Log Out WCW</button>
+    </div>
         <div>
-            <button id="log-anchor" onclick="loginAnchor()">Login Anchor</button>
-            <button id="log" onclick="logoutAnchor()">Log out Anchor</button>
-        </div>
+        <div class="button-group">
+        <button onclick="loginAnchor()">Login Anchor</button>
+        <button onclick="logoutAnchor()">Log out Anchor</button>
+    </div>
+
         <div>
             <h2><label>User:</label> <span id="user" class="user"></span></h2>
         </div>
@@ -96,6 +173,7 @@
             <button id="play" class="play" onclick="window.location.href='normal_version.html'">Play!</button>
         </div>
     </div>
+
     
     <script src="https://unpkg.com/anchor-link@3"></script>
     <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
@@ -103,6 +181,7 @@
     <script src='./src/mijs.js'></script>
     <script src='./src/anchor.js'></script>
     <script src='./src/wcw.js'></script>
+
 </body>
 </html>
 
@@ -205,6 +284,51 @@ e.read=function(t,e,r,i,n){var a,o,s=8*n-i-1,u=(1<<s)-1,f=u>>1,h=-7,c=r?n-1:0,d=
 			botpod.setAttribute("src", "https://i.imgur.com/aWjuFPB.jpeg")
 			play.style.display="none"
         }
+</script>
+ <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const numStars = 250;
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            vx: Math.random() * 0.5,
+            vy: Math.random() * 0.5
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ffa500';
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            star.x += star.vx;
+            star.y += star.vy;
+
+            if (star.x < 0 || star.x > canvas.width) {
+                star.vx = -star.vx;
+            }
+
+            if (star.y < 0 || star.y > canvas.height) {
+                star.vy = -star.vy;
+            }
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
 </script>
 </body>
 </html>
