@@ -293,7 +293,7 @@
     text-shadow: 0px 0px 8px rgb(0 114 255 / 50%);
 "></p>
         <img id="prize-image" src="prize-image" style="display: none;">
-
+        <div id="prize-images"></div>
         <div id="progress-bar-container">
             <div id="progress-bar">
                 <div id="progress"></div>
@@ -315,9 +315,11 @@
                 <button class="custom-button" onclick="toggleReadMeVisibility()">READ ME</button>
                 <div id="prize-list" class="prize-list toggle-content">
                     <ul>
-                        <li>1 NFT CRITTER. = 100%</li>
-                        <li>CLAIM HERE:<a href="https://discord.gg/NeUgxfuSZQ" target="_blank" style="color: #00ff00;">https://discord.gg/NeUgxfuSZQ</a></li>
-                    </ul>
+                        <li>1 NFT STANDARD</li>
+                        <li>1 NFT CRITTER</li>
+                        <li>1 NFT SPECIAL CRITTER</li>
+                        <li>1 NFT BASIC</li>
+                   </ul>
                 </div>
 
                 <div id="info" class="info toggle-content">
@@ -351,108 +353,97 @@
         <img src="https://i.imgur.com/BCkJSGb.gif" alt="Floating Image 11" class="floating-image">
         <img src="https://i.imgur.com/U59FAuj.gif" alt="Floating Image 12" class="floating-image">
 
-    <script>
-         var currentClicks = 0;
-        var currentLevel = 0;
-        var levelThresholds = [500];
+     <script>
+        var currentClicks = 0;
+        var currentLevel = 0; // Comenzamos en el nivel 0
+        var totalLevels = 4; // Total de niveles
+        var levelThresholds = [500, 1000, 1500, 2000]; // Umbral para pasar al siguiente nivel
 
         function incrementCounter() {
-    currentClicks++;
+            currentClicks++;
 
-    if (currentClicks >= levelThresholds[currentLevel]) {
-        currentLevel++;
-        currentClicks = 0;
+            if (currentLevel < totalLevels && currentClicks >= levelThresholds[currentLevel]) {
+                currentLevel++;
+                currentClicks = 0;
 
-        var prize = getRandomPrize();
-        var randomPrizeName = prize.name;
-        var randomPrizeImage = prize.image;
+                var prize = getRandomPrize(currentLevel);
+                var randomPrizeName = prize.name;
+                var randomPrizeImage = prize.image;
 
-        document.getElementById('result').innerHTML = "You have completed Level " + currentLevel + "<br>🎉You won " + randomPrizeName + "🎉";
-        document.getElementById('prize-image').src = randomPrizeImage; // Actualiza la URL de la imagen del premio
+                document.getElementById('result').innerHTML = "You have completed Level " + currentLevel + "<br>🎉You won " + randomPrizeName + "🎉";
 
-        // Ocultar el porcentaje de progreso
-        document.getElementById('progress-percentage').style.display = 'none';
+                // Crear un elemento de imagen y establecer su atributo src con la URL de la imagen del premio
+                var img = document.createElement('img');
+                img.src = randomPrizeImage;
+                img.style.maxWidth = "100px"; // Ajustar el ancho máximo de la imagen si es necesario
 
-        // Actualizar el contador de nivel
-        document.getElementById('level-counter').innerText = "Level " + currentLevel;
-    }
+                // Agregar la imagen al contenedor de imágenes de premios
+                document.getElementById('prize-images').appendChild(img);
 
-    // Actualizar la barra de progreso
-    var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
-    document.getElementById('progress').style.width = progressPercentage + "%";
+                // Ocultar el porcentaje de progreso
+                document.getElementById('progress-percentage').style.display = 'none';
 
-    // Actualizar el porcentaje restante para subir de nivel
-    document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "% : For Next Level";
-}
-</script>
-<script>
-     function getRandomPrize() {
-    var prizes = [
-        {
-            name: "Metallic Blaze Critter",
-            image: "https://i.imgur.com/yUfH5kU.jpg"
-        },
-        {
-            name: "Silver Demon Critter",
-            image: "https://i.imgur.com/UPOQ8wz.jpg"
-        },
-        {
-            name: "Gato Noir Critter",
-            image: "https://i.imgur.com/6L94525.jpg"
-        },
-        {
-            name: "Abyssal Serpent Critter",
-            image: "https://i.imgur.com/IQQAjz4.jpg"
-        },
-        {
-            name: "Bad Bot Critter",
-            image: "https://i.imgur.com/LZ2Ib7P.jpg"
-        },
-        {
-            name: "Spark Gray Critter",
-            image: "https://i.imgur.com/kdvQCm3.jpg"
-        },
-        {
-            name: "Celestial Particle Critter",
-            image: "https://i.imgur.com/caqX08u.jpg"
-        },
-        {
-            name: "BotPod Joy Critter",
-            image: "https://i.imgur.com/Zk2E1hI.jpg"
-        },
-        {
-            name: "Sharkcoil Serpent Critter",
-            image: "https://i.imgur.com/jSsLUEv.jpg"
-        },
-        {
-            name: "Diablo Visage Critter",
-            image: "https://i.imgur.com/iuWqa5X.jpg"
-        },
-        {
-            name: "Gato Inferno Critter",
-            image: "https://i.imgur.com/kfvGRsB.jpg"
-        },
-        {
-            name: "Skull Blaze Critter",
-            image: "https://i.imgur.com/2wHDVGf.jpg"
-        },
-        {
-            name: "Diablotronic Chaos Critter",
-            image: "https://i.imgur.com/tS2J1Tk.jpg"
-        },
-        {
-            name: "Astro Folly Critter",
-            image: "https://i.imgur.com/30E341X.jpg"
+                // Actualizar el contador de nivel
+                document.getElementById('level-counter').innerText = "Level " + currentLevel;
+
+                // Si se ha completado el último nivel, mostrar el mensaje de felicitaciones
+                if (currentLevel === totalLevels) {
+                    document.getElementById('result').innerHTML += "<br>Congratulations, you have completed all the levels! Come back tomorrow to play again or explore the other versions!";
+                }
+            }
+
+            // Actualizar la barra de progreso
+            var progressPercentage = (currentClicks / levelThresholds[currentLevel]) * 100;
+            document.getElementById('progress').style.width = progressPercentage + "%";
+
+            // Actualizar el porcentaje restante para subir de nivel
+            document.getElementById('progress-percentage').innerText = (100 - progressPercentage).toFixed(2) + "% : For Next Level";
         }
-    ];
 
-    // Escoge un índice aleatorio dentro del rango de la lista de premios
-    var randomIndex = Math.floor(Math.random() * prizes.length);
+        function getRandomPrize(level) {
+            var prizes = [
+                [
+                    { name: "BotJoy Commemorative Edition", image: "https://i.imgur.com/FBK7YFw.gif" },
+                    { name: "BotPrime Commemorative Edition", image: "https://i.imgur.com/cf25vVQ.gif" },
+                    { name: "BotDefinitive Commemorative Edition", image: "https://i.imgur.com/M4kAoDr.gif" },
+                    { name: "BotAscendant Commemorative Edition", image: "https://i.imgur.com/AU2Ef9M.gif" }
+                ],
+                [
+                    { name: "Metallic Blaze Critter", image: "https://i.imgur.com/yUfH5kU.jpg" },
+                    { name: "Silver Demon Critter", image: "https://i.imgur.com/UPOQ8wz.jpg" },
+                    { name: "Gato Noir Critter", image: "https://i.imgur.com/6L94525.jpg" },
+                    { name: "Abyssal Serpent Critter", image: "https://i.imgur.com/IQQAjz4.jpg" },
+                    { name: "Bad Bot Critter", image: "https://i.imgur.com/LZ2Ib7P.jpg" },
+                    { name: "Spark Gray Critter", image: "https://i.imgur.com/kdvQCm3.jpg" },
+                    { name: "Celestial Particle Critter", image: "https://i.imgur.com/caqX08u.jpg" },
+                    { name: "BotPod Joy Critter", image: "https://i.imgur.com/Zk2E1hI.jpg" },
+                    { name: "Sharkcoil Serpent Critter", image: "https://i.imgur.com/jSsLUEv.jpg" },
+                    { name: "Diablo Visage Critter", image: "https://i.imgur.com/iuWqa5X.jpg" },
+                    { name: "Gato Inferno Critter", image: "https://i.imgur.com/kfvGRsB.jpg" },
+                    { name: "Skull Blaze Critter", image: "https://i.imgur.com/2wHDVGf.jpg" },
+                    { name: "Diablotronic Chaos Critter", image: "https://i.imgur.com/tS2J1Tk.jpg" },
+                    { name: "Astro Folly Critter", image: "https://i.imgur.com/30E341X.jpg" }
+                ],
+                [
+                    { name: "Troll Moon Critter", image: "https://i.imgur.com/5zvYpba.jpeg" },
+                    { name: "Error 404 Critter", image: "https://i.imgur.com/KAjxsup.jpeg" },
+                    { name: "Bloodie Cat Critter", image: "https://i.imgur.com/wPFg01z.jpeg" },
+                    { name: "Infernal Bot Critter", image: "https://i.imgur.com/OeVDhyt.jpeg" },
+                    { name: "Napalm Serpent Critter", image: "https://i.imgur.com/sH6wJ4o.jpeg" }
+                ],
+                [
+                    { name: "BotPod Knight", image: "https://i.imgur.com/1fkR0Wx.jpeg" },
+                    { name: "BotPod Joy", image: "https://i.imgur.com/M8MJg9O.jpeg" }       
+                ],
+            ];
 
-    // Devuelve el premio aleatorio seleccionado
-    return prizes[randomIndex];
-}
-</script>
+            // Escoge un índice aleatorio dentro del rango de la lista de premios para el nivel dado
+            var randomIndex = Math.floor(Math.random() * prizes[level - 1].length);
+
+            // Devuelve el premio aleatorio seleccionado para el nivel dado
+            return prizes[level - 1][randomIndex];
+        }
+    </script>
 <script>
         // Mostrar la hora actual
         function updateCurrentTime() {
