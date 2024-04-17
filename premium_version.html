@@ -27,14 +27,13 @@
             padding: 20px;
             max-width: 80%;
             margin: 20px auto;
-            box-shadow: 0 0px 10px rgba(210, 203, 15, 0.95);
-
+            box-shadow: 0 0px 10px #ffc800;
             position: relative;
             z-index: 1;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 18px;
             margin-bottom: 20px;
          }
 
@@ -143,7 +142,7 @@
         }
 
         .custom-button:hover {
-            background-color: #d2cb0f;
+            background-color: #ffc800;
         }
 
         .toggle-container {
@@ -178,7 +177,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            color: #d2cb0f;
+            color: #ffc800;
         }
 
         .contact-methods a {
@@ -235,9 +234,9 @@
     color: #white;
     font-size: 12px;
     padding: 5px 10px;
-    background-color: #d2cb0f;
+    background-color: #ffc800;
     border-radius: 5px;
-    box-shadow: 0 0 10px #d2cb0f;
+    box-shadow: 0 0 10px #ffc800;
     z-index: 3;
         }
 
@@ -251,7 +250,7 @@
            position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #d2cb0f;
+    background-color: #ffc800;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -669,7 +668,7 @@
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#FFD700';
+        ctx.fillStyle = '#ffc800';
         stars.forEach(star => {
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
