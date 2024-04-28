@@ -781,6 +781,7 @@ var currentPage = 1;
 function goToPage() {
   var select = document.getElementById("pageSelector");
   var selectedPage = select.value;
+  currentPage = parseInt(selectedPage.replace("page", ""));
   showPage(selectedPage);
 }
 
