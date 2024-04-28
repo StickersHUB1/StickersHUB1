@@ -52,14 +52,14 @@ body {
 
 /* Estilo para el botón de navegación */
 .nav-btn {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: solid 1px #ffbf00;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2F0082, #51E0CD);
 }
 
 .image-list {
@@ -189,7 +189,7 @@ display: flex;
    <div class="header">
     <h1>SH1 ALBUM</h1>
     <div style="margin-top: 20px; text-align: center;">
-      <label for="pageSelector">Ir a la página:</label>
+      <label for="pageSelector">Go to page:</label>
       <select id="pageSelector">
         <option value="page1">BotPods</option>
         <option value="page2">Quokkabaras</option>
@@ -205,8 +205,8 @@ display: flex;
     </div>
   <!-- Botones de navegación -->
   <div style="text-align:center;">
-    <button class="nav-btn" onclick="previousPage()">Anterior</button>
-    <button class="nav-btn" onclick="nextPage()">Siguiente</button>
+    <button class="nav-btn" onclick="previousPage()">Previous</button>
+    <button class="nav-btn" onclick="nextPage()">Next</button>
   </div>
   </div>
 </div>
