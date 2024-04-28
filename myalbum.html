@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SH1 ALBUM</title>
 <style>
 /* Estilos generales */
@@ -109,43 +109,6 @@ display: flex;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@media screen and (max-width: 768px) {
-  .image-list li {
-    width: calc(50% - 20px);
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .image-list li {
-    width: calc(100% - 20px);
-  }
-}
-
-/* Centrar las imágenes cuando no hay 4 por fila */
-@media screen and (max-width: 1200px) {
-  .image-list {
-    justify-content: center;
-  }
-  .image-list li {
-    width: calc(33.33% - 20px);
-  }
-}
-
-/* Centrar las imágenes que no están en bloques de 4 */
-@media screen and (max-width: 900px) {
-  .image-list li {
-    width: calc(50% - 20px);
-  }
-}
-
-/* Ajustes para mostrar menos de 4 imágenes en el centro */
-@media screen and (max-width: 768px) {
-  .image-list li:nth-child(3n+1) {
-    margin-right: auto;
-    margin-left: auto;
-  }
 }
 
 /* Estilos para la categoría BotPods */
@@ -366,17 +329,6 @@ padding: 20px;
         <div class="album-description">
           <p>UPCOMING CITIZENS</p>
           <p>⭐⭐⭐</p>
-        </div>
-      </li>
-    </ul>
-
-    <h3>UPCOMING SURVIVORS</h3>
-    <ul class="image-list">
-      <li>
-        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>UPCOMING SURVIVORS</p>
-          <p>⭐⭐</p>
         </div>
       </li>
     </ul>
