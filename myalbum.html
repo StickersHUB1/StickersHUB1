@@ -1,386 +1,865 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Álbum Digital</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-        }
-
-
-        .header {
-               background-color: #29266b;
-    color: #fff;
-    padding: 10px 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SH1 ALBUM</title>
+<style>
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1024px;
+    height: 1792px;
+    color: white;
+    text-shadow: 0 0 5px rgb(95 0 255), 0 0 10px rgb(0 54 212), 0 0 15px rgb(0 39 155), 0 0 20px rgb(255 137 0);
+    background-color: #393939;
     text-align: center;
-    ALIGN-ITEMS: CENTER;
-        }
-
-        .album {
-            padding: 20px;
-            display: flex;
-            flex-direction: column; /* Alinea el contenido verticalmente */
-            align-items: center; /* Alinea el contenido horizontalmente */
-        }
-
-        .category {
-            margin-bottom: 20px;
-            width: 500px;
-        }
-
-        .category h2 {
-            text-align: center;
-    font-size: 1.5em;
-    margin-top: 0;
-    color: white;
-    text-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
-        }
-
-.subcategory {
-    margin-top: 20px;
-    padding-left: 20px;
-    border-left: 2px solid #ccc;
-    color: white;
-    text-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
 }
 
-.subcategory h3 {
-    font-size: 1.2em;
-    margin-top: 0;
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* para que ocupe todo el ancho de la ventana */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(208 206 206 / 10%);
+    background: url(https://i.imgur.com/YfJBamh.jpeg);
+    background-position: bottom;
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-color: #343434;
+    z-index: 999; /* para asegurarse de que esté por encima de otros elementos */
 }
 
-        .images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            justify-content: center;
-        }
-
-        .images img {
-             width: calc(25% - 10px);
-    height: auto;
-    object-fit: cover;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 3px #2219f0, 0 0 5px #2081ea, 0 0 15px #d31cda;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .navigation button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border: solid 2px;
-            border-radius: 10px;
-            margin: 10px;
-        }
-
-@keyframes float {
-    /* Otras propiedades CSS existentes */
-
-    /* Ajustar la animación para limitar la posición horizontal */
-    0% {
-        transform: translateY(0) translateX(0);
-    }
-    50% {
-        transform: translateY(-20px) translateX(-20px); /* Limita la posición horizontal */
-    }
-    100% {
-        transform: translateY(0) translateX(0);
-    }
+/* Estilos para el encabezado */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-        #background-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+.header h1 {
+    font-size: 36px;
+    color: #fff;
+}
 
-        @media only screen and (max-width: 600px) {
-            #background-container {
-                background-attachment: scroll;
-            }
-        }
+/* Estilo para el contenido */
+.content {
+  position: relative;
+}
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-        }
+/* Estilo para el botón de navegación */
+.nav-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.image-list {
+display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10%;
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: -100px;
+}
 
-@media only screen and (max-width: 600px) {
-            .category {
-                width: 90%; /* Reducir el ancho en dispositivos móviles */
-            }
+.image-list li {
+  border-radius: 8px;
+  box-shadow: 0 8px 12px rgba(0, 123, 255, 0.2), 0 3px 6px rgba(0, 123, 255, 0.15); /* Borde con sombra más intenso */
+  list-style: none;
+  width: calc(25% - 30px); /* Cambiar el ancho para mostrar en grupos de cuatro */
+  margin: 15px; /* Espacio entre las imágenes */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    </style>
-    <link rel="icon" href="https://i.imgur.com/6S0jtGc.png" type="image/png">
+.image-list li img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.album-description {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-align: center;
+  width: 100%; /* Ajustar la descripción al ancho de la imagen */
+}
+
+/* Centrar verticalmente las imágenes */
+.image-list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .image-list li {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-list li {
+    width: calc(100% - 20px);
+  }
+}
+
+/* Centrar las imágenes cuando no hay 4 por fila */
+@media screen and (max-width: 1200px) {
+  .image-list {
+    justify-content: center;
+  }
+  .image-list li {
+    width: calc(33.33% - 20px);
+  }
+}
+
+/* Centrar las imágenes que no están en bloques de 4 */
+@media screen and (max-width: 900px) {
+  .image-list li {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Ajustes para mostrar menos de 4 imágenes en el centro */
+@media screen and (max-width: 768px) {
+  .image-list li:nth-child(3n+1) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* Estilos para la categoría BotPods */
+#page1 {
+    background-image: url(https://i.imgur.com/xQe6xzb.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Quokkabaras */
+#page2 {
+    background-image: url(https://i.imgur.com/WOcRIpl.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Divines */
+#page3 {
+    background-image: url(https://i.imgur.com/WOcRIpl.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Scientists */
+#page4 {
+    background-image: url(https://i.imgur.com/pw9PO7L.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Critters 1 */
+#page5 {
+    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Critters 2 */
+#page6 {
+    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Critters 3 */
+#page7 {
+    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Critters 4 */
+#page8 {
+    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Pizza Critters */
+#page9 {
+    background-image: url(https://i.imgur.com/E3GyS0a.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+.pages {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-top: 250px;
+}
+</style>
 </head>
 <body>
-<div class="header" style="display: flex; flex-direction: column;">
-    <img src="https://i.imgur.com/Z1miBpW.png" style="
-    width: 250px;
-    margin-top: 15px;
-">
-   <img src="https://i.imgur.com/55RH3bV.png" style="WIDTH: 75PX;">
-<h2 style="
-    margin-top: -10px;
-    margin-bottom: 5px;
-">(BETA)</h2>
-</div>
-<div class="album">
-    <div class="navigation">
-        <button onclick="showCategory('botPods')">BotPods</button>
-        <button onclick="showCategory('profitTakers')">Profit Takers</button>
-        <button onclick="showCategory('divines')">Divines</button>
+<div class="container">
+  <!-- Encabezado -->
+   <div class="header">
+    <h1>SH1 ALBUM</h1>
+    <div style="margin-top: 20px; text-align: center;">
+      <label for="pageSelector">Ir a la página:</label>
+      <select id="pageSelector">
+        <option value="page1">BotPods</option>
+        <option value="page2">Quokkabaras</option>
+        <option value="page3">Divines</option>
+        <option value="page4">Scientists</option>
+        <option value="page5">Critters 1</option>
+        <option value="page6">Critters 2</option>
+        <option value="page7">Critters 3</option>
+        <option value="page8">Critters 4</option>
+        <option value="page9">Pizza Critters</option>
+      </select>
+      <button onclick="goToPage()">Ir</button>
     </div>
-
-    <div class="category" id="botPods">
-        <h2>BotPods</h2>
-        <div class="images"></div>
-    </div>
-
-    <div class="category" id="profitTakers">
-        <h2>Profit Takers</h2>
-        <div class="images">
-            <!-- Aquí deberían estar las imágenes de Profit Takers -->
-        </div>
-        <div class="subcategory" id="profitTrackerCritters">
-            <h3>Profit Tracker Critters</h3>
-            <div class="images"></div>
-        </div>
-        <div class="subcategory" id="critters">
-            <h3>Critters</h3>
-            <div class="images"></div>
-        </div>
-        <div class="subcategory" id="cosmicTentacles">
-            <h3>Cosmic Tentacles</h3>
-            <div class="images"></div>
-        </div>
-        <div class="subcategory" id="pizzaCritters">
-            <h3>Pizza Critters</h3>
-            <div class="images"></div>
-        </div>
-        <div class="subcategory" id="eliteCritters">
-            <h3>Elite Critters</h3>
-            <div class="images"></div>
-        </div>
-    </div>
-
-    <div class="category" id="divines">
-        <h2>Divines</h2>
-        <div class="images"></div>
-    </div>
+  <!-- Botones de navegación -->
+  <div style="text-align:center;">
+    <button class="nav-btn" onclick="previousPage()">Anterior</button>
+    <button class="nav-btn" onclick="nextPage()">Siguiente</button>
+  </div>
+  </div>
 </div>
 
-<a href="https://stickershub1.es" class="goback-button">Go Back</a>
+<!-- Contenido -->
+<div class="content">
+  <!-- Página 1 -->
+  <div class="pages" id="page1">
+<h3 style="
+    text-align: center;
+    padding: 20px;
+">BOTPODS</h3>
+    <h3>BOTPOD #1</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/M8MJg9O.jpg" alt="BotPod Joy">
+        <div class="album-description">
+          <p>BotPod Joy</p>
+          <p>⭐</p>
+        </div>
+      </li>
+      <!-- Agregar más imágenes de la categoría BotPod #1 aquí -->
+      <li>
+        <img class="album-img" src="https://i.imgur.com/GRA0TFg.jpg" alt="BotPod Prime">
+        <div class="album-description">
+          <p>BotPod Prime</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+      <li>
+        <img class="album-img" src="https://i.imgur.com/9vezvbZ.jpg" alt="BotPod Definitive">
+        <div class="album-description">
+          <p>BotPod Definitive</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gB1RVkZ.jpeg" alt="BotPod Ascendant">
+        <div class="album-description">
+          <p>BotPod Ascendant</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
 
-<div id="background-container"></div>
+    <h3>BOTPOD #2</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/1fkR0Wx.jpg" alt="BotPod Knight">
+        <div class="album-description">
+          <p>BotPod Knight</p>
+          <p>⭐</p>
+        </div>
+      </li>
+      <!-- Agregar más imágenes de la categoría BotPod #2 aquí -->
+      <li>
+        <img class="album-img" src="https://i.imgur.com/g4rS6V4.jpg" alt="BotPod Warrior">
+        <div class="album-description">
+          <p>BotPod Warrior</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+      <li>
+        <img class="album-img" src="https://i.imgur.com/h9vqVfZ.jpg" alt="BotPod Elite Guard">
+        <div class="album-description">
+          <p>BotPod Elite Guard</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+      <li>
+        <img class="album-img" src="https://i.imgur.com/H811oqk.jpeg" alt="BotPod Sovereign Sentinel">
+        <div class="album-description">
+          <p>BotPod Sovereign Sentinel</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 
+  <!-- Página 2 -->
+  <div class="pages" id="page2" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">QUOKKABARAS</h3>
+    <h3>PROFIT TAKERS</h3>
+    <ul class="image-list">
+      <!-- Agregar imágenes de la categoría Ejemplo #1 aquí -->
+      <li>
+        <img class="album-img" src="https://i.imgur.com/hdVbWqI.gif" alt="Profit Tracker Critter">
+        <div class="album-description">
+          <p>Profit Tracker Critter</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gQ1rFBC.gif" alt="Profit Tracker Critter Premium">
+        <div class="album-description">
+          <p>Profit Tracker Critter Premium</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>UPCOMING SHAMANS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING SHAMANS</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>UPCOMING CITIZENS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING CITIZENS</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>UPCOMING SURVIVORS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING SURVIVORS</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Página 3 -->
+  <div class="pages" id="page3" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">DIVINES</h3>
+    <h3>DIVINE PURRS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/GQjZYsR.jpg" alt="Cosmic Purr">
+        <div class="album-description">
+          <p>Cosmic Purr</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/3f4lGu7.jpg" alt="Infernal Purr">
+        <div class="album-description">
+          <p>Infernal Purr</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>UPCOMING DIVINES</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING DIVINES</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<canvas id="canvas"></canvas>
+  <!-- Página 4 -->
+  <div class="pages" id="page4" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">SCIENTISTS</h3>
+    <h3>SCIENTISTS #1</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/MFcXFjX.jpeg" alt="Ejemplo #1">
+        <div class="album-description">
+          <p>Dimitri Petrov</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/WAyosu6.jpeg" alt="Ejemplo #1">
+        <div class="album-description">
+          <p>Emily Johnson</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/J1MUV35.jpeg" alt="Ejemplo #1">
+        <div class="album-description">
+          <p>Santiago Martinez</p>
+          <p>⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>UPCOMING SCIENTISTS #2</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING #2</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 5 -->
+  <div class="pages" id="page5" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS</h3>
+    <h3>CAT CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/6L94525.jpg" alt="Gato Noir Critter">
+        <div class="album-description">
+          <p>Gato Noir Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/kdvQCm3.jpg" alt="Spark Gray Critter">
+        <div class="album-description">
+          <p>Spark Gray Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/kfvGRsB.jpg" alt="Gato Inferno Critter">
+        <div class="album-description">
+          <p>Gato Inferno Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/C9T5PYn.jpg" alt="Bloodie Cat Critter">
+        <div class="album-description">
+          <p>Bloodie Cat Critter</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>TROLL CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/Ve1BUF2.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Lunar Gaze Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/30E341X.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Astro Folly Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/9vLe38i.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Troll Moon Critter</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 6 -->
+  <div class="pages" id="page6" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS</h3>
+<h3>SKULL CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/yUfH5kU.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Metallic Blaze Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/2wHDVGf.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Skull Blaze Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+   </ul>
+
+    <h3>DEMON CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/UPOQ8wz.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Silver Demon Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/iuWqa5X.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Diablo Visage Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/5WbVHBj.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Cosmic Demon Elite Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/S0meokE.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Furious Demon Elite Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/QF1YCgn.gif" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Demon Lord Critter</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 6 -->
+  <div class="pages" id="page7" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS</h3>
+<h3>SERPENT CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/IQQAjz4.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Abyssal Serpent Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/jSsLUEv.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Sharkcoil Serpent Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/HE3w2i8.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Napalm Serpent Critter</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+<h3>CORRUPETD CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/LZ2Ib7P.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Bad Bot Cripper</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/caqX08u.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Celestial Particle Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/Zk2E1hI.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>BotPod Joy Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/tS2J1Tk.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Diablotronic Chaos Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/hHqVQuf.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Error 404 Critter</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/bEuIDvw.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Infernal Bot Critter</p>
+          <p>⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 6 -->
+  <div class="pages" id="page8" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS</h3>
+<h3>COSMIC TENTACLES</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Red Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Green Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Particle Cosmic Tentacle</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 6 -->
+  <div class="pages" id="page9" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">PIZZA CRITTERS</h3>
+
+<h3>PIZZA CRITTERS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/nSPm0EU.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Infernal Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/xSUPYs3.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Noble Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gvYQXkr.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Pizza From the Caves</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/WlPQpAm.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Golden Eye Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/ZBm7rbF.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Zombie Rotten Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/PJzI75i.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Infectd Mutant Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gCAnipo.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Angry Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/AJ5MM9l.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Red Hot Chilli Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+</ul>
+
+<h3>COMPLETE PIZZAS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/KBtr3TR.gif" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Monster Pizza Roulette</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
 
 <script>
-    function showCategory(category) {
-        const categories = ["botPods", "profitTakers", "divines"];
-        categories.forEach(cat => {
-            const element = document.getElementById(cat);
-            if (cat === category) {
-                element.style.display = "block";
-            } else {
-                element.style.display = "none";
-            }
-        });
+var currentPage = 1;
+
+function goToPage() {
+  var select = document.getElementById("pageSelector");
+  var selectedPage = select.value;
+  showPage(selectedPage);
+}
+
+function showPage(pageId) {
+  var pages = document.querySelectorAll('.pages');
+  pages.forEach(function(page) {
+    if (page.id === pageId) {
+      page.style.display = "block";
+    } else {
+      page.style.display = "none";
     }
+  });
+}
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const botPodsContainer = document.querySelector("#botPods .images");
-        const profitTakersContainer = document.querySelector("#profitTakers .images");
-        const divinesContainer = document.querySelector("#divines .images");
+function previousPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    var previousPageId = "page" + currentPage;
+    showPage(previousPageId);
+    document.getElementById("pageSelector").value = previousPageId;
+  }
+}
 
-        const botPodsImages = [
-            {url: "https://i.imgur.com/M8MJg9O.jpg", name: "BotPod Joy"},
-            {url: "https://i.imgur.com/GRA0TFg.jpg", name: "BotPod Prime"},
-            {url: "https://i.imgur.com/9vezvbZ.jpg", name: "BotPod Definitive"},
-            {url: "https://i.imgur.com/gB1RVkZ.jpeg", name: "BotPod Ascendant"},
-            {url: "https://i.imgur.com/1fkR0Wx.jpg", name: "Imagen 5"},
-            {url: "https://i.imgur.com/g4rS6V4.jpg", name: "Imagen 6"},
-            {url: "https://i.imgur.com/h9vqVfZ.jpg", name: "Imagen 7"},
-            {url: "https://i.imgur.com/H811oqk.jpeg", name: "Imagen 8"}
-        ];
-
-        botPodsImages.forEach(img => addImage(botPodsContainer, img.url, img.name));
-
-        // Agrega las imágenes de Profit Tracker Critters al contenedor correspondiente
-        const profitTrackerCrittersImages = [
-            {url: "https://i.imgur.com/hdVbWqI.gif", name: "Imagen 1"},
-            {url: "https://i.imgur.com/sF6MT9e.gif", name: "Imagen 2"}
-        ];
-        profitTrackerCrittersImages.forEach(img => addImage(document.querySelector("#profitTrackerCritters .images"), img.url, img.name));
-
-        // Agrega las imágenes de Critters al contenedor correspondiente
-        const crittersImages = [
-            {url: "https://i.imgur.com/Ve1BUF2.jpg", name: "Imagen 1"},
-            {url: "https://i.imgur.com/yUfH5kU.jpg", name: "Imagen 2"},
-            {url: "https://i.imgur.com/UPOQ8wz.jpg", name: "Imagen 3"},
-            {url: "https://i.imgur.com/6L94525.jpg", name: "Imagen 4"},
-            {url: "https://i.imgur.com/IQQAjz4.jpg", name: "Imagen 5"},
-            {url: "https://i.imgur.com/LZ2Ib7P.jpg", name: "Imagen 6"},
-            {url: "https://i.imgur.com/kdvQCm3.jpg", name: "Imagen 7"},
-            {url: "https://i.imgur.com/caqX08u.jpg", name: "Imagen 8"},
-            {url: "https://i.imgur.com/Zk2E1hI.jpg", name: "Imagen 9"},
-            {url: "https://i.imgur.com/jSsLUEv.jpg", name: "Imagen 10"},
-            {url: "https://i.imgur.com/iuWqa5X.jpg", name: "Imagen 11"},
-            {url: "https://i.imgur.com/kfvGRsB.jpg", name: "Imagen 12"},
-            {url: "https://i.imgur.com/2wHDVGf.jpg", name: "Imagen 13"},
-            {url: "https://i.imgur.com/tS2J1Tk.jpg", name: "Imagen 14"},
-            {url: "https://i.imgur.com/30E341X.jpg", name: "Imagen 15"},
-            {url: "https://i.imgur.com/9vLe38i.jpeg", name: "Imagen 16"},
-            {url: "https://i.imgur.com/hHqVQuf.jpeg", name: "Imagen 17"},
-            {url: "https://i.imgur.com/C9T5PYn.jpeg", name: "Imagen 18"},
-            {url: "https://i.imgur.com/bEuIDvw.jpeg", name: "Imagen 19"},
-            {url: "https://i.imgur.com/HE3w2i8.jpeg", name: "Imagen 20"}
-        ];
-        crittersImages.forEach(img => addImage(document.querySelector("#critters .images"), img.url, img.name));
-
-        // Agrega las imágenes de Cosmic Tentacles al contenedor correspondiente
-        const cosmicTentaclesImages = [
-            {url: "https://i.imgur.com/wmOSHAD.jpg", name: "Imagen 1"},
-            {url: "https://i.imgur.com/ns0WiZV.jpg", name: "Imagen 2"},
-            {url: "https://i.imgur.com/EHPaYzW.jpg", name: "Imagen 3"},
-            {url: "https://i.imgur.com/lmKOnGJ.jpeg", name: "Imagen 4"}
-
-        ];
-        cosmicTentaclesImages.forEach(img => addImage(document.querySelector("#cosmicTentacles .images"), img.url, img.name));
-
-        // Agrega las imágenes de Pizza Critters al contenedor correspondiente
-        const pizzaCrittersImages = [
-            {url: "https://i.imgur.com/nSPm0EU.jpg", name: "Imagen 1"},
-            {url: "https://i.imgur.com/xSUPYs3.jpg", name: "Imagen 2"},
-            {url: "https://i.imgur.com/gvYQXkr.jpeg", name: "Imagen 3"},
-            {url: "https://i.imgur.com/WlPQpAm.jpeg", name: "Imagen 4"},
-            {url: "https://i.imgur.com/ZBm7rbF.jpeg", name: "Imagen 5"},
-            {url: "https://i.imgur.com/PJzI75i.jpeg", name: "Imagen 6"},
-            {url: "https://i.imgur.com/gCAnipo.jpeg", name: "Imagen 7"},
-            {url: "https://i.imgur.com/AJ5MM9l.jpeg", name: "Imagen 8"},
-            {url: "https://i.imgur.com/KBtr3TR.gif", name: "Imagen 9"}
-        ];
-        pizzaCrittersImages.forEach(img => addImage(document.querySelector("#pizzaCritters .images"), img.url, img.name));
-
-        // Agrega las imágenes de Elite Critters al contenedor correspondiente
-        const eliteCrittersImages = [
-            {url: "https://i.imgur.com/5WbVHBj.jpg", name: "Imagen 1"},
-            {url: "https://i.imgur.com/S0meokE.jpg", name: "Imagen 2"},
-            {url: "https://i.imgur.com/QF1YCgn.gif", name: "Imagen 3"}
-        ];
-        eliteCrittersImages.forEach(img => addImage(document.querySelector("#eliteCritters .images"), img.url, img.name));
-
-        // Agrega las imágenes de Divines al contenedor correspondiente
-        const divinesImages = [
-            {url: "https://i.imgur.com/GQjZYsR.jpg", name: "Imagen 1"},
-            {url: "https://i.imgur.com/3f4lGu7.jpg", name: "Imagen 2"}
-        ];
-        divinesImages.forEach(img => addImage(divinesContainer, img.url, img.name));
-
-        showCategory("botPods");
-    });
-
-    function addImage(container, imgUrl, title) {
-        const img = document.createElement("img");
-        img.src = imgUrl;
-        img.alt = title; // Se utiliza el atributo alt para almacenar el título
-        container.appendChild(img);
-    }
-
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const backgroundContainer = document.getElementById('background-container');
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-
-        // Ajustar el z-index del contenedor de fondo
-        backgroundContainer.style.zIndex = '-1';
-
-        // Ajustar el canvas para cubrir toda la ventana
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100vw';
-        canvas.style.height = '100vh';
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-        const numStars = 250;
-
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                vx: Math.random() * 0.5,
-                vy: Math.random() * 0.5
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            stars.forEach(star => {
-                // Generar un color aleatorio en formato hexadecimal
-                const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-
-                // Asignar el color aleatorio al contexto
-                ctx.fillStyle = randomColor;
-
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                star.x += star.vx;
-                star.y += star.vy;
-
-                if (star.x < 0 || star.x > canvas.width) {
-                    star.vx = -star.vx;
-                }
-
-                if (star.y < 0 || star.y > canvas.height) {
-                    star.vy = -star.vy;
-                }
-            });
-
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-    });
-
+function nextPage() {
+  if (currentPage < 7) {
+    currentPage++;
+    var nextPageId = "page" + currentPage;
+    showPage(nextPageId);
+    document.getElementById("pageSelector").value = nextPageId;
+  }
+}
 </script>
 </body>
 </html>
