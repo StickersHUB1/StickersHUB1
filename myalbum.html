@@ -19,10 +19,10 @@ body {
 }
 
 .container {
-    position: fixed;
+    position: relative; /* Cambiado a posición relativa */
     top: 0;
     left: 0;
-    width: 100%; /* para que ocupe todo el ancho de la ventana */
+    width: 100%;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgb(208 206 206 / 10%);
@@ -31,7 +31,7 @@ body {
     background-size: 600px;
     background-repeat: no-repeat;
     background-color: #343434;
-    z-index: 999; /* para asegurarse de que esté por encima de otros elementos */
+    z-index: 999;
 }
 
 /* Estilos para el encabezado */
@@ -63,13 +63,13 @@ body {
 }
 
 .image-list {
-display: flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10%;
+    padding: 20%;
     text-align: center;
-    margin-top: -100px;
-    margin-bottom: -100px;
+    margin-top: -220px;
+    margin-bottom: -200px;
 }
 
 .image-list li {
@@ -86,22 +86,26 @@ display: flex;
 }
 
 .image-list li img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+    max-width: 100%; /* Cambiado a máximo ancho */
+    height: auto; /* Altura automática */
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .album-description {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 10px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  text-align: center;
-  width: 100%; /* Ajustar la descripción al ancho de la imagen */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 1px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: left;
+    width: 120%;
+    font-size: 12px;
+    margin-top: -55px;
+    margin-bottom: -20px;
 }
 
 /* Centrar verticalmente las imágenes */
@@ -155,20 +159,6 @@ display: flex;
 
 /* Estilos para la categoría Critters 3 */
 #page7 {
-    background-image: url(https://i.imgur.com/3vlMuUd.gif);
-    background-size: 900px;
-    background-position: center;
-}
-
-/* Estilos para la categoría Critters 4 */
-#page8 {
-    background-image: url(https://i.imgur.com/3vlMuUd.gif);
-    background-size: 900px;
-    background-position: center;
-}
-
-/* Estilos para la categoría Pizza Critters */
-#page9 {
     background-image: url(https://i.imgur.com/E3GyS0a.gif);
     background-size: 900px;
     background-position: center;
@@ -177,10 +167,41 @@ display: flex;
 .pages {
     background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: fixed;
     background-size: cover;
-    margin-top: 250px;
+    height: 1400px;
+    overflow: hidden;
+    margin-top: 20px;
 }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: url(https://i.imgur.com/at70ZP8.png) no-repeat center center;
+            background-size: cover;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Cambiamos el tamaño y la opacidad cuando se pasa el ratón por encima */
+        .back-to-top:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* Estilo cuando el botón es visible */
+        .back-to-top.visible {
+            display: block;
+        }
+
+        .back-to-top.hidden {
+            display: none;
+        }
 </style>
 </head>
 <body>
@@ -197,9 +218,7 @@ display: flex;
         <option value="page4">Scientists</option>
         <option value="page5">Critters 1</option>
         <option value="page6">Critters 2</option>
-        <option value="page7">Critters 3</option>
-        <option value="page8">Critters 4</option>
-        <option value="page9">Pizza Critters</option>
+        <option value="page7">Pizza Critters</option>
       </select>
       <button onclick="goToPage()">Ir</button>
     </div>
@@ -292,42 +311,42 @@ display: flex;
     text-align: center;
 padding: 20px;
 ">QUOKKABARAS</h3>
-    <h3>PROFIT TAKERS</h3>
+    <h3>QUOKKABARA PROFIT TAKERS</h3>
     <ul class="image-list">
       <!-- Agregar imágenes de la categoría Ejemplo #1 aquí -->
       <li>
         <img class="album-img" src="https://i.imgur.com/hdVbWqI.gif" alt="Profit Tracker Critter">
         <div class="album-description">
-          <p>Profit Tracker Critter</p>
+          <p>Profit Tracker</p>
           <p>⭐⭐⭐⭐⭐</p>
         </div>
       </li>
       <li>
         <img class="album-img" src="https://i.imgur.com/gQ1rFBC.gif" alt="Profit Tracker Critter Premium">
         <div class="album-description">
-          <p>Profit Tracker Critter Premium</p>
+          <p>Profit Tracker Premium</p>
           <p>⭐⭐⭐⭐⭐</p>
         </div>
       </li>
     </ul>
 
-    <h3>UPCOMING SHAMANS</h3>
+    <h3>QUOKKABARA SHAMANS</h3>
     <ul class="image-list">
       <li>
-        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <img class="album-img" src="https://i.imgur.com/ZkW9ORY.jpeg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>UPCOMING SHAMANS</p>
+          <p>Trackmaster Quokka</p>
           <p>⭐⭐⭐⭐</p>
         </div>
       </li>
     </ul>
 
-    <h3>UPCOMING CITIZENS</h3>
+    <h3>QUOKKABARA CITIZENS</h3>
     <ul class="image-list">
       <li>
-        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <img class="album-img" src="https://i.imgur.com/J6WgVqU.jpeg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>UPCOMING CITIZENS</p>
+          <p>Quokkabara Neighburrook</p>
           <p>⭐⭐⭐</p>
         </div>
       </li>
@@ -485,15 +504,7 @@ padding: 20px;
         </div>
       </li>
     </ul>
-  </div>
-</div>
 
-  <!-- Página 6 -->
-  <div class="pages" id="page6" style="display:none;">
-<h3 style="
-    text-align: center;
-padding: 20px;
-">CRITTERS</h3>
 <h3>SKULL CRITTERS</h3>
     <ul class="image-list">
       <li>
@@ -513,57 +524,6 @@ padding: 20px;
       </li>
    </ul>
 
-    <h3>DEMON CRITTERS</h3>
-    <ul class="image-list">
-      <li>
-        <img class="album-img" src="https://i.imgur.com/UPOQ8wz.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Silver Demon Critter</p>
-          <p>⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/iuWqa5X.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Diablo Visage Critter</p>
-          <p>⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/5WbVHBj.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Cosmic Demon Elite Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/S0meokE.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Furious Demon Elite Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/QF1YCgn.gif" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Demon Lord Critter</p>
-          <p>⭐⭐⭐⭐</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-
-  <!-- Página 6 -->
-  <div class="pages" id="page7" style="display:none;">
-<h3 style="
-    text-align: center;
-padding: 20px;
-">CRITTERS</h3>
 <h3>SERPENT CRITTERS</h3>
     <ul class="image-list">
       <li>
@@ -590,6 +550,50 @@ padding: 20px;
         </div>
       </li>
     </ul>
+  </div>
+</div>
+  <!-- Página 6 -->
+  <div class="pages" id="page6" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS</h3>
+<h3>COSMIC TENTACLES</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Red Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Green Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Particle Cosmic Tentacle</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+
+
 
 <h3>CORRUPETD CRITTERS</h3>
     <ul class="image-list">
@@ -641,45 +645,45 @@ padding: 20px;
         </div>
       </li>
     </ul>
-  </div>
-</div>
 
-  <!-- Página 6 -->
-  <div class="pages" id="page8" style="display:none;">
-<h3 style="
-    text-align: center;
-padding: 20px;
-">CRITTERS</h3>
-<h3>COSMIC TENTACLES</h3>
+<h3>DEMON CRITTERS</h3>
     <ul class="image-list">
       <li>
-        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Ejemplo #2">
+        <img class="album-img" src="https://i.imgur.com/UPOQ8wz.jpg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>Red Cosmic Tentacle Critter</p>
+          <p>Silver Demon Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/iuWqa5X.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Diablo Visage Critter</p>
+          <p>⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/5WbVHBj.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Cosmic Demon Elite Critter</p>
           <p>⭐⭐⭐</p>
         </div>
       </li>
 
       <li>
-        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Ejemplo #2">
+        <img class="album-img" src="https://i.imgur.com/S0meokE.jpg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>Green Cosmic Tentacle Critter</p>
+          <p>Furious Demon Elite Critter</p>
           <p>⭐⭐⭐</p>
         </div>
       </li>
 
       <li>
-        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Ejemplo #2">
+        <img class="album-img" src="https://i.imgur.com/QF1YCgn.gif" alt="Ejemplo #2">
         <div class="album-description">
-          <p>Cosmic Tentacle Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Particle Cosmic Tentacle</p>
+          <p>Demon Lord Critter</p>
           <p>⭐⭐⭐⭐</p>
         </div>
       </li>
@@ -687,14 +691,14 @@ padding: 20px;
   </div>
 </div>
 
-  <!-- Página 6 -->
-  <div class="pages" id="page9" style="display:none;">
+  <!-- Página 7 -->
+  <div class="pages" id="page7" style="display:none;">
 <h3 style="
     text-align: center;
 padding: 20px;
 ">PIZZA CRITTERS</h3>
 
-<h3>PIZZA CRITTERS</h3>
+<h3>PIZZA SLICES</h3>
     <ul class="image-list">
       <li>
         <img class="album-img" src="https://i.imgur.com/nSPm0EU.jpg" alt="Ejemplo #2">
@@ -715,7 +719,7 @@ padding: 20px;
       <li>
         <img class="album-img" src="https://i.imgur.com/gvYQXkr.jpg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>Pizza From the Caves</p>
+          <p>Golden Eye Pizza</p>
           <p>⭐⭐⭐</p>
         </div>
       </li>
@@ -723,7 +727,7 @@ padding: 20px;
       <li>
         <img class="album-img" src="https://i.imgur.com/WlPQpAm.jpg" alt="Ejemplo #2">
         <div class="album-description">
-          <p>Golden Eye Pizza</p>
+          <p>Pizza From the Caves</p>
           <p>⭐⭐⭐</p>
         </div>
       </li>
@@ -774,7 +778,79 @@ padding: 20px;
   </div>
 </div>
 
+<img src="https://i.imgur.com/YIIBPos.gif" alt="SH1 MONEY" style="
+    width: 900px;
+    margin-top: 50px;
+    border: solid #a90263 3px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+">
 
+<h3>LEARN ABOUT CASH PRIZES:</h3>
+<h3>Phase 1 of the NFT Album:</h3>
+
+<ul>
+<li style="
+    text-align: left;
+">🚀 Promotes long-term retention of digital assets.</li>
+<li style="
+    text-align: left;">🃏 Each subcategory has a specific quantity of NFTs required to complete it.</li>
+<li style="
+    text-align: left;">💰 Upon completing a subcategory, a associated cash prize can be claimed.</li>
+<li style="
+    text-align: left;">🎉 If all subcategories of phase 1 are completed, a more notable prize can be claimed.</li>
+<li style="
+    text-align: left;">🏆 The highest prize is reserved for those who complete all categories of phase 1.</li>
+<li style="
+    text-align: left;">🎁 Each cash prize can only be claimed once per user.</li>
+<li style="
+    text-align: left;">🔒 Once claimed, the prize is permanently removed from the album, encouraging long-term retention and increasing the exclusivity of rewards.</li>
+<li style="
+    text-align: left;">💼 This structure encourages ongoing participation and long-term retention of digital assets, thereby creating a robust, trust-centered interplanetary economy.</li>
+</ul>
+
+<h3>Phase 2 of the Album and Tokenization:</h3>
+
+<ul>
+<li style="
+    text-align: left;">🔄 Introduces an exciting tokenization dynamic.</li>
+<li style="
+    text-align: left;">⛏️ Users can mine the token by completing the NFT album.</li>
+<li style="
+    text-align: left;">🔐 Each NFT can be staked on the platform for secure storage and network governance.</li>
+<li style="
+    text-align: left;">💸 Staking allows users to maintain their tokens and earn passive income by protecting the network.</li>
+<li style="
+    text-align: left;">💡 Staking NFT tokens as assets has the potential to create passive income and add liquidity and utility to NFTs.</li>
+<li style="
+    text-align: left;">📈 The percentage of income is linked to the percentage of contribution from each user, incentivizing greater participation.</li>
+<li style="
+    text-align: left;">🌱 This phase will expand earning opportunities and strengthen the community by encouraging active participation and long-term retention of digital assets.</li>
+<li style="
+    text-align: left;">🌐 The combination of NFT token staking and album completion creates a robust, trust-centered interplanetary economy, benefiting individual users and the ecosystem as a whole.</li>
+</ul>
+
+<h3>Why You Should Use Our System:</h3>
+
+<p>Our system offers numerous benefits that make it a smart choice for users:</p>
+
+<ul>
+<li style="
+    text-align: left;">🔒 Security: We prioritize the security of your digital assets, utilizing state-of-the-art encryption and storage protocols to keep your NFTs and tokens safe.</li>
+<li style="
+    text-align: left;">💰 Lucrative Rewards: By completing the NFT album and engaging in token staking, users have the opportunity to earn valuable rewards, including cash prizes and passive income.</li>
+<li style="
+    text-align: left;">🌱 Community Growth: Participating in our system helps to strengthen the community, fostering collaboration and camaraderie among users who share a common interest in NFTs and blockchain technology.</li>
+<li style="
+    text-align: left;">🔄 Innovation: We're constantly evolving and introducing new features to enhance the user experience and provide innovative opportunities for our community.</li>
+<li style="
+    text-align: left;">🌐 Trustworthiness: Our system is built on principles of transparency, trust, and integrity. Users can feel confident knowing that their assets are in good hands.</li>
+</ul>
+
+<p>Ultimately, using our system opens up a world of possibilities in the rapidly expanding realm of NFTs and blockchain technology.</p> 
+<p>Don't let fear hold you back—embrace the future and join us on this exciting journey!</p>
+
+<button class="back-to-top" onclick="backToTop()"></button>
 <script>
 var currentPage = 1;
 
@@ -806,7 +882,7 @@ function previousPage() {
 }
 
 function nextPage() {
-  if (currentPage < 9) {
+  if (currentPage < 7) {
     currentPage++;
     var nextPageId = "page" + currentPage;
     showPage(nextPageId);
@@ -814,5 +890,25 @@ function nextPage() {
   }
 }
 </script>
+    <script>
+        // Función para mostrar u ocultar el botón flotante
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                // Mostrar el botón cuando el usuario hace scroll hacia abajo
+                document.querySelector(".back-to-top").classList.add("visible");
+            } else {
+                // Ocultar el botón cuando el usuario está en la parte superior de la página
+                document.querySelector(".back-to-top").classList.remove("visible");
+            }
+        }
+
+        // Función para volver al principio de la página
+        function backToTop() {
+            document.body.scrollTop = 0; // Para Safari
+            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
+        }
+    </script>
 </body>
 </html>
