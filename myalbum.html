@@ -19,11 +19,11 @@ body {
 }
 
 .container {
-    position: relative; /* Cambiado a posición relativa */
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 0 10px rgb(208 206 206 / 10%);
     background: url(https://i.imgur.com/YfJBamh.jpeg);
@@ -32,6 +32,10 @@ body {
     background-repeat: no-repeat;
     background-color: #343434;
     z-index: 999;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex; /* Añadido para usar flexbox */
+    justify-content: center; /* Añadido para centrar horizontalmente */
 }
 
 /* Estilos para el encabezado */
@@ -60,6 +64,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     background: linear-gradient(135deg, #2F0082, #51E0CD);
+    width: 250px;
 }
 
 .image-list {
@@ -68,44 +73,49 @@ body {
     justify-content: center;
     padding: 20%;
     text-align: center;
-    margin-top: -220px;
-    margin-bottom: -200px;
+    margin-top: -200px;
+    margin-bottom: -180px;
 }
 
 .image-list li {
-  border-radius: 8px;
-  box-shadow: 0 8px 12px rgba(0, 123, 255, 0.2), 0 3px 6px rgba(0, 123, 255, 0.15); /* Borde con sombra más intenso */
-  list-style: none;
-  width: calc(25% - 30px); /* Cambiar el ancho para mostrar en grupos de cuatro */
-  margin: 15px; /* Espacio entre las imágenes */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px rgba(0, 123, 255, 0.2), 0 3px 6px rgba(0, 123, 255, 0.15); /* Borde con sombra más intenso */
+    list-style: none;
+    width: calc(25% - 20px); /* Cambiado a 25% */
+    margin: 10px; /* Espacio entre las imágenes */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-list li img {
     max-width: 100%; /* Cambiado a máximo ancho */
-    height: auto; /* Altura automática */
+    height: auto; /* Ajuste de altura automático */
     display: block;
     object-fit: cover;
     object-position: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    margin: 10px;
 }
 
 .album-description {
-    background-color: rgba(0, 0, 0, 0.7);
+background-color: rgb(170 170 170 / 62%);
     color: #fff;
-    padding: 1px;
+    padding: 5px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    text-align: left;
-    width: 120%;
-    font-size: 12px;
-    margin-top: -55px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 140px;
+    margin-top: -70px;
     margin-bottom: -20px;
+    text-align: left;
+    font-size: 11.5px;
+    height: 70px;
 }
 
 /* Centrar verticalmente las imágenes */
@@ -145,7 +155,7 @@ body {
 
 /* Estilos para la categoría Critters 1 */
 #page5 {
-    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-image: url(https://i.imgur.com/E3GyS0a.gif);
     background-size: 900px;
     background-position: center;
 }
@@ -159,7 +169,14 @@ body {
 
 /* Estilos para la categoría Critters 3 */
 #page7 {
-    background-image: url(https://i.imgur.com/E3GyS0a.gif);
+    background-image: url(https://i.imgur.com/3vlMuUd.gif);
+    background-size: 900px;
+    background-position: center;
+}
+
+/* Estilos para la categoría Critters 3 */
+#page8 {
+    background-image: url(https://i.imgur.com/BMpKR6b.gif);
     background-size: 900px;
     background-position: center;
 }
@@ -169,38 +186,94 @@ body {
     background-position: center center;
     background-size: cover;
     height: 1400px;
-    overflow: hidden;
+    overflow: scroll;
     margin-top: 20px;
+    text-align: center; /* Centrar contenido horizontalmente */
+}
+
+/* Estilo para la barra de desplazamiento en navegadores webkit (Chrome, Safari, etc.) */
+.pages::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo para el riel de la barra de desplazamiento */
+.pages::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del riel */
+}
+
+/* Estilo para el pulgar de la barra de desplazamiento */
+.pages::-webkit-scrollbar-thumb {
+    background: #888; /* Color del pulgar */
+    border-radius: 5px; /* Radio de borde del pulgar */
+}
+
+/* Cambia el color del pulgar cuando se pasa el ratón por encima */
+.pages::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
         .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: url(https://i.imgur.com/at70ZP8.png) no-repeat center center;
-            background-size: cover;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            transition: transform 0.3s ease-in-out;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: url(https://i.imgur.com/at70ZP8.png) no-repeat center center;
+    background-size: cover;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none; 
         }
 
         /* Cambiamos el tamaño y la opacidad cuando se pasa el ratón por encima */
         .back-to-top:hover {
             transform: scale(1.1);
-            opacity: 0.9;
         }
 
         /* Estilo cuando el botón es visible */
         .back-to-top.visible {
-            display: block;
+            opacity: 1;
+    pointer-events: auto;
         }
 
         .back-to-top.hidden {
             display: none;
+        }
+
+        /* Estilos para el menú desplegable */
+        .dropdown {
+            position: fixed;
+            top: 50%;
+            left: 10px; /* Cambiado de right a left */
+            transform: translateY(-50%);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
         }
 </style>
 </head>
@@ -216,9 +289,10 @@ body {
         <option value="page2">Quokkabaras</option>
         <option value="page3">Divines</option>
         <option value="page4">Scientists</option>
-        <option value="page5">Critters 1</option>
-        <option value="page6">Critters 2</option>
-        <option value="page7">Pizza Critters</option>
+        <option value="page5">Pizza Critters</option>
+        <option value="page6">Critters 1</option>
+        <option value="page7">Critters 2</option>
+        <option value="page8">Elevated Tier Critters</option>
       </select>
       <button onclick="goToPage()">Ir</button>
     </div>
@@ -351,6 +425,17 @@ padding: 20px;
         </div>
       </li>
     </ul>
+
+    <h3>QUOKKABARA SURVIVORS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://via.placeholder.com/200" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>UPCOMING</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <!-- Página 3 -->
@@ -437,12 +522,100 @@ padding: 20px;
   </div>
 </div>
 
+
   <!-- Página 5 -->
   <div class="pages" id="page5" style="display:none;">
 <h3 style="
     text-align: center;
 padding: 20px;
-">CRITTERS</h3>
+">PIZZA CRITTERS</h3>
+
+<h3>PIZZA SLICES</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/nSPm0EU.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Infernal Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/xSUPYs3.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Noble Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gvYQXkr.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Golden Eye Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/WlPQpAm.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Pizza From the Caves</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/ZBm7rbF.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Zombie Rotten Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/PJzI75i.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Infectd Mutant Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/gCAnipo.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Angry Pizza Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/AJ5MM9l.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Red Hot Chilli Pizza</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+</ul>
+
+<h3>COMPLETE PIZZAS</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/KBtr3TR.gif" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Monster Pizza Roulette</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Página 6 -->
+  <div class="pages" id="page6" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">CRITTERS 1</h3>
     <h3>CAT CRITTERS</h3>
     <ul class="image-list">
       <li>
@@ -552,49 +725,13 @@ padding: 20px;
     </ul>
   </div>
 </div>
-  <!-- Página 6 -->
-  <div class="pages" id="page6" style="display:none;">
+
+  <!-- Página 7 -->
+  <div class="pages" id="page7" style="display:none;">
 <h3 style="
     text-align: center;
 padding: 20px;
-">CRITTERS</h3>
-<h3>COSMIC TENTACLES</h3>
-    <ul class="image-list">
-      <li>
-        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Red Cosmic Tentacle Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Green Cosmic Tentacle Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Cosmic Tentacle Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Particle Cosmic Tentacle</p>
-          <p>⭐⭐⭐⭐</p>
-        </div>
-      </li>
-    </ul>
-
-
-
+">CRITTERS 2</h3>
 <h3>CORRUPETD CRITTERS</h3>
     <ul class="image-list">
       <li>
@@ -645,6 +782,49 @@ padding: 20px;
         </div>
       </li>
     </ul>
+  </div>
+</div>
+
+  <!-- Página 7 -->
+  <div class="pages" id="page8" style="display:none;">
+<h3 style="
+    text-align: center;
+padding: 20px;
+">Elevated Tier Critters</h3>
+<h3>COSMIC TENTACLES</h3>
+    <ul class="image-list">
+      <li>
+        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Red Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Green Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Cosmic Tentacle Critter</p>
+          <p>⭐⭐⭐</p>
+        </div>
+      </li>
+
+      <li>
+        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Ejemplo #2">
+        <div class="album-description">
+          <p>Particle Cosmic Tentacle</p>
+          <p>⭐⭐⭐⭐</p>
+        </div>
+      </li>
+    </ul>
 
 <h3>DEMON CRITTERS</h3>
     <ul class="image-list">
@@ -691,92 +871,9 @@ padding: 20px;
   </div>
 </div>
 
-  <!-- Página 7 -->
-  <div class="pages" id="page7" style="display:none;">
-<h3 style="
-    text-align: center;
-padding: 20px;
-">PIZZA CRITTERS</h3>
-
-<h3>PIZZA SLICES</h3>
-    <ul class="image-list">
-      <li>
-        <img class="album-img" src="https://i.imgur.com/nSPm0EU.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Infernal Pizza Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/xSUPYs3.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Noble Pizza Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/gvYQXkr.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Golden Eye Pizza</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/WlPQpAm.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Pizza From the Caves</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/ZBm7rbF.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Zombie Rotten Pizza</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/PJzI75i.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Infectd Mutant Pizza</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/gCAnipo.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Angry Pizza Critter</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-
-      <li>
-        <img class="album-img" src="https://i.imgur.com/AJ5MM9l.jpg" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Red Hot Chilli Pizza</p>
-          <p>⭐⭐⭐</p>
-        </div>
-      </li>
-</ul>
-
-<h3>COMPLETE PIZZAS</h3>
-    <ul class="image-list">
-      <li>
-        <img class="album-img" src="https://i.imgur.com/KBtr3TR.gif" alt="Ejemplo #2">
-        <div class="album-description">
-          <p>Monster Pizza Roulette</p>
-          <p>⭐⭐⭐⭐⭐</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+    <footer>
+        <p>StickersHUB1 ALBUM - &copy; All Rights Reserved.</p>
+    </footer>
 
 <img src="https://i.imgur.com/YIIBPos.gif" alt="SH1 MONEY" style="
     width: 900px;
@@ -850,7 +947,15 @@ padding: 20px;
 <p>Ultimately, using our system opens up a world of possibilities in the rapidly expanding realm of NFTs and blockchain technology.</p> 
 <p>Don't let fear hold you back—embrace the future and join us on this exciting journey!</p>
 
-<button class="back-to-top" onclick="backToTop()"></button>
+<button onclick="topFunction()" class="back-to-top" id="back-to-top" title="Back to Top">↑</button>
+
+
+
+<footer>
+    <p>&copy; 2024 StickersHUB1.es - All Rights Reserved</p>
+    <p>Content belongs to StickersHUB1.es</p>
+</footer>
+
 <script>
 var currentPage = 1;
 
@@ -882,7 +987,7 @@ function previousPage() {
 }
 
 function nextPage() {
-  if (currentPage < 7) {
+  if (currentPage < 8) {
     currentPage++;
     var nextPageId = "page" + currentPage;
     showPage(nextPageId);
@@ -890,25 +995,21 @@ function nextPage() {
   }
 }
 </script>
-    <script>
-        // Función para mostrar u ocultar el botón flotante
-        window.onscroll = function() {scrollFunction()};
+<script>
+    window.onscroll = function() {scrollFunction()};
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                // Mostrar el botón cuando el usuario hace scroll hacia abajo
-                document.querySelector(".back-to-top").classList.add("visible");
-            } else {
-                // Ocultar el botón cuando el usuario está en la parte superior de la página
-                document.querySelector(".back-to-top").classList.remove("visible");
-            }
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("back-to-top").classList.add("visible");
+        } else {
+            document.getElementById("back-to-top").classList.remove("visible");
         }
+    }
 
-        // Función para volver al principio de la página
-        function backToTop() {
-            document.body.scrollTop = 0; // Para Safari
-            document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE y Opera
-        }
-    </script>
+    function topFunction() {
+        document.body.scrollTop = 0; // Para navegadores Safari
+        document.documentElement.scrollTop = 0; // Para otros navegadores
+    }
+</script>
 </body>
 </html>
