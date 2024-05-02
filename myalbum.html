@@ -1,787 +1,687 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
-<style>
-    body {
-margin: 0;
-    font-family: Arial, sans-serif;
-    margin-top: 100px;
-    background: #133347;
-    color: white;
-    }
-
-    header {
-    background-color: #000;
-    color: #fff;
-    padding: 15px;
-    position: fixed;
-    width: calc(100% - 200px);
-    z-index: 1000;
-    margin-left: 200px;
-    margin-top: -100px;
-    }
-
-    .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo img {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-    }
-
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        display: inline;
-        margin-right: 20px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #fff;
-    }
-
-    .sidebar {
-    background-color: #333333;
-    width: 200px;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    }
-
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .sidebar ul li {
-        padding: 10px;
-    }
-
-    .sidebar ul li a {
-cursor: pointer;
-    padding: 10px;
-    background: #515151;
-    color: white;
-    margin: -10px;
-    text-align: center;
-    text-decoration: none;
-    }
-
-    .sidebar h1 {
-    cursor: pointer;
-    padding: 10px;
-    background: #515151;
-    color: white;
-    margin-bottom: -10px;
-    text-align: center;
-    font-size: 25px;
+    <title>Menu con Sidebar y Subcategorías Desplegables</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-    main {
-        margin-left: 220px; /* Ajuste para dejar espacio para el sidebar */
-        padding: 20px;
-        box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño */
-    }
+        /* Estilos para la barra de navegación */
+        .navbar {
+            background-color: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
 
-    footer {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
 
-    .hidden {
-        display: none;
-    }
+        .navbar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-    .banner {
-        width: 100%;
-        height: 200px;
-        background-position: bottom;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: url(https://i.imgur.com/YfJBamh.jpeg);
-        background-position: bottom;
-        background-size: 600px;
-        background-repeat: no-repeat;
-        background-color: #3b3b3b;
-    }
+        .navbar nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
 
-    .banner h1 {
-        color: white;
-        font-size: 36px;
-        text-shadow: 0 0 5px rgb(95 0 255), 0 0 10px rgb(0 54 212), 0 0 15px rgb(0 39 155), 0 0 20px rgb(255 137 0);
-    }
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
 
-    .container {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    background: #333333;
-    color: white;
-    }
+        .navbar nav ul li a:hover {
+            color: #ffa500;
+        }
 
-    .container h2 {
-        margin-top: 0;
-    }
+        /* Estilos para el sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            width: 200px;
+            height: 100%;
+            padding: 20px;
+            transition: width 0.3s ease;
+        }
 
-.image-group {
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul .main-category {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar ul .main-category a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul .main-category a:hover {
+            background-color: #ffa500;
+        }
+
+        .sidebar ul .sub-category {
+            margin-left: 10px;
+            display: none;
+        }
+
+        .sidebar ul .sub-category.show {
+            display: block;
+        }
+
+        .sidebar ul .sub-category li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul .sub-category a {
+            text-decoration: none;
+            color: #ccc;
+            display: block;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar ul .sub-category a:hover {
+            color: #fff;
+        }
+
+        /* Estilos para el contenido principal */
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        /* Estilos para las imágenes */
+        .content .image-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que las imágenes se envuelvan en múltiples líneas */
+    flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 20px; /* Espacio entre grupos de imágenes */
+    margin-bottom: 20px;
+        }
+
+        .content .image-container img {
+    width: 200px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    margin: 32px;
+        }
+
+        .content .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .content .image-container .image-description {
+            text-align: center;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+#banner {
+    width: 105%;
+    height: 200px;
+    background-color: #393939d4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: -20px;
 }
 
-.image-group img {
-    margin: 10px; /* Espacio entre imágenes */
+#banner img {
+max-width: 100%;
+    max-height: 1000%;
+    margin-top: 200px;
 }
-</style>
+    </style>
 </head>
 <body>
-<header>
     <div class="navbar">
-        <div class="logo">
-            <img src="https://i.imgur.com/B3fP07w.png" alt="Logo de la plataforma" style="width: 40px; height: 40px;">
-            <h1>SH1 ALBUM</h1>
-        </div>
+        <h1>Logo</h1>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about-album">About Album</a></li>
-                <li><a href="#genesis">Genesis</a></li>
-                <li><a href="#login">Log In</a></li>
-                <li><a href="#logout">Log Out</a></li>
+                <li><a href="#" onclick="showContent('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="showContent('acerca')">Acerca</a></li>
+                <li><a href="#" onclick="showContent('servicios')">Servicios</a></li>
+                <li><a href="#" onclick="showContent('contacto')">Contacto</a></li>
             </ul>
         </nav>
     </div>
-</header>
+    <div class="sidebar">
+        <ul>
+            <li class="main-category" onclick="toggleSubCategories('opcion1')">
+                <a href="#">○ SH1 ALBUM 📕</a>
+                <ul id="opcion1" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria1_1')">• Full Album</a></li>
+                </ul>
+            </li>
 
-<div class="sidebar">
+            <li class="main-category" onclick="toggleSubCategories('opcion2')">
+                <a href="#">○ CHARACTERS 🦸‍♂️</a>
+                <ul id="opcion2" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria2_1')">• Quokkabaras</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria2_2')">• Scientists</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria2_3')">• BotPods</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria2_4')">• Divines</a></li>
+                </ul>
+            </li>
 
-<h1 onclick="toggleList('album')">SH1 Album</h1>
-    <ul id="album" style="display: none;">
-        <li><a href="#enlace17">FULL ALBUM</a></li>
-</ul>
-<h1 onclick="toggleList('characters')">Characters</h1>
-    <ul id="characters" style="display: none;">
-        <li><a href="#enlace1">QUOKKABARAS</a></li>
-        <li><a href="#enlace2">SCIENTISTS</a></li>
-        <li><a href="#enlace3">BOTPODS</a></li>
-        <li><a href="#enlace18">DIVINES</a></li>
-        <li><a href="#enlace4">PIZZA CRITTERS</a></li>
-        <li><a href="#enlace5">SPECIAL CRITTERS</a></li>
-        <li><a href="#enlace6">CRITTERS</a></li>
-    </ul>
-<h1 onclick="toggleList('equipment')">Equipment</h1>
-    <ul id="equipment" style="display: none;">
-        <li><a href="#enlace7">BODY EQUIPMENT</a></li>
-        <li><a href="#enlace8">WEAPONS</a></li>
-        <li><a href="#enlace9">AMULETS</a></li>
-        <li><a href="#enlace10">ACCESSORIES</a></li>
-        <li><a href="#enlace11">VALUABLES</a></li>
-        <li><a href="#enlace12">RUNES</a></li>
-    </ul>
-<h1 onclick="toggleList('vehicles')">Vehicles</h1>
-    <ul id="vehicles" style="display: none;">
-        <li><a href="#enlace13">PRIMITIVE</a></li>
-        <li><a href="#enlace14">MODERN</a></li>
-        <li><a href="#enlace15">FUTURISTIC</a></li>
-        <li><a href="#enlace16">SPACECRAFT</a></li>
-    </ul>
+            <li class="main-category" onclick="toggleSubCategories('opcion3')">
+                <a href="#">○ CREATURES 👹</a>
+                <ul id="opcion3" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria3_1')">Critters</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria3_2')">Elevated Critters</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria3_3')">Pizza Critters</a></li>
+                </ul>
+            </li>
+
+            <li class="main-category" onclick="toggleSubCategories('opcion4')">
+                <a href="#">○ WEAPONS ⚔️</a>
+                <ul id="opcion4" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria4_1')">Melee</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria4_2')">Distance</a></li>
+                </ul>
+            </li>
+
+            <li class="main-category" onclick="toggleSubCategories('opcion5')">
+                <a href="#">○ EQUIPMENT 🎒</a>
+                <ul id="opcion5" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria5_1')">Helmets</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_2')">Armors</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_3')">Legs</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_4')">Boots</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_5')">BackPacks</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Contenido de ejemplo para cada sección y subcategoría -->
+        <div id="inicio" style="display: none;">
+<div id="banner">
+    <img src="https://i.imgur.com/maM4Z2g.jpg" alt="Banner de la página actual">
 </div>
-
-<main>
-    <section id="home" class="content">
-        <div class="banner">
-            <h1>SH1 ALBUM</h1>
-        </div>
-        <h2>Welcome to SH1 ALBUM</h2>
-        Welcome to our thrilling digital collection album!
-Explore a universe brimming with art, creativity, and exciting rewards as you dive into our exclusive world of NFTs.</p>
-        <!-- Container para Premios y Recompensas -->
-        <div class="container">
-            <h2>🏆 Rewards and Prizes</h2>
-            <p>Participate in Phase 1 of the album to win cash prizes by completing subcategories.</p>
-            <p>Exploration and active participation allow you to increase your earnings.</p>
+            <h2>Contenido de Inicio</h2>
+            <p>Este es el contenido de la sección Inicio.</p>
         </div>
 
-        <!-- Container for Security and Protection -->
-        <div class="container">
-            <h2>🔒 Security and Protection</h2>
-            <p>We use advanced technology to ensure the security of your digital assets.</p>
-            <p>Your NFTs are protected by robust security protocols.</p>
+        <div id="acerca" style="display: none;">
+            <h2>Contenido de Acerca</h2>
+            <p>Este es el contenido de la sección Acerca.</p>
         </div>
 
-        <!-- Container for Passive Income and Tokenization -->
-        <div class="container">
-            <h2>💸 Passive Income and Tokenization</h2>
-            <p>In Phase 2 of the album, earn passive income by mining the token.</p>
-            <p>Participation in tokenization contributes to community growth and rewards you for it.</p>
+        <div id="servicios" style="display: none;">
+            <h2>Contenido de Servicios</h2>
+            <p>Este es el contenido de la sección Servicios.</p>
         </div>
 
-        <!-- Container for Community Growth -->
-        <div class="container">
-            <h2>🌱 Community Growth</h2>
-            <p>Join a passionate community of NFT collectors and blockchain technology enthusiasts.</p>
-            <p>We foster an environment of collaboration and learning.</p>
+        <div id="contacto" style="display: none;">
+            <h2>Contenido de Contacto</h2>
+            <p>Este es el contenido de la sección Contacto.</p>
         </div>
 
-        <!-- Container for Continuous Innovation -->
-        <div class="container">
-            <h2>🚀 Continuous Innovation</h2>
-            <p>We are constantly innovating to enhance your experience.</p>
-            <p>Stay tuned for exciting updates and new features we have in store.</p>
-        </div>
+        <!-- Contenido para otras secciones -->
 
-        <!-- Container for Trust and Transparency -->
-        <div class="container">
-            <h2>🔍 Trust and Transparency</h2>
-            <p>Trust is fundamental at StickersHUB1.</p>
-            <p>We strive to be transparent in all our security policies and practices.</p>
-        </div>
+        <!-- Contenido de ejemplo para subcategorías -->
 
-        <!-- Container for Explore the Genesis -->
-        <div class="container">
-            <h2>🌌 Explore the Genesis</h2>
-            <p>Dive into the mystical Genesis, where the story of StickersHUB1 began.</p>
-            <p>Discover its secrets and wonders, and be part of a unique NFT world experience.</p>
-        </div>
-    </section>
-
-    <section id="about-album" class="content hidden">
-        <div class="banner">
-            <h1>ABOUT ALBUM</h1>
-        </div>
-        <h2>Acerca de</h2>
-        <p>Somos una empresa dedicada a brindar soluciones innovadoras a nuestros clientes. Conoce más sobre nuestra historia y equipo.</p>
-    </section>
-
-    <section id="login" class="content hidden">
-        <div class="banner">
-            <h1>LOG IN</h1>
-        </div>
-        <h2>Servicios</h2>
-        <p>Ofrecemos una amplia gama de servicios que se adaptan a las necesidades de nuestros clientes. Desde desarrollo web hasta consultoría empresarial.</p>
-    </section>
-
-    <section id="logout" class="content hidden">
-        <div class="banner">
-            <h1>LOG OUT</h1>
-        </div>
-        <h2>logout</h2>
-        <p>¿Tienes alguna pregunta o comentario? ¡No dudes en ponerte en contacto con nosotros!</p>
-        <p>Email: info@miempresa.com</p>
-        <p>Teléfono: +123456789</p>
-    </section>
-
-    <section id="genesis" class="content hidden">
-        <div class="banner">
-            <h1>GENESIS</h1>
-        </div>
-        <h2>Genesis</h2>
-        <p>Aqui encontraras la historia que le da vida a StickersHUB1.</p>
-        <p>Mas de 100 diseños!</p>
-    </section>
-
-    <section id="enlace1" class="content hidden">
-        <div class="banner">
-            <h1>QUOKKABARAS</h1>
-        </div>
-<p style="
+        <div id="subcategoria1_1" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/YfJBamh.jpg" alt="Banner de la página actual" style="
+    width: 500px;
+">
+</div>
+            <h3 style="
     text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-        <h2>Profit Takers</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/hdVbWqI.gif" alt="Profit Tracker" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/sF6MT9e.gif" alt="Profit Tracker" Premium style="width: 350px;">
-</div>
-        <h2>Shamans</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/ZkW9ORY.jpg" alt="Quokkashaman 1" style="width: 350px;">
-</div>
-        <h2>Citizens</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/J6WgVqU.jpg" alt="Quokkacitizen 1" style="width: 350px;">
-</div>
-    </section>
+">FULL ALBUM</h3>
+                <h2>This is the original StickersHUB1 album!</h2>
+                <p>Have fun and earn rewards by collecting and completing it!</p>
+                <h2>COMING SOON</h2>
+            <div class="image-container">
 
-    <section id="enlace2" class="content hidden">
-        <div class="banner">
-            <h1>SCIENTISTS</h1>
-        </div>
-<p style="
+            </div>
+    </div>
+
+        <div id="subcategoria2_1" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/WOcRIpl.gif" alt="Banner de la página actual" style="
+    margin-top: -400px;
+">
+</div>
+            <h3 style="
     text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Scientists #1</h2>
-        <img class="album-img" src="https://i.imgur.com/MFcXFjX.jpg" alt="Dimitri Petrov" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/WAyosu6.jpg" alt="Emily Johnson" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/J1MUV35.jpg" alt="Santiago Martinez" style="width: 350px;">
-</div>
-    </section>
+">QUOKKABARAS</h3>
+<h2>Profit Takers</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/hdVbWqI.gif" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gQ1rFBC.gif" alt="Imagen de ejemplo">
+            </div>
 
-    <section id="enlace3" class="content hidden">
-        <div class="banner">
-            <h1>BOTPODS</h1>
+<h2>Shamans</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/ZkW9ORY.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>Citizens</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/J6WgVqU.jpg" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-        <h2>BotPods #1</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/M8MJg9O.jpg" alt="BotPod Joy" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/GRA0TFg.jpg" alt="BotPod Prime" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/9vezvbZ.jpg" alt="BotPod Definitive" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/gB1RVkZ.jpg" alt="BotPod Ascendant" style="width: 350px;">
-</div>
-        <h2>BotPods #2</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/1fkR0Wx.jpg" alt="BotPod Knight" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/g4rS6V4.jpg" alt="BotPod Warrior" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/h9vqVfZ.jpg" alt="BotPod Elite Guard" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/H811oqk.jpg" alt="BotPod Sovereign Sentinel" style="width: 350px;">
-</div>
-    </section>
 
-    <section id="enlace4" class="content hidden">
-        <div class="banner">
-            <h1>PIZZA CRITTERS</h1>
+        <div id="subcategoria2_2" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/pw9PO7L.gif" alt="Banner de la página actual" style="
+    margin-top: 700px;
+">
+</div>
+            <h3 style="
+    text-align: center;
+">SCIENTISTS</h3>
+<h2>SCIENTISTS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/MFcXFjX.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/WAyosu6.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/J1MUV35.jpg" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Pizza Slices</h2>
-        <img class="album-img" src="https://i.imgur.com/nSPm0EU.jpg" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/xSUPYs3.jpg" alt="Noble Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/gvYQXkr.jpg" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/WlPQpAm.jpg" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/ZBm7rbF.jpg" alt="Zombie Rotten Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/PJzI75i.jpg" alt="Infected Mutant Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/gCAnipo.jpg" alt="Angry Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/AJ5MM9l.jpg" alt="Red Hot Chilli Pizza" style="width: 350px;">
-</div>
-        <h2>Complete Pizzas</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/KBtr3TR.gif" alt="Monster Pizza Roulette" style="width: 350px;">
-</div>
-    </section>
 
-    <section id="enlace5" class="content hidden">
-        <div class="banner">
-            <h1>ELEVATED TIER CRITTERS</h1>
+        <div id="subcategoria2_3" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/pw9PO7L.gif" alt="Banner de la página actual" style="
+    margin-top: 700px;
+">
+</div>
+            <h3 style="
+    text-align: center;
+">BOTPODS</h3>
+<h2>BOTPODS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/M8MJg9O.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/GRA0TFg.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/9vezvbZ.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gB1RVkZ.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>BOTPODS #2</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/1fkR0Wx.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/g4rS6V4.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/h9vqVfZ.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/H811oqk.jpg" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-         <h2>Cosmic Tentacles</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/wmOSHAD.jpg" alt="Red Cosmic Tentacle Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/ns0WiZV.jpg" alt="Green Cosmic Tentacle Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/EHPaYzW.jpg" alt="Cosmic Tentacle Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/lmKOnGJ.jpg" alt="Particle Cosmic Tentacle" style="width: 350px;">
-</div>
-         <h2>Elevated Tier Critters</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/UPOQ8wz.jpg" alt="Silver Demon Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/iuWqa5X.jpg" alt="Diablo Visage Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/5WbVHBj.jpg" alt="Cosmic Demon Eelite Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/S0meokE.jpg" alt="Furious Demon Eelite Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/QF1YCgn.gif" alt="Demon Lord Critter" style="width: 350px;">
-</div>
-    </section>
 
-    <section id="enlace6" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
+        <div id="subcategoria2_4" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/HCWYN0k.gif" alt="Banner de la página actual" style="
+    margin-top: 0px;
+">
+</div>
+            <h3 style="
+    text-align: center;
+">DIVINES</h3>
+<h2>DIVINES</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/GQjZYsR.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/3f4lGu7.jpg" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-        <h2>CATS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/6L94525.jpg" alt="Gato Noir Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/kdvQCm3.jpg" alt="Spark Gray Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/kfvGRsB.jpg" alt="Gato Inferno Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/wPFg01z.jpg" alt="Bloodie Cat Critter" style="width: 350px;">
-</div>
-        <h2>TROLLS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/Ve1BUF2.jpg" alt="Lunar Gaze Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/30E341X.jpg" alt="Astro Folly Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/5zvYpba.jpg" alt="Troll Moon Critter" style="width: 350px;">
-</div>
-        <h2>SKULLS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/yUfH5kU.jpg" alt="Noble Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/2wHDVGf.jpg" alt="Golden Eye Pizza" style="width: 350px;">
-</div>
-        <h2>SERPENTS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/IQQAjz4.jpg" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/jSsLUEv.jpg" alt="Noble Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/sH6wJ4o.jpg" alt="Golden Eye Pizza" style="width: 350px;">
-</div>
-        <h2>CORRUPTED CRITTERS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/LZ2Ib7P.jpg" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/caqX08u.jpg" alt="Noble Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Zk2E1hI.jpg" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/tS2J1Tk.jpg" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/hHqVQuf.jpg" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/bEuIDvw.jpg" alt="Pizza From The Caves" style="width: 350px;">
-</div>
-    </section>
 
-<section id="enlace7" class="content hidden">  
-        <div class="banner">
-            <h1>BODY EQUIPMENT</h1>
+        <div id="subcategoria3_1" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/3vlMuUd.gif" alt="Banner de la página actual" style="
+    margin-top: -350px;
+">
+</div>
+            <h3 style="
+    text-align: center;
+">CRITTERS</h3>
+<h2>CAT CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/6L94525.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/kdvQCm3.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/kfvGRsB.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/wPFg01z.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>TROLL CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/Ve1BUF2.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/30E341X.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/9vLe38i.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>SKULL CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/yUfH5kU.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/2wHDVGf.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>SERPENT CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/IQQAjz4.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/jSsLUEv.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/sH6wJ4o.jpg" alt="Imagen de ejemplo">
+            </div>
+
+<h2>CORRUPTED CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/Zk2E1hI.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/bEuIDvw.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/LZ2Ib7P.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/hHqVQuf.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/tS2J1Tk.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/caqX08u.jpg" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
+
+        <div id="subcategoria3_2" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/3vlMuUd.gif" alt="Banner de la página actual" style="
+    margin-top: -350px;
+">
+</div>
+            <h3 style="
     text-align: center;
-">Here you will find: Helmets, Armors, Legs and Boots.</p>
+">ELEVATED CRITTERS</h3>
+<h2>COSMIC TENTACLE CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/EHPaYzW.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/wmOSHAD.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ns0WiZV.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/lmKOnGJ.jpg" alt="Imagen de ejemplo">
+            </div>
 
-<h1 onclick="toggleList('helmets')" style="
-    cursor: pointer;
-">❍ Helmets ⛑️</h1>
-    <ul id="helmets" style="display: none;">
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/Ln9Hqxp.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/tbD7Wb4.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/koo1UVx.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/zN6uoQi.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/1RuONV6.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/jPzMMhV.png" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/OhsQhFF.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/kDu5GF4.png" alt="Golden Eye Pizza" style="width: 350px;">
-</div>
-</ul>
-
-<h1 onclick="toggleList('armors')" style="
-    cursor: pointer;
-">❍ Armors 👕</h1>
-    <ul id="armors" style="display: none;">
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/nWR8hVx.png" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/MVetW0v.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/TlvUKJQ.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/w9ZI7Nk.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/m168Aa4.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/MgKgKj6.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/bX9bDCX.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/gEBxgZE.png" alt="Pizza From The Caves" style="width: 350px;">
-</div>
-</ul>
-
-<h1 onclick="toggleList('legs')" style="
-    cursor: pointer;
-">❍ Legs 👖</h1>
-    <ul id="legs" style="display: none;">
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/WJueB6V.png" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/qQW8t5I.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Twf4AO1.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/WeMQzNv.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/tCDFTfV.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Q0UDnnR.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Fgy9DLH.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Uv28aAq.png" alt="Pizza From The Caves" style="width: 350px;">
-</div>
-</ul>
-
-<h1 onclick="toggleList('boots')" style="
-    cursor: pointer;
-">❍ Boots 🥾</h1>
-    <ul id="boots" style="display: none;">
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/jpfXb88.png" alt="Infernal Pizza Critter" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/UsMwP0H.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/ABsTRKU.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/vH36x9k.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/x3BpWtI.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/O0JYCCu.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Yd8ftqW.png" alt="Golden Eye Pizza" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/HZ9l2q3.png" alt="Pizza From The Caves" style="width: 350px;"></div>
-</div>
-</ul>
-
-    </section>
-
-<section id="enlace8" class="content hidden">  
-        <div class="banner">
-            <h1>WEAPONS</h1>
+<h2>ELITE DEMON CRITTERS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/UPOQ8wz.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/iuWqa5X.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/5WbVHBj.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/S0meokE.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/QF1YCgn.gif" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs and Boots.</p>
 
-<h1 onclick="toggleList('melee')" style="
-    cursor: pointer;
-">❍ Melee ⚔️</h1>
-    <ul id="melee" style="display: none;">
-        <h2>SWORDS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/l08Rm2q.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/r0KbTyl.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/2IlVIRW.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/4J5tYpR.png" alt="Pizza From The Caves" style="width: 350px;">
+        <div id="subcategoria3_3" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/E3GyS0a.gif" alt="Banner de la página actual" style="
+    margin-top: 0px;
+">
 </div>
+            <h3 style="
+    text-align: center;
+">PIZZA CRITTERS</h3>
+<h2>PIZZA SLICES</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/nSPm0EU.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/xSUPYs3.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gvYQXkr.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/WlPQpAm.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ZBm7rbF.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/PJzI75i.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gCAnipo.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/AJ5MM9l.jpg" alt="Imagen de ejemplo">
+            </div>
 
-        <h2>AXES</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/veaK9zd.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/ObyPMne.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/lmmgpZA.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/gTSkYJ8.png" alt="Pizza From The Caves" style="width: 350px;">
+<h2>COMPLETE PIZZAS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/KBtr3TR.gif" alt="Imagen de ejemplo">
+            </div>
+        </div>
+
+        <div id="subcategoria4_1" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/6v6qoZr.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+">
 </div>
+            <h3 style="
+    text-align: center;
+">MELEE WEAPONS</h3>
+<h2>SWORDS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/l08Rm2q.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/4J5tYpR.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/2IlVIRW.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/r0KbTyl.png" alt="Imagen de ejemplo">
+            </div>
 
-        <h2>LANCES</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/PTw99lv.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/JFE4ZAl.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/2aggcaI.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/1s0lkWZ.png" alt="Pizza From The Caves" style="width: 350px;">
+<h2>LANCES</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/PTw99lv.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/2aggcaI.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/JFE4ZAl.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/1s0lkWZ.png" alt="Imagen de ejemplo">
+            </div>
+
+<h2>AXES</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/veaK9zd.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ObyPMne.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gTSkYJ8.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/lmmgpZA.png" alt="Imagen de ejemplo">
+            </div>
+
+<h2>MACES</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/nQ1G9XX.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/FLJ7ILp.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/5fYHmld.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Ofg6pge.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
+
+        <div id="subcategoria4_2" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/EQ1OD1o.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+">
 </div>
+            <h3 style="
+    text-align: center;
+">DISTANCE WEAPONS</h3>
+<h2>PISTOLS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/8TzwPOc.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ki3tWa4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/4x3Ophc.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/eghboa2.png" alt="Imagen de ejemplo">
+            </div>
 
-        <h2>MACES</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/nQ1G9XX.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/Ofg6pge.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/5fYHmld.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/FLJ7ILp.png" alt="Pizza From The Caves" style="width: 350px;">
+<h2>MACHINE GUNS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/LqPQ6Z2.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/BkJ4VBj.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/IJERiDY.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/OJcl8uB.png" alt="Imagen de ejemplo">
+            </div>
+
+<h2>RPGS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/lEJ8FhD.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/XYPrjxx.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/FwTlSO4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/j3afwVO.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
+
+        <div id="subcategoria5_1" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/0Mt7hoL.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+    margin-top: -100px;
+">
 </div>
-    </ul>
+            <h3 style="
+    text-align: center;
+">HELMETS</h3>
+<h2>HELMETS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/koo1UVx.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/zN6uoQi.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Ln9Hqxp.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/kDu5GF4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/OhsQhFF.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/tbD7Wb4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/1RuONV6.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/jPzMMhV.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
 
-
-<h1 onclick="toggleList('distance')" style="
-    cursor: pointer;
-">❍ Distance 🏹</h1>
-    <ul id="distance" style="display: none;">
-        <h2>PISTOLS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/ki3tWa4.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/8TzwPOc.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/4x3Ophc.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/eghboa2.png" alt="Pizza From The Caves" style="width: 350px;">
+        <div id="subcategoria5_2" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/0Mt7hoL.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+    margin-top: -550px;
+">
 </div>
+            <h3 style="
+    text-align: center;
+">ARMORS</h3>
+<h2>ARMORS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/TlvUKJQ.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/w9ZI7Nk.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/nWR8hVx.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gEBxgZE.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/bX9bDCX.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/MVetW0v.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/m168Aa4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/MgKgKj6.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
 
-        <h2>MACHINE GUNS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/IJERiDY.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/OJcl8uB.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/BkJ4VBj.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/LqPQ6Z2.png" alt="Pizza From The Caves" style="width: 350px;">
+        <div id="subcategoria5_3" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/0Mt7hoL.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+    margin-top: -550px;
+">
 </div>
+            <h3 style="
+    text-align: center;
+">LEGS</h3>
+<h2>LEGS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/Twf4AO1.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/WeMQzNv.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/XYoFiFs.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Uv28aAq.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Fgy9DLH.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/qQW8t5I.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/tCDFTfV.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Q0UDnnR.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
 
-        <h2>BAZOKAS</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/lEJ8FhD.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/FwTlSO4.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/XYPrjxx.png" alt="Pizza From The Caves" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/j3afwVO.png" alt="Pizza From The Caves" style="width: 350px;">
-    </ul>
+        <div id="subcategoria5_4" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/0Mt7hoL.jpeg" alt="Banner de la página actual" style="
+    width: 500px;
+    margin-top: -550px;
+">
 </div>
-    </section>
-
-<section id="enlace9" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
+            <h3 style="
     text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 9</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace10" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
+">BOOTS</h3>
+<h2>BOOTS #1</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/ABsTRKU.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/vH36x9k.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/jpfXb88.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/HZ9l2q3.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Yd8ftqW.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/UsMwP0H.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/x3BpWtI.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/O0JYCCu.png" alt="Imagen de ejemplo">
+            </div>
         </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 10</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
 
-<section id="enlace11" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 11</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace12" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 12</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace13" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 13</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace14" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 14</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace15" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 15</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace16" class="content hidden">
-        <div class="banner">
-            <h1>CRITTERS</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 16</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace17" class="content hidden">
-        <div class="banner">
-            <h1>SH1 ALBUM</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-        <h2>Enlace 17</h2>
-        <p>Contenido relacionado con el enlace 6.</p>
-    </section>
-
-<section id="enlace18" class="content hidden">
-        <div class="banner">
-            <h1>DIVINES</h1>
-        </div>
-<p style="
-    text-align: center;
-">Here you will find: Helmets, Armors, Legs, Boots.</p>
-<div class="image-group">
-         <h2>Divines</h2>
-<div class="image-group">
-        <img class="album-img" src="https://i.imgur.com/GQjZYsR.jpg" alt="Cosmic Purr" style="width: 350px;">
-        <img class="album-img" src="https://i.imgur.com/3f4lGu7.jpg" alt="Infernal Purr" style="width: 350px;">
+        <div id="subcategoria5_5" style="display: none;">
+<div id="banner">
+<img src="https://i.imgur.com/3TK3zaJ.jpeg" alt="Banner de la página actual" style="
+    margin-top: -190px;
+">
 </div>
-    </section>
-</main>
-
-<footer>
-    <p>Copyright &copy; 2024 - StickersHUB1</p>
-</footer>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navLinks = document.querySelectorAll('nav ul li a');
-        const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
-
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                // Oculta todas las secciones
-                document.querySelectorAll('.content').forEach(function (section) {
-                    section.classList.add('hidden');
-                });
-
-                // Muestra la sección objetivo
-                targetSection.classList.remove('hidden');
-            });
-        });
-
-        sidebarLinks.forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                // Oculta todas las secciones
-                document.querySelectorAll('.content').forEach(function (section) {
-                    section.classList.add('hidden');
-                });
-
-                // Muestra la sección objetivo
-                targetSection.classList.remove('hidden');
-            });
-        });
-    });
-</script>
-<script>
-    function toggleList(id) {
-        var list = document.getElementById(id);
-        if (list.style.display === "none") {
-            list.style.display = "block";
-        } else {
-            list.style.display = "none";
+            <h3 style="
+    text-align: center;
+">BACKPACKS</h3>
+<h2>EXPLORER BACKPACKS</h2>
+            <div class="image-container">
+                <!-- Imágenes de ejemplo -->
+                <img src="https://i.imgur.com/1vyyZl3.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Qdem2cb.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/72Fjo5X.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/0jGErSF.png" alt="Imagen de ejemplo">
+            </div>
+        </div>
+</div>
+    <script>
+        function toggleSubCategories(categoryId) {
+            var subCategory = document.getElementById(categoryId);
+            subCategory.classList.toggle("show");
         }
-    }
-</script>
+
+        function showContent(contentId) {
+            var content = document.getElementById(contentId);
+            var contents = document.querySelectorAll('.content > div');
+            contents.forEach(function(item) {
+                item.style.display = 'none';
+            });
+            content.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
