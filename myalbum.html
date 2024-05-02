@@ -669,20 +669,81 @@ max-width: 100%;
             </div>
         </div>
 </div>
-    <script>
-        function toggleSubCategories(categoryId) {
-            var subCategory = document.getElementById(categoryId);
-            subCategory.classList.toggle("show");
-        }
+<script>
+// Función para mostrar el contenido correspondiente a la sección seleccionada
+function showContent(sectionId) {
+    // Ocultar todos los contenidos
+    var contents = document.querySelectorAll('.content > div');
+    contents.forEach(content => {
+        content.style.display = 'none';
+    });
+    // Mostrar el contenido de la sección seleccionada
+    var selectedContent = document.getElementById(sectionId);
+    if (selectedContent) {
+        selectedContent.style.display = 'block';
+    }
+}
 
-        function showContent(contentId) {
-            var content = document.getElementById(contentId);
-            var contents = document.querySelectorAll('.content > div');
-            contents.forEach(function(item) {
-                item.style.display = 'none';
+// Función para mostrar u ocultar la lista de subcategorías
+function toggleSubCategories(subCategoryId) {
+    var subCategory = document.getElementById(subCategoryId);
+    if (subCategory) {
+        subCategory.classList.toggle('show');
+    }
+}
+
+function closeSubCategory(subCategoryId) {
+    var subCategory = document.getElementById(subCategoryId);
+    if (subCategory) {
+        subCategory.classList.remove('show');
+    }
+}
+
+// Agregar evento de clic a los enlaces de las subcategorías para cerrar solo la subcategoría correspondiente
+document.querySelectorAll('.sidebar ul .sub-category li a').forEach(link => {
+    var subCategoryId = link.parentNode.parentNode.id; // Obtener el ID de la subcategoría
+    link.addEventListener('click', function() {
+        closeSubCategory(subCategoryId);
+    });
+});
+
+// Función para cerrar todas las categorías principales excepto la especificada
+function closeOtherCategories(categoryId) {
+    document.querySelectorAll('.sidebar ul .category').forEach(category => {
+        if (category.id !== categoryId) {
+            category.classList.remove('show');
+            // Cerrar todas las subcategorías dentro de la categoría principal
+            category.querySelectorAll('.sub-category').forEach(subcategory => {
+                subcategory.classList.remove('show');
             });
-            content.style.display = 'block';
         }
-    </script>
+    });
+}
+
+// Función para alternar la visibilidad de la categoría
+function toggleCategory(categoryId) {
+    var category = document.getElementById(categoryId);
+    if (category) {
+        var isOpen = category.classList.contains('show');
+        if (!isOpen) {
+            closeOtherCategories(categoryId); // Cerrar otras categorías principales y sus subcategorías
+            category.classList.add('show');
+        } else {
+            category.classList.remove('show');
+        }
+    }
+}
+
+// Agregar evento de clic a los enlaces de las categorías principales para alternar su visibilidad
+document.querySelectorAll('.sidebar ul .category h2 a').forEach(link => {
+    var categoryId = link.parentNode.parentNode.id; // Obtener el ID de la categoría
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+        toggleCategory(categoryId);
+    });
+});
+</script>
+
+
 </body>
 </html>
