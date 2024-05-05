@@ -7,20 +7,34 @@
     <style>
         /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #white;
+    background: linear-gradient(to bottom right, #ff9650, #5c68ff);
+    height: 100vh;
+    margin: 0;
+    animation: cambioDegradado 10s linear infinite alternate;
+    font-family: Arial, sans-serif;
+    color: #000000;
+    text-align: center;
+    padding-top: 20vh;
+        }
+
+        @keyframes cambioGradiente {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
         }
 
         /* Estilos para la barra de navegación */
         .navbar {
-            background-color: #1a1a1a;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: -200px;
         }
 
         .navbar h1 {
@@ -198,19 +212,68 @@ footer nav ul li a:hover {
 
         table {
     width: 98%;
-    background-color: #878787;
     color: white;
     padding: 10px;
-    margin-left: 21px;
+    margin-left: 20px;
     MARGIN-BOTTOM: 20PX;
+    background: border-box url(https://i.imgur.com/BMpKR6b.gif);
+    background-size: 1000px;
+    background-position: center;
+    border-radius: 10px;
         }
         th, td {
-    border: 1px solid black;
+border: 1px solid black;
     padding: 10px;
     text-align: left;
+    background: #474747;
+    opacity: 75;
         }
         th {
-            background-color: #5f5f5f;
+            background-color: #5b0000;
+        }
+
+        .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: url(https://i.imgur.com/BMpKR6b.gif);
+    margin-bottom: 20px;
+        }
+
+        /* Estilos para el texto dentro del contenedor */
+        .container p {
+            /* Cambia el color del texto dentro del contenedor */
+            color: #333;
+        }
+
+        .container h2 {
+            margin-top: 0; /* Elimina el margen superior predeterminado del título */
+        }
+
+        /* Estilos adicionales para el contenido específico */
+        .content1 {
+            /* Establece el fondo del texto */
+            background-color: #ffe6e6;
+            /* Agrega un borde alrededor del texto */
+            border: 1px solid #ff9999;
+            /* Añade relleno interno para separar el texto del borde */
+            padding: 10px;
+            /* Agrega margen inferior para separar este contenido del siguiente */
+            margin-bottom: 10px;
+        }
+
+        .content2 {
+            /* Establece el fondo del texto */
+            background-color: #e6f7ff;
+            /* Agrega un borde alrededor del texto */
+            border: 1px solid #99ccff;
+            /* Añade relleno interno para separar el texto del borde */
+            padding: 10px;
+            /* Agrega margen inferior para separar este contenido del siguiente */
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -285,11 +348,13 @@ footer nav ul li a:hover {
 <div id="banner">
     <img src="https://i.imgur.com/q2yt2nv.png" alt="Banner de la página actual">
 </div>
-<h2 style=" text-align: center;">Welcome to StickersHUB1 ALBUM.</h2>
 
-<h2>Dear Visitor,</h2>
+    <!-- Contenedor principal -->
+    <div class="container">
 
-<p>It is a pleasure to share with you the latest developments in our system's development. At every step, we dedicate careful effort to ensure we provide the best on our platform, especially regarding our innovative album and all its features.</p>
+        <div class="content1">
+            <h2>✦ Dear Visitor.</h2>
+            <p>It is a pleasure to share with you the latest developments in our system's development. At every step, we dedicate careful effort to ensure we provide the best on our platform, especially regarding our innovative album and all its features.</p>
 
 <p>Our passion for creativity and technology has driven us to go beyond established conventions. What started as a simple collection of homemade designs has transformed into an ambitious project that integrates blockchain technology to offer you a unique experience.</p>
 
@@ -303,11 +368,16 @@ footer nav ul li a:hover {
 
 <p>Thank you for joining us on this exciting journey towards the future of creativity and technology.</p>
 
+        </div>
+        <div class="content2">
+            <h2>✦ Buy, sell and exchange here:</h2>
 <p>To purchase on Atomic hub, visit: <a href="https://atomichub.io/market?primary_chain=wax-mainnet&collection_name=stickershub1&blockchain=wax-mainnet&order=desc&sort=created#sales">Atomic Hub</a></p>
 
 <p>To purchase on Nefty Blocks, visit: <a href="https://neftyblocks.com/marketplace/listing?collection_name=stickershub1&page=1">Nefty Blocks</a></p>
 
 <h2 style=" text-align: center;">🚧WE ARE UNDER MAINTENANCE🚧</h2>
+        </div>
+    </div>
 
 <footer>
     <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
@@ -386,43 +456,57 @@ footer nav ul li a:hover {
     <img src="https://i.imgur.com/YvfDvkS.png" alt="Banner de la página actual">
 </div>
             
-<h2 style="text-align: center;">GENESIS</h2>
-            
+    <div class="container">
 
-<h2>✦ Chapter 1: A Journey Beyond the Collider.</h2>
-
+        <div class="content1">
+            <h2>✦ Chapter 1: A Journey Beyond the Collider.</h2>
 <p>A few years ago, at the European Materials Research Center (EMRC), three world-renowned scientists were immersed in a groundbreaking experiment at the Hadron Collider. Santiago Martinez, a brilliant 35-year-old Spanish scientist; Dimitri Petrov, a respected 42-year-old Russian researcher; and Emily Johnson, a young but promising 28-year-old American scientist, were at the forefront of particle physics.</p>
 <p>Without warning, the collider's systems began to behave erratically, plunging the team into a state of confusion and concern. Despite their efforts to understand and correct the situation, the monumental machinery began to show alarming signs of failure. The beam tubes, vital to the collider's operation, began to rupture, triggering a catastrophic chain of events.</p>
 <p>In a moment of chaos and desperation, the scientists found themselves trapped in a dangerously contaminated airlock. With the power generator out of control and toxic emissions filling the air, it seemed that fate had dealt them a fatal hand. Noxious gases saturated the atmosphere, plunging the scientists into a deadly stupor.</p>
 <p>However, against all odds, the scientists regained consciousness in an unfamiliar and surreal environment. They emerged from the collider to find themselves in a landscape engulfed in flames, surrounded by tiny but surprisingly intelligent creatures. These beings, resembling a blend of animals and beings from another world, communicated in a mysterious yet understandable language.</p>
+        </div>
 
+        <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
                 <img src="https://i.imgur.com/nFpXhr9.png" alt="Imagen de ejemplo">
             </div>
+<p>QUOMMANDER ROKO</p>
+         </div>
 
+        <div class="content1">
 <p>The Quokkabaras were trying to convey an urgent message to the scientists, and their gestures were surprisingly clear. Although at first the scientists were puzzled by the exact content of the message, they could perceive the urgency and importance of it in the expressions and movements of the Quokkabaras. The tiny beings were frantically waving, pointing upwards and then downwards with evident fervor in their eyes.</p>
 <p>The scientists, though intrigued by the intensity of the Quokkabaras' communication, couldn't decipher the exact meaning of their gestures and sounds. Despite their efforts, the message from the Quokkabaras remained a mystery to them.</p>
 <p>Emily Johnson, struck by a sudden inspiration, reached into the pocket of her lab coat and pulled out a small notepad and a pen. Before she could even begin to jot down her thoughts, a Quokkabara swiftly snatched the notepad and pen from her hands, a look of urgency in its eyes. With a sense of desperation, the Quokkabara began sketching what appeared to be crude drawings of spaceships in the sky. Though the drawings resembled the work of a seven-year-old, the context was unmistakable.</p>
 <p>The scientists exchanged concerned glances, realizing the gravity of the situation. Emily attempted to use her phone to call for help, but to her dismay, there was no signal or reception. Dimitri and Santiago faced the same predicament.</p>
+        </div>
 
+        <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
                 <img src="https://i.imgur.com/FAqhOPA.jpeg" alt="Imagen de ejemplo">
             </div>
+<p>TAKING A LOOK...</p>
+        
 
+        <div class="content1">
 <p>Despite the chaos and destruction surrounding them, it seemed that a catastrophe had been narrowly averted. As the realization sunk in, they came to the chilling understanding that they were the sole survivors, and that something sinister was unfolding.</p>
 <p>The scientists are not quite sure how to react to this situation. Their first reaction is to think about their families, but without signal and being outside of their country, they could hardly get in touch...</p>
 <p>One of the Quokkabaras, the mission leader, starts receiving signal on a communication talisman with which the Quokkabara shamans can communicate to guide them in their missions.</p>
 <p>Behind this communication device was a voice communicating in English. Although the three of them communicated in English among themselves, Santiago and Dimitri looked at Emily, and Santiago said to her:</p>
 <p>We grant you the honors.</p>
 <p>Emily said hesitantly and confusedly, "Hello?"</p>
+        </div>
 
+        <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
                 <img src="https://i.imgur.com/Ri5adIW.jpeg" alt="Imagen de ejemplo">
             </div>
+<p>AMULET CREATED BY THE QUOKKABARAS SHAMANES.</p>
+        </div>
 
+        <div class="content1">
 <p>A voice replied, "Hello, Emily! How lucky you are to be alive!"</p>
 <p>Emily was surprised because the voice knew her name and then said, "Wait, how do you know my name?"</p>
 <p>Then the voice replied, "It's this device. It connects us so we can guide those little creatures you have in front of you on their adventures. You see, Emily, the world is about to change soon... The universe has stopped functioning normally; gravitational force has become disrupted, electromagnetic force has multiplied, nuclear interaction is becoming unstable..."</p>
@@ -438,24 +522,31 @@ footer nav ul li a:hover {
 <p>Then the Device began to speak in Quokkabara language, and the same Quokkabara that had rudely taken the notepad and pen snatched the device from her.</p>
 <p>The Quokkabara commander, after receiving instructions to return to the ship and protect the scientists, began their journey back to the ship.</p>
 <p>The Quokkabaras then started to prepare for departure, taking out strange devices shaped like ping pong balls of different colors, each with a button in the center. After clicking the button, they threw the ball-like devices to the ground, and upon impact, they unfolded into hovering vehicles resembling motorcycles.</p>
+        </div>
 
-            <div class="image-container">
+        <div class="content2">
+        <div class="image-container">
                 <!-- Imágenes de ejemplo -->
                 <img src="https://i.imgur.com/gc8Fr3k.jpeg" alt="Imagen de ejemplo">
             </div>
+<p>DEVICE CREATED BY THE QUOKKABARAS TO DEPLOY VEHICLES.</p>
 
+        <div class="content1">
 <p>These vehicles were not excessively large, as they were designed to accommodate a group of four Quokkabaras, which was roughly equivalent to half a human in size. Therefore, they had to figure out a way to mount the Quokkabaras on top of the scientists. Fortunately, the technology was highly advanced and didn't lose power or levitation capacity with added weight.</p>
 <p>The Quokkabaras lived up to their reputation as intrepid guides and escorted the scientists aboard their unique floating motorcycles, gracefully gliding over the scorching terrain. Each scientist was surrounded by several Quokkabaras, clustered behind them because, frankly, they couldn't all fit on the motorcycles. Just imagine the scene, with those little beings jumping and clinging as they made their way toward the ship!</p>
 <p>Upon sighting the spacecraft, the scientists couldn't help but be awestruck. It was an engineering marvel, with elegant lines and futuristic technology that gleamed with radiant light amidst the desolate landscape. It was as if they had been transported to a distant future in the blink of an eye.</p>
 <p>The ship was spacious enough to comfortably accommodate everyone, including the Quokkabaras and the three humans, with plenty of room to explore. The exterior was adorned with blinking lights and strange inscriptions that seemed to be more than mere decoration.</p>
 <p>As they boarded, the scientists found themselves immersed in a world of technological wonders. The hallways were illuminated by a soft, comforting light, while the walls were adorned with holographic displays showing data and symbols unknown to humans. In the air, there was a gentle hum of energy, indicating that the ship was bustling with activity and power.</p>
+        </div>
 
+        <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
                 <img src="https://i.imgur.com/rGjiFF7.png" alt="Imagen de ejemplo">
             </div>
-
-<h2>✦ Chapter 2.</h2>
+<p>A NEW... FUTURE?</p>
+        </div>
+    </div>
 <footer>
     <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
     <nav>
@@ -480,9 +571,100 @@ footer nav ul li a:hover {
     <img src="https://i.imgur.com/CN8cF3N.png" alt="Banner de la página actual">
 </div>
 <h2 style="text-align: center;">Is your name among the best?</h2>
-            <p style=" text-align: center;">Earn cash rewards and exclusive NFTs for being on the Leaderboard!</p>
+            <p style=" text-align: center;">Discover the different leadrboards that are available, enter the ranking and obtain unique rewards!</p>
 
-<h2>(UPCOMING) Leaderboard</h2>
+<h2 style="text-align: center;">Leaderboards 📊</h2>
+<p style="text-align: center;">Earn cash rewards and exclusive NFTs for being on the Leaderboard!</p>
+
+<h2>✦ Leaderboard 1: "StickersHub1 NFT's Masters"</h2>
+<p>Join the community leaders who own the most StickersHub1 NFT's! Showcase your collecting prowess and ascend to the podium of NFT masters.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>🥇1</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>💼NFT'S HOLDING: 200</td>
+        </tr>
+        <tr>
+            <td>🥈2</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>💼NFT'S HOLDING: 100</td>
+        </tr>
+        <tr>
+            <td>🥉3</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>💼NFT'S HOLDING: 50</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>✦ Leaderboard 2:  "Album Completion Champions"</h2>
+<p>Demonstrate your dedication and skill by completing your album! This leaderboard highlights those who have amassed the most comprehensive collection of stickers. Do you have what it takes to be an album completion champion?</p>
+<table>
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>🥇1</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎴CARDS COLLECTED: 200</td>
+        </tr>
+        <tr>
+            <td>🥈2</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎴CARDS COLLECTED: 100</td>
+        </tr>
+        <tr>
+            <td>🥉3</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎴CARDS COLLECTED: 50</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>✦ Leaderboard 3:  "Achievement Unlocked Experts"</h2>
+<p>Explore every corner of the game and unlock all possible achievements! This leaderboard recognizes players who have unlocked the highest number of achievements, showcasing their mastery over all aspects of the game.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>🥇1</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎯ACHIVEMENTS COMPLETED: 200</td>
+        </tr>
+        <tr>
+            <td>🥈2</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎯ACHIVEMENTS COMPLETED: 100</td>
+        </tr>
+        <tr>
+            <td>🥉3</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎯ACHIVEMENTS COMPLETED: 50</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>✦ Leaderboard 4:  "Rewards Hoarders"</h2>
+<p>Description: Accumulate wealth and rewards like a true game master! Here, players are acknowledged for their ability to obtain the highest number of rewards, whether it be coins, exclusive items, or any other form of prize. Can you outdo others and become the ultimate rewards hoarder?</p>
 
 <table>
     <thead>
@@ -494,19 +676,19 @@ footer nav ul li a:hover {
     </thead>
     <tbody>
         <tr>
-            <td>💎1</td>
-            <td>🥇Player 1: (your wax wallet here)</td>
-            <td>💾NFT'S HOLDING: 200</td>
+            <td>🥇1</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎁REWARDS CLAIMED: 200</td>
         </tr>
         <tr>
-            <td>💎2</td>
-            <td>🥈Player 2: (your wax wallet here)</td>
-            <td>💾NFT'S HOLDING: 100</td>
+            <td>🥈2</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎁REWARDS CLAIMED: 100</td>
         </tr>
         <tr>
-            <td>💎3</td>
-            <td>🥉Player 3: (your wax wallet here)</td>
-            <td>💾NFT'S HOLDING 50</td>
+            <td>🥉3</td>
+            <td>🔸 Player: (your wax wallet here)</td>
+            <td>🎁REWARDS CLAIMED: 50</td>
         </tr>
     </tbody>
 </table>
