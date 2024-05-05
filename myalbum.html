@@ -26,18 +26,18 @@
 
         /* Estilos para la barra de navegación */
         .navbar {
-    background-color: #1a1a1a;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: calc(100% - 250px);
-    z-index: 999;
-    margin-left: 220px;
+            background-color: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: calc(100% - 250px);
+            z-index: 999;
+            margin-left: 220px;
         }
 
         .navbar h1 {
@@ -68,15 +68,15 @@
 
         /* Estilos para el sidebar */
         .sidebar {
-  position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #1a1a1a;
-    color: #fff;
-    width: 200px;
-    height: 100%;
-    padding: 20px;
-    z-index: 2; /* Asegura que el sidebar esté por encima del navbar */
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            width: 200px;
+            height: 100%;
+            padding: 20px;
+            z-index: 2; /* Asegura que el sidebar esté por encima del navbar */
         }
 
         .sidebar ul {
@@ -130,24 +130,24 @@
 
         /* Estilos para el contenido principal */
         .content {
-    margin-left: 220px; /* Ajusta el margen izquierdo para no solaparse con el sidebar */
-    margin-top: 70px; /* Ajusta el margen superior para evitar que el contenido se solape con el navbar */
-    padding: 20px;
+            margin-left: 220px; /* Ajusta el margen izquierdo para no solaparse con el sidebar */
+            margin-top: 70px; /* Ajusta el margen superior para evitar que el contenido se solape con el navbar */
+            padding: 20px;
         }
 
         /* Estilos para las imágenes */
         .content .image-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
         }
 
         .content .image-container img {
-    width: 100px;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-    margin: 32px;
+            width: 100px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            margin: 32px;
         }
 
         .content .image-container img:hover {
@@ -160,91 +160,92 @@
             margin-bottom: 5px;
         }
 
-#banner {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    margin: 10px;
-}
+        #banner {
+            width: 80%; /* Ancho del banner del 80% */
+            height: auto; /* Altura automática para mantener la relación de aspecto */
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            margin: 10px auto; /* Auto-margen para centrar horizontalmente */
+            padding: 10px; /* Añade un padding al contenedor del banner */
+        }
 
-#banner img {
-    max-width: 100%;
-    max-height: 100%;
-}
+        #banner img {
+            width: 100%; /* Ancho de la imagen del 100% del contenedor */
+            height: auto; /* Altura automática para mantener la relación de aspecto */
+        }
 
-p {
-    font-size: 16px;
-    color: #white;
-    line-height: 1.5;
-    margin: 10px;
-}
+        p {
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.5;
+            margin: 10px;
+        }
 
-footer {
-    background-color: black;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-left: 20px;
-}
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-left: 20px;
+        }
 
-footer p {
-    margin-bottom: 10px;
-    color: white;
-}
+        footer p {
+            margin-bottom: 10px;
+            color: white;
+        }
 
-footer nav ul {
-    list-style: none;
-    padding: 0;
-}
+        footer nav ul {
+            list-style: none;
+            padding: 0;
+        }
 
-footer nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
+        footer nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
 
-footer nav ul li a {
-    color: white;
-    text-decoration: none;
-}
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
 
-footer nav ul li a:hover {
-    text-decoration: underline;
-}
+        footer nav ul li a:hover {
+            text-decoration: underline;
+        }
 
         table {
-    width: 95%;
-    color: white;
-    padding: 10px;
-    margin-left: 20px;
-    background: border-box url(https://i.imgur.com/BMpKR6b.gif);
-    background-size: 1000px;
-    background-position: center;
-    border-radius: 10px;
+            width: 95%;
+            color: white;
+            padding: 10px;
+            margin-left: 20px;
+            background: border-box url(https://i.imgur.com/BMpKR6b.gif);
+            background-size: 1000px;
+            background-position: center;
+            border-radius: 10px;
         }
         th, td {
-border: 1px solid black;
-    padding: 10px;
-    text-align: left;
-    background: #474747;
-    opacity: 75;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+            background: #474747;
+            opacity: 75;
         }
         th {
             background-color: #5b0000;
         }
 
         .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: url(https://i.imgur.com/BMpKR6b.gif);
-    margin-bottom: 20px;
-    background-size: 1200px;
-    background-position: center;
+            width: 80%; /* Ancho del contenedor del 80% */
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: url(https://i.imgur.com/BMpKR6b.gif);
+            margin-bottom: 20px;
+            background-size: 1200px;
+            background-position: center;
         }
 
         /* Estilos para el texto dentro del contenedor */
@@ -254,25 +255,27 @@ border: 1px solid black;
         }
 
         .container h2 {
-    margin-top: 0;
-    text-shadow: 1px 1px 2px #4351ff, -1px -1px 2px #ff672c;
+            margin-top: 0;
+            text-shadow: 1px 1px 2px #4351ff, -1px -1px 2px #ff672c;
         }
 
         /* Estilos adicionales para el contenido específico */
         .content1 {
-    background-color: #272727;
-    border: 1px solid #ff9999;
-    padding: 10px;
-    margin-bottom: 10px;
+            background-color: #272727;
+            border: 1px solid #ff9999;
+            padding: 10px;
+            margin-bottom: 10px;
         }
 
         .content2 {
-    background-color: #272727;
-    border: 1px solid #99ccff;
-    padding: 10px;
-    margin-bottom: 10px;
+            background-color: #272727;
+            border: 1px solid #99ccff;
+            padding: 10px;
+            margin-bottom: 10px;
         }
     </style>
+</head>
+
 </head>
 <link rel="icon" href="https://i.imgur.com/sKIggA2.png" type="image/png">
 <body>
