@@ -7,15 +7,40 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ff9650, #5c68ff);
+      margin: 0;
+      padding: 0;
     }
     .gallery-container {
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
+      padding-bottom: 100px; /* Para dar espacio al footer */
+      position: relative; /* Añadir posición relativa para posicionar el color de fondo */
     }
-    img {
-      max-width: 100%;
+    img.gallery-image {
+      max-width: 86%;
       height: auto;
+      margin-top: 5px;
+      position: relative; /* Añadir posición relativa para posicionar el color de fondo */
+      z-index: -1; /* Establecer un índice z para que la imagen esté detrás del texto */
+    }
+    .image-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover; /* Ajustar el tamaño de la imagen de fondo para cubrir el contenedor */
+      z-index: -2; /* Establecer un índice z detrás de la imagen y del texto */
+      animation: backgroundTransition 30s infinite ease-in-out; /* Animación para transición suave entre fondos */
+    }
+    @keyframes backgroundTransition {
+      0%, 100% { opacity: 0; } /* Opacidad al principio y al final de la animación */
+      25% { background-image: url("https://i.imgur.com/3V8Pyh1.jpg"); opacity: 1; } /* Cambio de imagen y opacidad a 1 a los 7.5 segundos */
+      50% { background-image: url("https://i.imgur.com/xQe6xzb.gif"); opacity: 1; } /* Cambio de imagen y opacidad a 1 a los 15 segundos */
+      75% { background-image: url("https://i.imgur.com/WOcRIpl.gif"); opacity: 1; } /* Cambio de imagen y opacidad a 1 a los 22.5 segundos */
+      100% { background-image: url("https://i.imgur.com/pw9PO7L.gif"); opacity: 1; } /* Cambio de imagen y opacidad a 1 a los 30 segundos */
     }
     button {
       margin: 10px;
@@ -23,17 +48,81 @@
       font-size: 16px;
       cursor: pointer;
     }
+    .page-counter {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: white;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: black;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    footer p {
+        margin-bottom: 10px;
+        color: white;
+    }
+
+    footer nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    footer nav ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    footer nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    footer nav ul li a:hover {
+        text-decoration: underline;
+    }
+
+    /* Estilo específico para las imágenes del footer */
+    footer img {
+      max-width: 48px; /* Ajustar el ancho máximo según sea necesario */
+      height: auto;
+    }
   </style>
 </head>
 <body>
 
 <div class="gallery-container">
-  <img id="galleryImage" src="" alt="Foto">
+  <div class="image-background"></div> <!-- Nuevo elemento para el fondo con opacidad -->
+  <img class="gallery-image" id="galleryImage" src="" alt="Foto">
   <div>
     <button onclick="previousImage()">Anterior</button>
+    <span class="page-counter" id="pageCounter"></span>
     <button onclick="nextImage()">Siguiente</button>
   </div>
 </div>
+
+<footer>
+    <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
+    <nav>
+        <ul>
+            <li><a href="https://stickershub1.es/">Stickershub1.es</a></li>
+            <li><a href="https://stickershub1.es/roadmap/">Roadmap</a></li>
+            <li><a href="https://stickershub1.es/contacto/">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="social-icons">
+        <a href="https://discord.com/invite/NeUgxfuSZQ"><img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord"></a>
+        <a href="https://twitter.com/StickersHubWAX"><img src="https://img.icons8.com/color/48/000000/twitter--v2.png" alt="Twitter"></a>
+        <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
+        <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
+    </div>
+</footer>
 
 <script>
   // Array de URLs de las fotos
@@ -45,6 +134,29 @@
     "https://i.imgur.com/yZcTsKL.jpeg",
     "https://i.imgur.com/kN7pL3F.jpeg",
     "https://i.imgur.com/kjXop2x.jpeg",
+    "https://i.imgur.com/XOpkR9n.jpeg",
+    "https://i.imgur.com/HmAuxdi.jpeg",
+    "https://i.imgur.com/xtyWbH2.jpeg",
+    "https://i.imgur.com/aB7n53i.jpeg",
+    "https://i.imgur.com/rWywuJm.jpeg",
+    "https://i.imgur.com/jndUVo7.png",
+    "https://i.imgur.com/upJ4yVX.png",
+    "https://i.imgur.com/ZHrA6f9.png",
+    "https://i.imgur.com/CP33rQK.png",
+    "https://i.imgur.com/HMWDcHQ.png",
+    "https://i.imgur.com/HxCXpz2.png",
+    "https://i.imgur.com/ZRbivHl.png",
+    "https://i.imgur.com/06QvxQP.png",
+    "https://i.imgur.com/IiOogvI.png",
+    "https://i.imgur.com/noLbKIN.png",
+    "https://i.imgur.com/Uz2LV4U.png",
+    "https://i.imgur.com/1scOHJz.png",
+    "https://i.imgur.com/zcb0arO.png",
+    "https://i.imgur.com/2J2WIN2.jpeg",
+    "https://i.imgur.com/2J2WIN2.jpeg",
+    "https://i.imgur.com/2J2WIN2.jpeg",
+    "https://i.imgur.com/2J2WIN2.jpeg",
+    "https://i.imgur.com/2J2WIN2.jpeg",
     "https://i.imgur.com/2J2WIN2.jpeg",
     // Agrega aquí las URLs de las fotos adicionales
   ];
@@ -54,6 +166,7 @@
   function showCurrentImage() {
     const imgElement = document.getElementById("galleryImage");
     imgElement.src = photoUrls[currentPhotoIndex];
+    updatePageCounter();
   }
 
   function nextImage() {
@@ -70,6 +183,13 @@
       currentPhotoIndex = photoUrls.length - 1;
     }
     showCurrentImage();
+  }
+
+  function updatePageCounter() {
+    const pageCounterElement = document.getElementById("pageCounter");
+    const currentPage = currentPhotoIndex + 1;
+    const totalPages = photoUrls.length;
+    pageCounterElement.textContent = `Página ${currentPage} de ${totalPages}`;
   }
 
   // Mostrar la primera imagen al cargar la página
