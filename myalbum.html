@@ -7,12 +7,12 @@
     <style>
         /* Estilos generales */
         body {
-            background: linear-gradient(to bottom right, #ff9650, #5c68ff);
-            height: 100vh;
-            margin: 0;
-            animation: cambioDegradado 10s linear infinite alternate;
-            font-family: Arial, sans-serif;
-            color: #fbfbfb;
+    background: linear-gradient(to bottom right, #4f0000, #272727);
+    height: auto;
+    margin: 0;
+    animation: cambioDegradado 10s linear infinite alternate;
+    font-family: Arial, sans-serif;
+    color: #fbfbfb;
         }
 
         @keyframes cambioGradiente {
@@ -2162,6 +2162,13 @@ document.querySelectorAll('.sidebar ul .category h2 a').forEach(link => {
         event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
     });
 });
+
+    window.onload = function() {
+        var homeDiv = document.getElementById("home");
+        if (homeDiv) {
+            homeDiv.style.display = "block"; // Cambia el estilo de display para que el div sea visible
+        }
+    };
 </script>
 </body>
 </html>
