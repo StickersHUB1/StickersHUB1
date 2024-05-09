@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/stickershub1/static/css/main.dea58dc3.css",
+    "main.js": "/stickershub1/static/js/main.c518cb13.js",
+    "static/js/453.d76c14ee.chunk.js": "/stickershub1/static/js/453.d76c14ee.chunk.js",
+    "index.html": "/stickershub1/index.html",
+    "main.dea58dc3.css.map": "/stickershub1/static/css/main.dea58dc3.css.map",
+    "main.c518cb13.js.map": "/stickershub1/static/js/main.c518cb13.js.map",
+    "453.d76c14ee.chunk.js.map": "/stickershub1/static/js/453.d76c14ee.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dea58dc3.css",
+    "static/js/main.c518cb13.js"
+  ]
+}
