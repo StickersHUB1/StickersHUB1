@@ -279,7 +279,7 @@
         }
     </style>
 </head>
-
+<link rel="stylesheet" href="styles.css" type="text/css" media="all">
 </head>
 <link rel="icon" href="https://i.imgur.com/sKIggA2.png" type="image/png">
 <body>
@@ -320,39 +320,48 @@
             <li class="main-category" onclick="toggleSubCategories('opcion3')">
                 <a>○ CREATURES 👹</a>
                 <ul id="opcion3" class="sub-category">
-                    <li><a href="#" onclick="showContent('subcategoria3_1')">Critters</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria3_2')">Elevated Critters</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria3_3')">Pizza Critters</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria3_1')">• Critters</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria3_2')">• Elevated Critters</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria3_3')">• Pizza Critters</a></li>
                 </ul>
             </li>
 
             <li class="main-category" onclick="toggleSubCategories('opcion4')">
                 <a>○ WEAPONS ⚔️</a>
                 <ul id="opcion4" class="sub-category">
-                    <li><a href="#" onclick="showContent('subcategoria4_1')">Melee</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria4_2')">Distance</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria4_1')">• Melee</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria4_2')">• Distance</a></li>
                 </ul>
             </li>
 
             <li class="main-category" onclick="toggleSubCategories('opcion5')">
                 <a>○ EQUIPMENT 🎒</a>
                 <ul id="opcion5" class="sub-category">
-                    <li><a href="#" onclick="showContent('subcategoria5_1')">Helmets</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria5_2')">Armors</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria5_3')">Legs</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria5_4')">Boots</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria5_5')">BackPacks</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_1')">• Helmets</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_2')">• Armors</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_3')">• Legs</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_4')">• Boots</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria5_5')">• BackPacks</a></li>
                 </ul>
             </li>
 
             <li class="main-category" onclick="toggleSubCategories('opcion6')">
                 <a>○ GEMS 💎</a>
                 <ul id="opcion6" class="sub-category">
-                    <li><a href="#" onclick="showContent('subcategoria6_1')">Types of Gems</a></li>
-                    <li><a href="#" onclick="showContent('subcategoria6_2')">How to get Gems</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria6_1')">• Types of Gems</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria6_2')">• How to get Gems</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria6_3')">• How to use Gems</a></li>
                 </ul>
             </li>
 
+            <li class="main-category" onclick="toggleSubCategories('opcion7')">
+                <a>○ CRITTER PARTS 🐍</a>
+                <ul id="opcion7" class="sub-category">
+                    <li><a href="#" onclick="showContent('subcategoria7_1')">• Types of Critter Parts</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria7_2')">• How to get Parts</a></li>
+                    <li><a href="#" onclick="showContent('subcategoria7_3')">• How to use Parts</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -413,9 +422,25 @@
         </div>
         <div id="news" style="display: none;">
 <div id="banner">
-    <img src="https://i.imgur.com/T6qOWfc.png" alt="Banner de la página actual">
+    <img src="https://i.imgur.com/T6qOWfc.png" alt="Banner de la página actual" loading="lazy">
 </div>
             <h2 style="text-align: center;">Last Updates!</h2>
+
+<div class="container">
+
+    <div class="content1">
+        <h2>✦ New CRITTER PARTS 🐍 System</h2>
+        <p>We've introduced a brand-new CRITTER PARTS 🐍 system. Now you can collect CRITTER PARTS 🐍 by defeating critters at the end of missions. These items are crucial for crafting equipment, weapons, amulets, and more, for making upgrades, and also for exchanging them at the Druid's shop for elemental cubes. 🔨🛡️🔮</p>
+        <p>Creature products are linked to the creature's race. If a race has 4 different creatures, it doesn't matter; all 4 will have the chance to offer the same items. Each race offers 2 items, and currently, there are 7 races, so there are currently 14 CRITTER PARTS 🐍 available. Join the hunt! 🏹🌟</p>
+    </div>
+
+    <div class="content2">
+        <div class="image-container">
+            <!-- Example Image -->
+            <img src="https://i.imgur.com/vrtOi3I.png" alt="Example Image" loading="lazy" style=" width: 700px;">
+        </div>
+    </div>
+</div>
 
  <div class="container">
 
@@ -437,7 +462,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/ThCIY4E.png" alt="Imagen de ejemplo" style=" width: 500px;">
+                <img src="https://i.imgur.com/ThCIY4E.png" alt="Imagen de ejemplo" loading="lazy" style=" width: 500px;">
             </div>
         </div>
     </div>
@@ -469,61 +494,61 @@
     <div class="image-container">
         <!-- Imágenes de ejemplo -->
 <div class="image-description">
-        <img src="https://i.imgur.com/Ef3x1mW.png" alt="Ambar" title="It can be found in the extensive missions.">  
+        <img src="https://i.imgur.com/SJ8B5zG.png" alt="Ambar" title="It can be found in the extensive missions." loading="lazy">  
 <p>Ambar.</p>   
 </div> 
 <div class="image-description">  
-        <img src="https://i.imgur.com/Ap4mXkk.png" alt="Amethyst" title="It can be found in the short missions.">   
+        <img src="https://i.imgur.com/ejPfDk1.png" alt="Amethyst" title="It can be found in the short missions." loading="lazy">   
 <p>Amethyst.</p>  
 </div> 
 <div class="image-description">    
-        <img src="https://i.imgur.com/WdceM1U.png" alt="Black Diamond" title="It can be found in the extensive missions."> 
+        <img src="https://i.imgur.com/YeUXfoX.png" alt="Black Diamond" title="It can be found in the extensive missions." loading="lazy"> 
 <p>Black Diamond.</p> 
 </div> 
 <div class="image-description">       
-        <img src="https://i.imgur.com/omEzUBT.png" alt="Nanodiamond" title="It can be found in the Elite Missions.">
+        <img src="https://i.imgur.com/8YBTNPf.png" alt="Nanodiamond" title="It can be found in the Elite Missions." loading="lazy">
 <p>Nanodiamond.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/9bktYw0.png" alt="Jade" title="It can be found in the long missions.">
+        <img src="https://i.imgur.com/k3PjCTL.png" alt="Jade" title="It can be found in the long missions." loading="lazy">
 <p>Jade.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/i1SrBpR.png" alt="Diamond" title="It can be found in the short missions.">
+        <img src="https://i.imgur.com/yvRlcAg.png" alt="Diamond" title="It can be found in the short missions." loading="lazy">
 <p>Diamond.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/SB9HoVZ.png" alt="Opal" title="It can be found in the long missions.">
+        <img src="https://i.imgur.com/tIyISjg.png" alt="Opal" title="It can be found in the long missions." loading="lazy">
 <p>Opal.</p> 
 </div> 
     <div class="image-container">
         <!-- Imágenes de ejemplo -->
 <div class="image-description">
-        <img src="https://i.imgur.com/tN7dbMx.png" alt="Peridotos" title="It can be found in the Elite Missions.">
+        <img src="https://i.imgur.com/J5yD67v.png" alt="Peridotos" title="It can be found in the Elite Missions." loading="lazy">
 <p>Peridotos.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/LPcEgEH.png" alt="Pearl" title="It can be found in the moderate missions.">
+        <img src="https://i.imgur.com/Umr4UJP.png" alt="Pearl" title="It can be found in the moderate missions." loading="lazy">
 <p>Pearl.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/MEkBpJc.png" alt="Ruby" title="It can be found in the Flash Missions">
+        <img src="https://i.imgur.com/S7ddQgW.png" alt="Ruby" title="It can be found in the Flash Missions" loading="lazy">
 <p>Ruby.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/IgH41QS.png" alt="Star Ruby" title="It can be found in the extensive missions.">
+        <img src="https://i.imgur.com/J0TBGCg.png" alt="Star Ruby" title="It can be found in the extensive missions." loading="lazy">
 <p>Star Ruby.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/VY5Axx2.png" alt="Topaz" title="It can be found in the moderate missions.">
+        <img src="https://i.imgur.com/J0TBGCg.png" alt="Topaz" title="It can be found in the moderate missions." loading="lazy">
 <p>Topaz.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/yFxIOmW.png" alt="Turquoise" title="It can be found in the extensive missions.">
+        <img src="https://i.imgur.com/ZXJlg9i.png" alt="Turquoise" title="It can be found in the extensive missions." loading="lazy">
 <p>Turquoise.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/8lZPiew.png" alt="Zafiro" title="It can be found in the Flash Missions">
+        <img src="https://i.imgur.com/CmvUCuq.png" alt="Zafiro" title="It can be found in the Flash Missions" loading="lazy">
 <p>Zafiro.</p> 
             </div>
         </div>
@@ -550,7 +575,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/nFpXhr9.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/nFpXhr9.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
         </div>
     </div>
@@ -582,10 +607,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/kDu5GF4.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/BkJ4VBj.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/bX9bDCX.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/ObyPMne.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/kDu5GF4.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/BkJ4VBj.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/bX9bDCX.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/ObyPMne.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
         </div>
     </div>
@@ -625,7 +650,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/nFpXhr9.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/nFpXhr9.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
             <p>QUOMMANDER ROKO</p>
         </div>
@@ -640,7 +665,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/FAqhOPA.jpeg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/FAqhOPA.jpeg" alt="Imagen de ejemplo" loading="lazy">
             </div>
             <p>TAKING A LOOK...</p>
         </div>
@@ -657,7 +682,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/Ri5adIW.jpeg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Ri5adIW.jpeg" alt="Imagen de ejemplo" loading="lazy">
             </div>
             <p>AMULET CREATED BY THE QUOKKABARAS SHAMANES.</p>
         </div>
@@ -683,7 +708,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/gc8Fr3k.jpeg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/gc8Fr3k.jpeg" alt="Imagen de ejemplo" loading="lazy">
             </div>
             <p>DEVICE CREATED BY THE QUOKKABARAS TO DEPLOY VEHICLES.</p>
         </div>
@@ -699,7 +724,7 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/rGjiFF7.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/rGjiFF7.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
             <p>A NEW... FUTURE?</p>
         </div>
@@ -720,13 +745,13 @@
             <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
             <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
         </div>
-        <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+        <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
     </footer>
 </div>
 
         <div id="highscores" style="display: none;">
 <div id="banner">
-    <img src="https://i.imgur.com/CN8cF3N.png" alt="Banner de la página actual">
+    <img src="https://i.imgur.com/CN8cF3N.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1143,7 +1168,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Company Logo" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Company Logo" loading="lazy" width="75">
 </footer>
         </div>
 
@@ -1186,7 +1211,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
 
     </div>
@@ -1194,7 +1219,7 @@
         <div id="subcategoria2_1" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/SapDe6H.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/SapDe6H.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1208,8 +1233,8 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/hdVbWqI.gif" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gQ1rFBC.gif" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/hdVbWqI.gif" alt="Imagen de ejemplo"  loading="lazy">
+                <img src="https://i.imgur.com/gQ1rFBC.gif" alt="Imagen de ejemplo"  loading="lazy">
             </div>
 </div>
 </div>
@@ -1225,9 +1250,9 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/UmhI0UQ.gif" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/B4wZKbq.gif" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/n6ss7wo.gif" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/UmhI0UQ.gif" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/B4wZKbq.gif" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/n6ss7wo.gif" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1244,7 +1269,7 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/ZkW9ORY.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ZkW9ORY.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1261,7 +1286,7 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/J6WgVqU.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/J6WgVqU.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1280,7 +1305,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
 
         </div>
@@ -1288,7 +1313,7 @@
         <div id="subcategoria2_2" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/RKztsKS.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/RKztsKS.png" alt="Banner de la página actual" loading="lazy">
 </div>
     <div class="container">
 
@@ -1302,9 +1327,9 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/MFcXFjX.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/WAyosu6.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/J1MUV35.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/MFcXFjX.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/WAyosu6.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/J1MUV35.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1323,7 +1348,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa"  loading="lazy" width="75">
 </footer>
 
         </div>
@@ -1331,7 +1356,7 @@
         <div id="subcategoria2_3" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/wCE7V7V.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/wCE7V7V.png" alt="Banner de la página actual" loading="lazy">
 </div>
     <div class="container">
 
@@ -1344,10 +1369,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/M8MJg9O.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/GRA0TFg.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/9vezvbZ.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gB1RVkZ.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/M8MJg9O.jpg" alt="Imagen de ejemplo"  loading="lazy">
+                <img src="https://i.imgur.com/GRA0TFg.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/9vezvbZ.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/gB1RVkZ.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1360,10 +1385,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/1fkR0Wx.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/g4rS6V4.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/h9vqVfZ.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/H811oqk.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/1fkR0Wx.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/g4rS6V4.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/h9vqVfZ.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/H811oqk.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1382,14 +1407,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria2_4" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/sLp1e2a.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/sLp1e2a.png" alt="Banner de la página actual" loading="lazy">
 </div>
     <div class="container">
 
@@ -1419,13 +1444,13 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria3_1" style="display: none;">
 <div id="banner">
-<img src="https://i.imgur.com/l1oh7m7.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/l1oh7m7.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1439,10 +1464,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/6L94525.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/kdvQCm3.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/kfvGRsB.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/wPFg01z.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/6L94525.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/kdvQCm3.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/kfvGRsB.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/wPFg01z.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1458,9 +1483,9 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/Ve1BUF2.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/30E341X.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/9vLe38i.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Ve1BUF2.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/30E341X.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/9vLe38i.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1476,8 +1501,8 @@
         <div class="content2">
 
             <div class="image-container">
-                <img src="https://i.imgur.com/yUfH5kU.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/2wHDVGf.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/yUfH5kU.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/2wHDVGf.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1493,9 +1518,9 @@
         <div class="content2">
 
             <div class="image-container">
-                <img src="https://i.imgur.com/IQQAjz4.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/jSsLUEv.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/sH6wJ4o.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/IQQAjz4.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/jSsLUEv.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/sH6wJ4o.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1512,15 +1537,15 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/Zk2E1hI.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/bEuIDvw.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/LZ2Ib7P.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Zk2E1hI.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/bEuIDvw.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/LZ2Ib7P.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/hHqVQuf.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/tS2J1Tk.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/caqX08u.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/hHqVQuf.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/tS2J1Tk.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/caqX08u.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1539,7 +1564,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
@@ -1560,10 +1585,10 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/EHPaYzW.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/wmOSHAD.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/ns0WiZV.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/lmKOnGJ.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/EHPaYzW.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/wmOSHAD.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/ns0WiZV.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/lmKOnGJ.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1580,11 +1605,11 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/UPOQ8wz.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/iuWqa5X.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/5WbVHBj.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/S0meokE.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/QF1YCgn.gif" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/UPOQ8wz.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/iuWqa5X.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/5WbVHBj.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/S0meokE.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/QF1YCgn.gif" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1603,14 +1628,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa"  loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria3_3" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/l1oh7m7.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/l1oh7m7.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1624,17 +1649,17 @@
         <div class="content2">
 
             <div class="image-container">
-                <img src="https://i.imgur.com/nSPm0EU.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/xSUPYs3.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gvYQXkr.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/WlPQpAm.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/nSPm0EU.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/xSUPYs3.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/gvYQXkr.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/WlPQpAm.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/ZBm7rbF.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/PJzI75i.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gCAnipo.jpg" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/AJ5MM9l.jpg" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ZBm7rbF.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/PJzI75i.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/gCAnipo.jpg" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/AJ5MM9l.jpg" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1651,7 +1676,7 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/KBtr3TR.gif" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/KBtr3TR.gif" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1670,14 +1695,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa"  loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria4_1" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/TNaI7Z0.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/TNaI7Z0.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1691,10 +1716,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/l08Rm2q.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/4J5tYpR.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/2IlVIRW.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/r0KbTyl.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/l08Rm2q.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/4J5tYpR.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/2IlVIRW.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/r0KbTyl.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1709,10 +1734,10 @@
 
         <div class="content2">
             <div class="image-container">
-                <img src="https://i.imgur.com/LRJ61tk.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/nsOqBwf.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/v7igOCO.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/Yiu8p3U.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/LRJ61tk.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/nsOqBwf.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/v7igOCO.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/Yiu8p3U.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1729,10 +1754,10 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/veaK9zd.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/ObyPMne.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gTSkYJ8.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/lmmgpZA.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/veaK9zd.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/ObyPMne.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/gTSkYJ8.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/lmmgpZA.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1749,10 +1774,10 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/uXyKpvN.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/CFiNwNJ.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/ea1ExhH.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/0GbWqKj.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/uXyKpvN.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/CFiNwNJ.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/ea1ExhH.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/0GbWqKj.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1771,14 +1796,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria4_2" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/TNaI7Z0.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/TNaI7Z0.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1792,10 +1817,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/8TzwPOc.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/ki3tWa4.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/4x3Ophc.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/eghboa2.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/8TzwPOc.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/ki3tWa4.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/4x3Ophc.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/eghboa2.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1811,10 +1836,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/LqPQ6Z2.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/BkJ4VBj.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/IJERiDY.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/OJcl8uB.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/LqPQ6Z2.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/BkJ4VBj.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/IJERiDY.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/OJcl8uB.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1831,10 +1856,10 @@
 
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/lEJ8FhD.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/XYPrjxx.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/FwTlSO4.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/j3afwVO.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/lEJ8FhD.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/XYPrjxx.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/FwTlSO4.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/j3afwVO.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1853,14 +1878,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria5_1" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1874,17 +1899,17 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/koo1UVx.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/zN6uoQi.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/Ln9Hqxp.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/kDu5GF4.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/koo1UVx.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/zN6uoQi.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/Ln9Hqxp.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/kDu5GF4.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/OhsQhFF.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/tbD7Wb4.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/1RuONV6.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/jPzMMhV.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/OhsQhFF.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/tbD7Wb4.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/1RuONV6.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/jPzMMhV.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1903,14 +1928,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria5_2" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -1924,17 +1949,17 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/TlvUKJQ.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/w9ZI7Nk.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/nWR8hVx.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/gEBxgZE.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/TlvUKJQ.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/w9ZI7Nk.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/nWR8hVx.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/gEBxgZE.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/bX9bDCX.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/MVetW0v.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/m168Aa4.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/MgKgKj6.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/bX9bDCX.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/MVetW0v.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/m168Aa4.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/MgKgKj6.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -1953,7 +1978,7 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa"  loading="lazy" width="75">
 </footer>
         </div>
 
@@ -1974,17 +1999,17 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/Twf4AO1.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/WeMQzNv.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/XYoFiFs.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/Uv28aAq.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Twf4AO1.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/WeMQzNv.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/XYoFiFs.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/Uv28aAq.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/Fgy9DLH.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/qQW8t5I.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/tCDFTfV.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/Q0UDnnR.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Fgy9DLH.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/qQW8t5I.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/tCDFTfV.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/Q0UDnnR.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -2003,14 +2028,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria5_4" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -2024,17 +2049,17 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/ABsTRKU.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/vH36x9k.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/jpfXb88.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/HZ9l2q3.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/ABsTRKU.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/vH36x9k.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/jpfXb88.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/HZ9l2q3.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 
             <div class="image-container">
-                <img src="https://i.imgur.com/Yd8ftqW.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/UsMwP0H.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/x3BpWtI.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/O0JYCCu.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/Yd8ftqW.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/UsMwP0H.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/x3BpWtI.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/O0JYCCu.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -2053,14 +2078,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria5_5" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/aF5Fr9R.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -2074,10 +2099,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/1vyyZl3.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/fZsJL23.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/72Fjo5X.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/X77t7Yd.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/1vyyZl3.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/fZsJL23.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/72Fjo5X.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/X77t7Yd.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -2093,10 +2118,10 @@
         <div class="content2">
             <div class="image-container">
                 <!-- Imágenes de ejemplo -->
-                <img src="https://i.imgur.com/kv1vjvv.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/CrSj9h7.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/z0clnYY.png" alt="Imagen de ejemplo">
-                <img src="https://i.imgur.com/woLiUUM.png" alt="Imagen de ejemplo">
+                <img src="https://i.imgur.com/kv1vjvv.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/CrSj9h7.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/z0clnYY.png" alt="Imagen de ejemplo" loading="lazy">
+                <img src="https://i.imgur.com/woLiUUM.png" alt="Imagen de ejemplo" loading="lazy">
             </div>
 </div>
 </div>
@@ -2115,14 +2140,14 @@
         <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
         <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
     </div>
-    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" loading="lazy" width="75">
 </footer>
         </div>
 
         <div id="subcategoria6_1" style="display: none;">
 
 <div id="banner">
-<img src="https://i.imgur.com/HAvPNx5.png" alt="Banner de la página actual">
+<img src="https://i.imgur.com/HAvPNx5.png" alt="Banner de la página actual" loading="lazy">
 </div>
 
     <div class="container">
@@ -2142,61 +2167,61 @@
     <div class="image-container">
         <!-- Imágenes de ejemplo -->
 <div class="image-description">
-        <img src="https://i.imgur.com/Ef3x1mW.png" alt="Ambar" title="It can be found in the extensive missions.">  
+        <img src="https://i.imgur.com/SJ8B5zG.png" alt="Ambar" title="It can be found in the extensive missions." loading="lazy">  
 <p>Ambar.</p>   
 </div> 
 <div class="image-description">  
-        <img src="https://i.imgur.com/Ap4mXkk.png" alt="Amethyst" title="It can be found in the short missions.">   
+        <img src="https://i.imgur.com/ejPfDk1.png" alt="Amethyst" title="It can be found in the short missions." loading="lazy">   
 <p>Amethyst.</p>  
 </div> 
 <div class="image-description">    
-        <img src="https://i.imgur.com/WdceM1U.png" alt="Black Diamond" title="It can be found in the extensive missions."> 
+        <img src="https://i.imgur.com/YeUXfoX.png" alt="Black Diamond" title="It can be found in the extensive missions." loading="lazy"> 
 <p>Black Diamond.</p> 
 </div> 
 <div class="image-description">       
-        <img src="https://i.imgur.com/omEzUBT.png" alt="Nanodiamond" title="It can be found in the Elite Missions.">
+        <img src="https://i.imgur.com/8YBTNPf.png" alt="Nanodiamond" title="It can be found in the Elite Missions." loading="lazy">
 <p>Nanodiamond.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/9bktYw0.png" alt="Jade" title="It can be found in the long missions.">
+        <img src="https://i.imgur.com/k3PjCTL.png" alt="Jade" title="It can be found in the long missions." loading="lazy">
 <p>Jade.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/i1SrBpR.png" alt="Diamond" title="It can be found in the short missions.">
+        <img src="https://i.imgur.com/yvRlcAg.png" alt="Diamond" title="It can be found in the short missions." loading="lazy">
 <p>Diamond.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/SB9HoVZ.png" alt="Opal" title="It can be found in the long missions.">
+        <img src="https://i.imgur.com/tIyISjg.png" alt="Opal" title="It can be found in the long missions." loading="lazy">
 <p>Opal.</p> 
 </div> 
     <div class="image-container">
         <!-- Imágenes de ejemplo -->
 <div class="image-description">
-        <img src="https://i.imgur.com/tN7dbMx.png" alt="Peridotos" title="It can be found in the Elite Missions.">
+        <img src="https://i.imgur.com/J5yD67v.png" alt="Peridotos" title="It can be found in the Elite Missions." loading="lazy">
 <p>Peridotos.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/LPcEgEH.png" alt="Pearl" title="It can be found in the moderate missions.">
+        <img src="https://i.imgur.com/Umr4UJP.png" alt="Pearl" title="It can be found in the moderate missions." loading="lazy">
 <p>Pearl.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/MEkBpJc.png" alt="Ruby" title="It can be found in the Flash Missions">
+        <img src="https://i.imgur.com/S7ddQgW.png" alt="Ruby" title="It can be found in the Flash Missions" loading="lazy">
 <p>Ruby.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/IgH41QS.png" alt="Star Ruby" title="It can be found in the extensive missions.">
+        <img src="https://i.imgur.com/J0TBGCg.png" alt="Star Ruby" title="It can be found in the extensive missions." loading="lazy">
 <p>Star Ruby.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/VY5Axx2.png" alt="Topaz" title="It can be found in the moderate missions.">
+        <img src="https://i.imgur.com/J0TBGCg.png" alt="Topaz" title="It can be found in the moderate missions." loading="lazy">
 <p>Topaz.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/yFxIOmW.png" alt="Turquoise" title="It can be found in the extensive missions.">
+        <img src="https://i.imgur.com/ZXJlg9i.png" alt="Turquoise" title="It can be found in the extensive missions." loading="lazy">
 <p>Turquoise.</p> 
 </div> 
 <div class="image-description">
-        <img src="https://i.imgur.com/8lZPiew.png" alt="Zafiro" title="It can be found in the Flash Missions">
+        <img src="https://i.imgur.com/CmvUCuq.png" alt="Zafiro" title="It can be found in the Flash Missions" loading="lazy">
 <p>Zafiro.</p> 
             </div>
 </div>
@@ -2237,10 +2262,10 @@
         
         <div class="content2">
             <div class="image-container">
-<h2>1. Completing Time Missions:</h2>
+<h2 style=" text-align: center; ">✦ Completing Time Missions:</h2>
 <p>Time missions offer a variety of durations, from quick 5-minute flash missions to challenging 24-hour elite missions. Each type of mission grants different types of gems as rewards. Here's a detailed description of the available missions and the gems you can obtain in each:</p>
             </div>
-
+</div>  
         <div class="content1">
 <ul>
     <li>Flash Missions (5 minutes): Rubies, Sapphires</li>
@@ -2251,21 +2276,27 @@
     <li>Exhaustive Missions (12 hours): Rubies, Sapphires, Diamonds, Amethysts, Pearls, Topazes, Opals, Jade, Turquoise, Amber, Star Rubies, Black Diamonds</li>
     <li>Elite Missions (24 hours): Rubies, Sapphires, Diamonds, Amethysts, Pearls, Topazes, Opals, Jade, Turquoise, Amber, Star Rubies, Black Diamonds, Nanodiamonds, Peridots</li>
 </ul>
-        </div>
+      
 </div>
         
         <div class="content2">
             <div class="image-container">
-<h2 style=" text-align: center; ">Temporary Storage:</h2>
+<h2 style=" text-align: center; ">✦ Grab your pickaxe!:</h2>
 <p>After completing a time mission, you'll receive a summary screen showing the number of items obtained as rewards, including gem ores. To mine these ores and collect the gems, you'll need a pickaxe. If you don't have a pickaxe, we'll show you how to get one.</p>
             </div>
 </div>
         <div class="content1">
-<h2>Temporary Storage:</h2>
+<h2 style=" text-align: center; ">✦ Temporary Storage:</h2>
 <p>If you decide not to get a pickaxe at the moment, the collected gem ores will be automatically stored in a chest for 7 days. This gives you the freedom to change your mind later and get a pickaxe to collect the gems.</p>
         </div>
 
         <div class="content2">
+            <div class="image-container">
+<h2 style=" text-align: center; ">✦ Gems Without a Pickaxe: Discover How to Collect Them</h2>
+<p>If you're interested in collecting gems but prefer not to purchase a pickaxe, you also have the option of finding them randomly during missions. However, it's worth noting that having a pickaxe is advantageous, as gem veins typically yield gems valued between x3 and x7. Nevertheless, if for any reason you don't want or can't obtain a pickaxe, you'll occasionally come across loose gems valued at x1 during your adventures.</p>
+            </div>
+</div>
+        <div class="content1">
             <div class="image-container">
 <p>Enjoy collecting gems and improving your skills in the game!</p>
             </div>
@@ -2289,6 +2320,338 @@
     <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75">
 </footer>
         </div>
+
+        <div id="subcategoria6_3" style="display: none;">
+
+<div id="banner">
+<img src="https://i.imgur.com/HAvPNx5.png" alt="Banner de la página actual">
+</div>
+
+<div class="container">
+    <div class="content1">
+        <h2 style="text-align: center;">✦ Using Gems Within the Game</h2>
+        <p style="text-align: center;">Gems can be used for various purposes within the game, enhancing your gameplay experience. Learn about the different ways to utilize them:</p>
+    </div>
+
+    <div class="content2">
+        <div class="image-container">
+            <h2 style="text-align: center;">✦ Crafting Equipment:</h2>
+            <p>You can use gems to craft a variety of equipment, including armor and backpacks, to customize your character's loadout. To craft and imbue, and for endless things!</p>
+    </div>
+</div>
+
+    <div class="content1">
+        <h2 style="text-align: center;">✦ Crafting Weapons:</h2>
+        <p>Utilize gems to craft both ranged (such as pistols and submachine guns) and melee weapons (such as swords, maces, and spears) to enhance your combat abilities.</p>
+    </div>
+
+    <div class="content2">
+        <div class="image-container">
+            <h2 style="text-align: center;">✦ Crafting Amulets:</h2>
+            <p>Create various amulets with different attributes, such as sacred, divine, or death amulets, using gems as crafting materials. Amulets that don't have gems aren't usually that cool!</p>
+    </div>
+</div>
+
+    <div class="content1">
+        <h2 style="text-align: center;">✦ Enchanting Weapons and Equipment:</h2>
+        <p>Enhance the power of your weapons and equipment by enchanting them with elemental properties using gems. Unleash Elemental advantages with your gems!</p>
+    </div>
+
+    <div class="content2">
+        <div class="image-container">
+            <h2 style="text-align: center;">✦ Exchanging with the Jeweler:</h2>
+            <p>Aside from crafting, gems can also be used as a currency for trading with the jeweler "Frederic" for creature products and more.Discover all the possibilities that jewelry offers!</p>
+    </div>
+</div>
+
+    <div class="content1">
+        <div class="image-container">
+            <p style="text-align: center;">Make the most out of your gems and explore the vast possibilities they offer in enhancing your gameplay experience!</p>
+</div>
+</div>
+</div>
+
+<footer>
+    <p style="text-align: center;">Copyright © 2024 StickersHUB1. All rights reserved.</p>
+    <nav style="text-align: center;">
+        <ul>
+            <li><a href="https://stickershub1.es/">Stickershub1.es</a></li>
+            <li><a href="https://stickershub1.es/roadmap/">Roadmap</a></li>
+            <li><a href="https://stickershub1.es/contacto/">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="social-icons" style="text-align: center;">
+        <a href="https://discord.com/invite/NeUgxfuSZQ"><img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord"></a>
+        <a href="https://twitter.com/StickersHubWAX"><img src="https://img.icons8.com/color/48/000000/twitter--v2.png" alt="Twitter"></a>
+        <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
+        <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
+    </div>
+    <img src="https://i.imgur.com/sKIggA2.png" alt="Logo de la empresa" width="75" style="display: block; margin: 0 auto;">
+</footer>
+</div>
+
+    <div id="subcategoria7_1" style="display: none;">
+
+        <div id="banner">
+            <img src="https://i.imgur.com/m9B9E9d.png" alt="Banner de la página actual">
+        </div>
+
+        <div class="container">
+
+            <div class="content1">
+                <h2 style="text-align: center;">Normal Critter Drops</h2>
+
+                <p>Cat Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/PA03AoU.png" alt="Cat Fur" loading="lazy">
+                        <p>Cat Fur.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/85OMIJ7.png" alt="Sharp Claw" loading="lazy">
+                        <p>Sharp Claw.</p>
+                    </div>
+                </div>
+                <p>Troll Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/kLXORNz.png" alt="Troll Tooth" loading="lazy">
+                        <p>Troll Tooth.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/Zmz0cKT.png" alt="Troll Fur" loading="lazy">
+                        <p>Troll Fur.</p>
+                    </div>
+                </div>
+
+                <p>Skull Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/Ts8BP6J.png" alt="Silver Skull" loading="lazy">
+                        <p>Silver Skull.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/u4AdDQJ.png" alt="Fire Eye" loading="lazy">
+                        <p>Fire Eye.</p>
+                    </div>
+                </div>
+
+                <p>Serpent Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/EXN0Uge.png" alt="Serpent Scale" loading="lazy">
+                        <p>Serpent Scale.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/fpioNGB.png" alt="Serpent Tusk" loading="lazy">
+                        <p>Serpent Tusk.</p>
+                    </div>
+                </div>
+
+                <p>Corrupted Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/J0RkVMi.png" alt="Corrupted Scroll" loading="lazy">
+                        <p>Corrupted Scroll.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/MPzALQM.png" alt="Corrupted Essence" loading="lazy">
+                        <p>Corrupted Essence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content2">
+                <h2 style="text-align: center;">Elevated Critters</h2>
+
+                <p>Cosmic Tentacle Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/5O9dhBB.png" alt="Cosmic Tentacle" loading="lazy">
+                        <p>Cosmic Tentacle.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/0ANaQPe.png" alt="Star Fragment" loading="lazy">
+                        <p>Star Fragment.</p>
+                    </div>
+                </div>
+
+                <p>Demon Elite Critters Drop:</p>
+                <div class="image-container">
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/Rtzvay6.png" alt="Demon Blood" loading="lazy">
+                        <p>Demon Blood.</p>
+                    </div>
+                    <div class="image-description">
+                        <img src="https://i.imgur.com/MSFIZZj.png" alt="Demon Horn" loading="lazy">
+                        <p>Demon Horn.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="https://stickershub1.es/">Stickershub1.es</a></li>
+                    <li><a href="https://stickershub1.es/roadmap/">Roadmap</a></li>
+                    <li><a href="https://stickershub1.es/contacto/">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://discord.com/invite/NeUgxfuSZQ"><img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord"></a>
+                <a href="https://twitter.com/StickersHubWAX"><img src="https://img.icons8.com/color/48/000000/twitter--v2.png" alt="Twitter"></a>
+                <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
+            </div>
+            <img src="https://i.imgur.com/sKIggA2.png" alt="Company Logo" loading="lazy" width="75">
+        </footer>
+    </div>
+
+    <div id="subcategoria7_2" style="display: none;">
+        <div id="banner">
+            <img src="https://i.imgur.com/m9B9E9d.png" alt="Banner de la página actual" loading="lazy">
+        </div>
+
+        <div class="container">
+
+            <div class="content1">
+                <h2 style="text-align: center;">✦ Critter Parts: Integral to Progression and Customization</h2>
+                <p style="text-align: center;">In our game, Critter Parts are fundamental for advancing and customizing your gameplay experience. They serve as key components for crafting weapons and equipment, enabling players to tailor their gear to suit their individual playstyles. Much like gems, find out how to get them:</p>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Completing Time Missions:</h2>
+                    <p>Time missions offer a variety of durations, from quick 5-minute flash missions to challenging 24-hour elite missions. Each type of mission grants different types of Critter Parts as rewards. Here's a detailed description of the available missions and the Critter Parts you can obtain in each:</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <ul>
+                    <li>Flash Missions (5 minutes): Cat Fur, Sharp Claw.</li>
+                    <li>Short Missions (10 minutes): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur.</li>
+                    <li>Moderate Missions (30 minutes): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur, Silver Skull, Fire Eye.</li>
+                    <li>Long Missions (1 hour): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur, Silver Skull, Fire Eye, Serpent Scale, Serpent Tusk, Pepperoni.</li>
+                    <li>Extensive Missions (6 hours): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur, Silver Skull, Fire Eye, Serpent Scale, Serpent Tusk, Pepperoni, Corrupted Scroll, Corrupted Essence, Melted Cheese.</li>
+                    <li>Exhaustive Missions (12 hours): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur, Silver Skull, Fire Eye, Serpent Scale, Serpent Tusk, Pepperoni, Corrupted Scroll, Corrupted Essence, Melted Cheese, Cosmic Tentacle, Star Fragment, Pizza Dough.</li>
+                    <li>Elite Missions (24 hours): Cat Fur, Sharp Claw, Troll Tooth, Troll Fur, Silver Skull, Fire Eye, Serpent Scale, Serpent Tusk, Pepperoni, Corrupted Scroll, Corrupted Essence, Melted Cheese, Cosmic Tentacle, Star Fragment, Pizza Dough, Demon Blood, Demon Horn, Tomato Sauce.</li>
+                </ul>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Grab your Weapons!:</h2>
+                    <p>After completing a time mission, you'll receive a summary screen showing the number of items obtained as rewards, including the critters found. To "kill" these Critters and collect the Critter Parts, you'll need a Weapon. If you don't have a Weapon, we'll show you how to get one.</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <h2 style="text-align: center;">✦ Temporary Storage:</h2>
+                <p>If you decide not to purchase a weapon right away, you have two options for handling the collected creature parts. Firstly, you can choose to store the critter in your wallet, but keep in mind that you'll lose the creature parts in the process. Alternatively, you can opt to store it in the chest to buy the weapon later. However, items stored in the chest have a shelf life of 7 days, so be sure to make your decision within that time frame.</p>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Creature Parts Without a Weapon: Discover How to Collect Them</h2>
+                    <p>If you're interested in collecting Critter Parts but prefer not to purchase a Weapon, you also have the option of finding them randomly during missions. However, it's important to note that having a Weapon is advantageous, as killing creatures increases the collection value between x3 and x7. Nonetheless, if for any reason you don't want or can't obtain a Weapon, you'll occasionally come across loose Critter Parts valued at x1 during your adventures.</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <div class="image-container">
+                    <p>Enjoy collecting Critter Parts and improving your skills in the game!</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="https://stickershub1.es/">Stickershub1.es</a></li>
+                    <li><a href="https://stickershub1.es/roadmap/">Roadmap</a></li>
+                    <li><a href="https://stickershub1.es/contacto/">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://discord.com/invite/NeUgxfuSZQ"><img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord"></a>
+                <a href="https://twitter.com/StickersHubWAX"><img src="https://img.icons8.com/color/48/000000/twitter--v2.png" alt="Twitter"></a>
+                <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
+            </div>
+            <img src="https://i.imgur.com/sKIggA2.png" alt="Company Logo" width="75">
+        </footer>
+    </div>
+
+    <div id="subcategoria7_3" style="display: none;">
+
+        <div id="banner">
+            <img src="https://i.imgur.com/m9B9E9d.png" alt="Banner de la página actual">
+        </div>
+
+        <div class="container">
+            <div class="content1">
+                <h2 style="text-align: center;">✦ Using Creature Products Within the Game</h2>
+                <p style="text-align: center;">Creature Products are essential resources utilized for crafting equipment, amulets, and weapons within the game. Similar to gems, they play a vital role in enhancing your gameplay experience.</p>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Crafting Equipment:</h2>
+                    <p>You can use Creature Products to craft various types of equipment, such as armor, backpacks, and other gear, allowing you to customize your character's loadout according to your preferences.</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <h2 style="text-align: center;">✦ Crafting Amulets:</h2>
+                <p>Similar to gems, Creature Products are also used in the crafting of amulets with various attributes and effects. They serve as essential components in creating powerful amulets to enhance your character's abilities.</p>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Crafting Weapons:</h2>
+                    <p>Utilize Creature Products to craft a wide range of weapons, including ranged and melee options, to bolster your combat capabilities and tackle challenging foes.</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <h2 style="text-align: center;">✦ Exchanging at the Druid's Shop:</h2>
+                <p>Creature Products can be exchanged at the Druid's Shop for elemental cubes, providing you with additional resources to further enhance your gameplay experience.</p>
+            </div>
+
+            <div class="content2">
+                <div class="image-container">
+                    <h2 style="text-align: center;">✦ Strategic Use of Creature Products:</h2>
+                    <p>Some Creature Products, such as Serpent Scales, not only function as amulets themselves but are also required for crafting other amulets. Plan your crafting strategy wisely to make the most of these versatile resources!</p>
+                </div>
+            </div>
+
+            <div class="content1">
+                <div class="image-container">
+                    <p>Ensure you make full use of Creature Products to optimize your gameplay and achieve success in your adventures!</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2024 StickersHUB1. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="https://stickershub1.es/">Stickershub1.es</a></li>
+                    <li><a href="https://stickershub1.es/roadmap/">Roadmap</a></li>
+                    <li><a href="https://stickershub1.es/contacto/">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://discord.com/invite/NeUgxfuSZQ"><img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord"></a>
+                <a href="https://twitter.com/StickersHubWAX"><img src="https://img.icons8.com/color/48/000000/twitter--v2.png" alt="Twitter"></a>
+                <a href="https://www.facebook.com/people/Stickershub1/100071760019083/"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/channel/UCqFGvTOI5NXi_ryyVUgScIg"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"></a>
+            </div>
+            <img src="https://i.imgur.com/sKIggA2.png" alt="Company Logo" width="75">
+        </footer>
+    </div>
+
 
 <script>
 // Variable para almacenar el estado de visibilidad de cada categoría
