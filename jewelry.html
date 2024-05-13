@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPC Dialog</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      overflow: hidden; /* Evita el scroll innecesario */
+    }
+
+    .npc-container {
+      position: relative;
+      width: 80vw;
+      max-width: 800px;
+      height: 80vh;
+      max-height: 600px;
+      background-image: url(https://i.imgur.com/JfsumFl.gif);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 2px solid #000;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      margin-top: 70px;
+    }
+
+    .dialog-box {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    max-height: calc(40vh - 200px);
+    overflow-y: auto;
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .dialog-text {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .user-input-container {
+      position: fixed; /* Posición fija en la parte inferior de la ventana */
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-top: 2px solid #000;
+    }
+
+    .user-input {
+      width: calc(100% - 80px);
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .send-button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .send-button:hover {
+      background-color: #45a049;
+    }
+
+    .blue-text {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<div class="npc-container"></div>
+
+<div class="dialog-box" id="dialog-box">
+  <!-- Historial de conversación -->
+  <div id="conversation"></div>
+</div>
+
+<div class="user-input-container">
+  <textarea class="user-input" id="user-input" rows="3" placeholder="Type your message here..." onkeydown="if(event.keyCode==13) sendMessage()"></textarea>
+  <button class="send-button" onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  // Variable para almacenar el estado de la conversación
+  var conversationState = "";
+
+  // Función para enviar mensajes
+  function sendMessage() {
+    var userInput = document.getElementById('user-input').value;
+    var conversationDiv = document.getElementById('conversation');
+    var npcResponse = "";
+
+    if (userInput.toLowerCase().trim() === 'hi') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Hi Navigator, welcome to my jewelry spacecraft! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+      conversationState = "start";
+    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> So you want to buy some of my gems huh? Talk business.<br><br>This is the list of gems that I have available:<br><br>Amber<br>Amethyst<br>Black Diamond<br>Nanodiamond<br>Jade<br>Diamond<br>Opal<br>Peridots<br>Pearl<br>Ruby<br>Star Ruby<br>Topaz<br>Turquoise<br>Sapphire<br><br>";
+      conversationState = "buy";
+    } else if (conversationState === "buy" && (userInput.toLowerCase().trim() === 'amber' || userInput.toLowerCase().trim() === 'amethyst' || userInput.toLowerCase().trim() === 'black diamond' || userInput.toLowerCase().trim() === 'nanodiamond' || userInput.toLowerCase().trim() === 'jade' || userInput.toLowerCase().trim() === 'diamond' || userInput.toLowerCase().trim() === 'opal' || userInput.toLowerCase().trim() === 'peridots' || userInput.toLowerCase().trim() === 'pearl' || userInput.toLowerCase().trim() === 'ruby' || userInput.toLowerCase().trim() === 'star ruby' || userInput.toLowerCase().trim() === 'topaz' || userInput.toLowerCase().trim() === 'turquoise' || userInput.toLowerCase().trim() === 'sapphire')) {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
+      conversationState = userInput.toLowerCase().trim();
+    } else if (conversationState === "amber" || conversationState === "amethyst" || conversationState === "black diamond" || conversationState === "nanodiamond" || conversationState === "jade" || conversationState === "diamond" || conversationState === "opal" || conversationState === "peridots" || conversationState === "pearl" || conversationState === "ruby" || conversationState === "star ruby" || conversationState === "topaz" || conversationState === "turquoise" || conversationState === "sapphire" && !isNaN(userInput.trim())) {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
+      conversationState = "confirm";
+    } else if (conversationState === "confirm" && userInput.toLowerCase().trim() === 'yes') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Here you are!<br><br>";
+      conversationState = "";
+    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Aha, you want to sell your gems you say? Let's see what you have...<br><br>";
+      conversationState = "sell";
+    } else {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Please say 'hi', 'buy', or 'sell'.<br><br>";
+    }
+
+    // Añadir el mensaje del usuario y la respuesta del NPC al historial de conversación
+    conversationDiv.innerHTML += npcResponse;
+
+    // Limpiar el campo de entrada después de enviar el mensaje
+    document.getElementById('user-input').value = "";
+
+    // Hacer scroll hacia abajo para mostrar el último mensaje enviado
+    conversationDiv.scrollTop = conversationDiv.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
