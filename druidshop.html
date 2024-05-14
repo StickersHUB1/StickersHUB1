@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPC Dialog</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      overflow: hidden; /* Evita el scroll innecesario */
+    }
+
+    .npc-container {
+      position: relative;
+      width: 80vw;
+      max-width: 800px;
+      height: 80vh;
+      max-height: 600px;
+      background-image: url(https://i.imgur.com/YM244Fr.gif);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 2px solid #000;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      margin-top: 70px;
+    }
+
+    .dialog-box {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    max-height: calc(40vh - 200px);
+    overflow-y: auto;
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .dialog-text {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .user-input-container {
+      position: fixed; /* Posición fija en la parte inferior de la ventana */
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-top: 2px solid #000;
+    }
+
+    .user-input {
+      width: calc(100% - 80px);
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .send-button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .send-button:hover {
+      background-color: #45a049;
+    }
+
+    .blue-text {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<div class="npc-container"></div>
+
+<div class="dialog-box" id="dialog-box">
+  <!-- Historial de conversación -->
+  <div id="conversation"></div>
+</div>
+
+<div class="user-input-container">
+  <textarea class="user-input" id="user-input" rows="3" placeholder="Please say 'hi', 'buy', or 'sell.'" onkeydown="if(event.keyCode==13) sendMessage()"></textarea>
+  <button class="send-button" onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  // Variable para almacenar el estado de la conversación
+  var conversationState = "";
+
+  // Lista de productos disponibles
+  var productList = [
+    "cat fur",
+    "sharp claw",
+    "troll tooth",
+    "troll fur",
+    "silver skull",
+    "fire eye",
+    "serpent scale",
+    "serpent tusk",
+    "corrupted scroll",
+    "corrupted essence",
+    "cosmic tentacle",
+    "star fragment",
+    "demon blood",
+    "demon horn"
+  ];
+
+  // Función para enviar mensajes
+  function sendMessage() {
+    var userInput = document.getElementById('user-input').value;
+    var conversationDiv = document.getElementById('conversation');
+    var npcResponse = "";
+
+    if (userInput.toLowerCase().trim() === 'hi') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Hello intergalactic companion, are you looking to <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+      conversationState = "start";
+    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> I will be happy to assist you!<br><br>This is the list of creature products that I have available:<br><br>";
+      // Agregar productos disponibles a la respuesta
+      productList.forEach(function(product) {
+        npcResponse += product + "<br>";
+      });
+      npcResponse += "<br>";
+      conversationState = "buy";
+    } else if (conversationState === "buy") {
+      if (productList.includes(userInput.trim())) {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
+        conversationState = "confirm";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
+      }
+    } else if (conversationState === "confirm") {
+      if (!isNaN(userInput.trim())) {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
+        conversationState = "final";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Please enter a valid number.<br><br>";
+      }
+    } else if (conversationState === "final") {
+      if (userInput.toLowerCase().trim() === 'yes') {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Here you are!<br><br>";
+        conversationState = "";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Transaction canceled.<br><br>";
+        conversationState = "";
+      }
+    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you have creature products? Show them to me!<br><br>";
+      conversationState = "sell";
+    } else {
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Please say 'hi', 'buy', or 'sell'.<br><br>";
+    }
+
+    // Crear un nuevo elemento de mensaje
+    var messageElement = document.createElement("div");
+    messageElement.innerHTML = npcResponse;
+
+    // Adjuntar el mensaje al historial de conversación
+    conversationDiv.appendChild(messageElement);
+
+    // Hacer scroll hacia abajo para mostrar el último mensaje enviado
+    messageElement.scrollIntoView({ behavior: "smooth", block: "end" });
+
+    // Limpiar el campo de entrada después de enviar el mensaje
+    document.getElementById('user-input').value = "";
+
+    // Retornar false para evitar el comportamiento predeterminado del formulario
+    return false;
+  }
+</script>
+
+</body>
+</html>
