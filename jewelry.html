@@ -93,13 +93,31 @@
 </div>
 
 <div class="user-input-container">
-  <textarea class="user-input" id="user-input" rows="3" placeholder="Type your message here..." onkeydown="if(event.keyCode==13) sendMessage()"></textarea>
+  <textarea class="user-input" id="user-input" rows="3" placeholder="Please say 'hi', 'buy', or 'sell.'" onkeydown="if(event.keyCode==13) sendMessage()"></textarea>
   <button class="send-button" onclick="sendMessage()">Send</button>
 </div>
 
 <script>
   // Variable para almacenar el estado de la conversación
   var conversationState = "";
+
+  // Lista de productos disponibles del joyero
+  var productList = [
+    "amber",
+    "amethyst",
+    "black diamond",
+    "nanodiamond",
+    "jade",
+    "diamond",
+    "opal",
+    "peridots",
+    "pearl",
+    "ruby",
+    "star ruby",
+    "topaz",
+    "turquoise",
+    "sapphire"
+  ];
 
   // Función para enviar mensajes
   function sendMessage() {
@@ -111,32 +129,57 @@
       npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Hi Navigator, welcome to my jewelry spacecraft! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
       conversationState = "start";
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> So you want to buy some of my gems huh? Talk business.<br><br>This is the list of gems that I have available:<br><br>Amber<br>Amethyst<br>Black Diamond<br>Nanodiamond<br>Jade<br>Diamond<br>Opal<br>Peridots<br>Pearl<br>Ruby<br>Star Ruby<br>Topaz<br>Turquoise<br>Sapphire<br><br>";
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> So you want to buy some of my gems huh? Talk business.<br><br>This is the list of gems that I have available:<br><br>";
+      // Agregar productos disponibles a la respuesta
+      productList.forEach(function(product) {
+        npcResponse += product + "<br>";
+      });
+      npcResponse += "<br>";
       conversationState = "buy";
-    } else if (conversationState === "buy" && (userInput.toLowerCase().trim() === 'amber' || userInput.toLowerCase().trim() === 'amethyst' || userInput.toLowerCase().trim() === 'black diamond' || userInput.toLowerCase().trim() === 'nanodiamond' || userInput.toLowerCase().trim() === 'jade' || userInput.toLowerCase().trim() === 'diamond' || userInput.toLowerCase().trim() === 'opal' || userInput.toLowerCase().trim() === 'peridots' || userInput.toLowerCase().trim() === 'pearl' || userInput.toLowerCase().trim() === 'ruby' || userInput.toLowerCase().trim() === 'star ruby' || userInput.toLowerCase().trim() === 'topaz' || userInput.toLowerCase().trim() === 'turquoise' || userInput.toLowerCase().trim() === 'sapphire')) {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
-      conversationState = userInput.toLowerCase().trim();
-    } else if (conversationState === "amber" || conversationState === "amethyst" || conversationState === "black diamond" || conversationState === "nanodiamond" || conversationState === "jade" || conversationState === "diamond" || conversationState === "opal" || conversationState === "peridots" || conversationState === "pearl" || conversationState === "ruby" || conversationState === "star ruby" || conversationState === "topaz" || conversationState === "turquoise" || conversationState === "sapphire" && !isNaN(userInput.trim())) {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
-      conversationState = "confirm";
-    } else if (conversationState === "confirm" && userInput.toLowerCase().trim() === 'yes') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Here you are!<br><br>";
-      conversationState = "";
+    } else if (conversationState === "buy") {
+      if (productList.includes(userInput.trim())) {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
+        conversationState = "confirm";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
+      }
+    } else if (conversationState === "confirm") {
+      if (!isNaN(userInput.trim())) {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
+        conversationState = "final";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Please enter a valid number.<br><br>";
+      }
+    } else if (conversationState === "final") {
+      if (userInput.toLowerCase().trim() === 'yes') {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Here you are!<br><br>";
+        conversationState = "";
+      } else {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Transaction canceled.<br><br>";
+        conversationState = "";
+      }
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Aha, you want to sell your gems you say? Let's see what you have...<br><br>";
+      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you have gems to sell? Show them to me!<br><br>";
       conversationState = "sell";
     } else {
       npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Please say 'hi', 'buy', or 'sell'.<br><br>";
     }
 
-    // Añadir el mensaje del usuario y la respuesta del NPC al historial de conversación
-    conversationDiv.innerHTML += npcResponse;
+    // Crear un nuevo elemento de mensaje
+    var messageElement = document.createElement("div");
+    messageElement.innerHTML = npcResponse;
+
+    // Adjuntar el mensaje al historial de conversación
+    conversationDiv.appendChild(messageElement);
+
+    // Hacer scroll hacia abajo para mostrar el último mensaje enviado
+    messageElement.scrollIntoView({ behavior: "smooth", block: "end" });
 
     // Limpiar el campo de entrada después de enviar el mensaje
     document.getElementById('user-input').value = "";
 
-    // Hacer scroll hacia abajo para mostrar el último mensaje enviado
-    conversationDiv.scrollTop = conversationDiv.scrollHeight;
+    // Retornar false para evitar el comportamiento predeterminado del formulario
+    return false;
   }
 </script>
 
