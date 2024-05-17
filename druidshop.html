@@ -17,29 +17,29 @@
 
     .npc-container {
       position: relative;
-      width: 80vw;
+      width: 100vw;
       max-width: 800px;
       height: 80vh;
       max-height: 600px;
       background-image: url(https://i.imgur.com/YM244Fr.gif);
-      background-size: cover;
+      background-size: 800px;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: 0px -250px;
       border: 2px solid #000;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       margin-top: 70px;
     }
 
     .dialog-box {
-    position: absolute;
-    bottom: 100px;
-    width: 100%;
-    max-height: calc(40vh - 200px);
-    overflow-y: auto;
-    background-color: #fff;
-    border: 2px solid #000;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      bottom: 100px;
+      width: 100%;
+      max-height: calc(40vh - 200px);
+      overflow-y: auto;
+      background-color: #fff;
+      border: 2px solid #000;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .dialog-text {
@@ -81,6 +81,24 @@
     .blue-text {
       color: blue;
     }
+
+    .coin-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .coin-image {
+      width: 50px;
+      height: auto;
+    }
+
+    .coin-balance {
+      margin-left: 5px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -97,12 +115,17 @@
   <button class="send-button" onclick="sendMessage()">Send</button>
 </div>
 
-<script>
-  // Variable para almacenar el estado de la conversación
-  var conversationState = "";
+<div class="coin-container">
+  <img src="https://i.imgur.com/WeGCqEE.png" class="coin-image" alt="Moneda del juego">
+  <div class="coin-balance" id="coin-balance">Balance: 50,000</div>
+</div>
 
-  // Lista de productos disponibles
-  var productList = [
+<script>
+// Variable para almacenar el estado de la conversación
+var conversationState = "";
+
+// Lista de productos disponibles del joyero
+var productList = [
     "cat fur",
     "sharp claw",
     "troll tooth",
@@ -113,56 +136,93 @@
     "serpent tusk",
     "corrupted scroll",
     "corrupted essence",
-    "cosmic tentacle",
-    "star fragment",
     "demon blood",
+    "star fragment",
+    "cosmic tentacle",
     "demon horn"
-  ];
+];
 
-  // Función para enviar mensajes
-  function sendMessage() {
+// Precios de los productos en monedas de oro
+var productPrices = {
+    "cat fur": 500,
+    "sharp claw": 500,
+    "troll tooth": 500,
+    "troll fur": 500,
+    "silver skull": 500,
+    "fire eye": 500,
+    "serpent scale": 1000,
+    "serpent tusk": 1000,
+    "corrupted scroll": 1000,
+    "corrupted essence": 1000,
+    "demon blood": 3000,
+    "star fragment": 3000,
+    "cosmic tentacle": 10000,
+    "demon horn": 10000
+};
+
+// Variable para almacenar la cantidad de dinero del usuario (simulada)
+var userMoney = 50000; // Ejemplo: $50,000
+
+// Función para enviar mensajes
+function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     var conversationDiv = document.getElementById('conversation');
     var npcResponse = "";
 
-    if (userInput.toLowerCase().trim() === 'hi') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Hello intergalactic companion, are you looking to <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
-      conversationState = "start";
+    if (conversationState === "") {
+        if (userInput.toLowerCase().trim() === 'hi' || userInput.toLowerCase().trim() === 'buy') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Greetings, traveler. I am Usékar, keeper of the ancient forest. What brings you here? Would you like to <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+            conversationState = "start";
+        } else if (userInput.toLowerCase().trim() === 'sell') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Ah, but your inventory is as empty as the ancient groves. Return when you have gathered something of value.<br><br>";
+        } else if (userInput.toLowerCase().trim() === 'help') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> To begin a conversation with me, type 'hi'. To buy mystical ingredients, type 'buy'. To sell items from your journeys, type 'sell'. To end our communion, type 'bye'.<br><br>";
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> The forest whispers, but I do not understand. Please say 'hi' or 'sell'.<br><br>";
+        }
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> I will be happy to assist you!<br><br>This is the list of creature products that I have available:<br><br>";
-      // Agregar productos disponibles a la respuesta
-      productList.forEach(function(product) {
-        npcResponse += product + "<br>";
-      });
-      npcResponse += "<br>";
-      conversationState = "buy";
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Ah, seeking the secrets of nature, are we? Here are the mystical ingredients I can offer:<br><br>";
+        // Agregar productos disponibles a la respuesta con sus precios
+        productList.forEach(function(product) {
+            npcResponse += product + " - Price: " + productPrices[product] + " gold coins<br>";
+        });
+        npcResponse += "<br>";
+        conversationState = "buy";
     } else if (conversationState === "buy") {
-      if (productList.includes(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
-        conversationState = "confirm";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
-      }
-    } else if (conversationState === "confirm") {
-      if (!isNaN(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
-        conversationState = "final";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Please enter a valid number.<br><br>";
-      }
-    } else if (conversationState === "final") {
-      if (userInput.toLowerCase().trim() === 'yes') {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Here you are!<br><br>";
-        conversationState = "";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Transaction canceled.<br><br>";
-        conversationState = "";
-      }
-    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Do you have creature products? Show them to me!<br><br>";
-      conversationState = "sell";
-    } else {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Shaman:</strong> Please say 'hi', 'buy', or 'sell'.<br><br>";
+        if (productList.includes(userInput.trim())) {
+            var productName = userInput.trim();
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Do you wish to obtain " + productName + " for " + productPrices[productName] + " gold coins? How many would you like to buy?<br><br>";
+            conversationState = "confirm_" + productName;
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> I do not have such an item. Please choose from the list above.<br><br>";
+        }
+    } else if (conversationState.startsWith("confirm_")) {
+        var productName = conversationState.split("_")[1];
+        var quantity = parseInt(userInput.trim());
+        if (!isNaN(quantity)) {
+            var totalPrice = quantity * productPrices[productName];
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> " + quantity + "? That will be " + totalPrice + " gold coins. Shall we proceed with the exchange?<br><br>";
+            conversationState = "final_" + totalPrice; // Utilizamos el precio total como parte del nuevo estado
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> The forest speaks in numbers. Please enter a valid one.<br><br>";
+        }
+    } else if (conversationState.startsWith("final_")) {
+        var totalPrice = parseInt(conversationState.split("_")[1]);
+        if (userInput.toLowerCase().trim() === 'yes') {
+            if (totalPrice <= userMoney) {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> The transaction is complete. May these items serve you well on your journey.<br><br>";
+                // Descontar el precio del balance del usuario
+                userMoney -= totalPrice;
+                document.getElementById('coin-balance').innerText = "Balance: " + userMoney.toLocaleString(); // Actualizar el balance mostrado
+                conversationState = ""; // Restablecer el estado de la conversación después de la transacción
+            } else {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Alas, you lack the necessary funds. Return when you are more prosperous.<br><br>";
+                conversationState = ""; // Restablecer el estado de la conversación si no hay suficiente dinero
+            }
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Very well. The transaction is canceled.<br><br>";
+            conversationState = ""; // Restablecer el estado de la conversación si la transacción se cancela
+        }
     }
 
     // Crear un nuevo elemento de mensaje
@@ -178,9 +238,19 @@
     // Limpiar el campo de entrada después de enviar el mensaje
     document.getElementById('user-input').value = "";
 
+    // Redirigir al enlace si el usuario escribe "bye"
+    if (userInput.toLowerCase().trim() === 'bye') {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Farewell, may the forest watch over you.<br><br>";
+        messageElement = document.createElement("div");
+        messageElement.innerHTML = npcResponse;
+        conversationDiv.appendChild(messageElement);
+        messageElement.scrollIntoView({ behavior: "smooth", block: "end" });
+        window.location.href = "https://stickershub1.github.io/StickersHUB1/menuprofittracker.html";
+    }
+
     // Retornar false para evitar el comportamiento predeterminado del formulario
     return false;
-  }
+}
 </script>
 
 </body>
