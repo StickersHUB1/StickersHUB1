@@ -81,6 +81,24 @@
     .blue-text {
       color: blue;
     }
+
+    .coin-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .coin-image {
+      width: 50px;
+      height: auto;
+    }
+
+    .coin-balance {
+      margin-left: 5px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -97,62 +115,94 @@
   <button class="send-button" onclick="sendMessage()">Send</button>
 </div>
 
-<script>
-  // Variable para almacenar el estado de la conversación
-  var conversationState = "";
+<div class="coin-container">
+  <img src="https://i.imgur.com/WeGCqEE.png" class="coin-image" alt="Moneda del juego">
+  <div class="coin-balance" id="coin-balance">Balance: 50,000</div>
+</div>
 
-  // Lista de productos disponibles del joyero
-  var productList = [
+<script>
+// Variable para almacenar el estado de la conversación
+var conversationState = "";
+
+// Lista de productos disponibles del joyero
+var productList = [
     "melted chesse",
     "tomato sauce",
     "Pizza Dough",
     "Pepperoni"
-  ];
+];
 
-  // Función para enviar mensajes
-  function sendMessage() {
+// Precios de los productos en monedas de oro
+var productPrices = {
+    "melted chesse": 10000,
+    "tomato sauce": 10000,
+    "Pizza Dough": 10000,
+    "Pepperoni": 10000
+};
+
+// Variable para almacenar la cantidad de dinero del usuario (simulada)
+var userMoney = 50000; // Ejemplo: $50,000
+
+// Función para enviar mensajes
+function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     var conversationDiv = document.getElementById('conversation');
     var npcResponse = "";
 
-    if (userInput.toLowerCase().trim() === 'hi') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Hi Bambino, welcome to my Interspatial Pizzeria! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
-      conversationState = "start";
+    if (conversationState === "") {
+        if (userInput.toLowerCase().trim() === 'hi' || userInput.toLowerCase().trim() === 'buy') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Hi Bambino, welcome to my Interspatial Pizzeria! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+            conversationState = "start";
+        } else if (userInput.toLowerCase().trim() === 'sell') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> You don't have any items in your inventory!<br><br>";
+        } else if (userInput.toLowerCase().trim() === 'help') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> To start a conversation with me type hi.<br>To buy items, type buy.<br>To sell items, type sell.<br>To end the conversation and return to the home menu, type bye.<br><br>";
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I don't understand. Please say 'hi' or 'sell'.<br><br>";
+        }
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I see, you need to make some pizzas!<br><br>This is the list of Ingredients that I have available:<br><br>";
-      // Agregar productos disponibles a la respuesta
-      productList.forEach(function(product) {
-        npcResponse += product + "<br>";
-      });
-      npcResponse += "<br>";
-      conversationState = "buy";
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I see, you need to make some pizzas!<br><br>This is the list of Ingredients that I have available:<br><br>";
+        // Agregar productos disponibles a la respuesta con sus precios
+        productList.forEach(function(product) {
+            npcResponse += product + " - Price: 10000 gold coins<br>";
+        });
+        npcResponse += "<br>";
+        conversationState = "buy";
     } else if (conversationState === "buy") {
-      if (productList.includes(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
-        conversationState = "confirm";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
-      }
-    } else if (conversationState === "confirm") {
-      if (!isNaN(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
-        conversationState = "final";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Please enter a valid number.<br><br>";
-      }
-    } else if (conversationState === "final") {
-      if (userInput.toLowerCase().trim() === 'yes') {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Here you are!<br><br>";
-        conversationState = "";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Transaction canceled.<br><br>";
-        conversationState = "";
-      }
-    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Do you have ingredients to sell me? Let's take a look at them to see if they're not rotten!<br><br>";
-      conversationState = "sell";
-    } else {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Please say 'hi'.<br><br>";
+        if (productList.includes(userInput.trim())) {
+            var productName = userInput.trim();
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Do you want to buy " + productName + " - Price: 10000 gold coins? Clear! How many would you like to buy?<br><br>";
+            conversationState = "confirm_" + productName;
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
+        }
+    } else if (conversationState.startsWith("confirm_")) {
+        var productName = conversationState.split("_")[1];
+        var quantity = parseInt(userInput.trim());
+        if (!isNaN(quantity)) {
+            var totalPrice = quantity * productPrices[productName];
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> " + quantity + "? That will be " + totalPrice + " gold coins, do you want to continue with the deal?<br><br>";
+            conversationState = "final_" + totalPrice; // Utilizamos el precio total como parte del nuevo estado
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Please enter a valid number.<br><br>";
+        }
+    } else if (conversationState.startsWith("final_")) {
+        var totalPrice = parseInt(conversationState.split("_")[1]);
+        if (userInput.toLowerCase().trim() === 'yes') {
+            if (totalPrice <= userMoney) {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Here you are! (Coming Soon)<br><br>";
+                // Descontar el precio del balance del usuario
+                userMoney -= totalPrice;
+                document.getElementById('coin-balance').innerText = "Balance: " + userMoney.toLocaleString(); // Actualizar el balance mostrado
+                conversationState = ""; // Restablecer el estado de la conversación después de la transacción
+            } else {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Sorry! You don't have enough money!<br><br>";
+                conversationState = ""; // Restablecer el estado de la conversación si no hay suficiente dinero
+            }
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Transaction canceled.<br><br>";
+            conversationState = ""; // Restablecer el estado de la conversación si la transacción se cancela
+        }
     }
 
     // Crear un nuevo elemento de mensaje
@@ -168,9 +218,19 @@
     // Limpiar el campo de entrada después de enviar el mensaje
     document.getElementById('user-input').value = "";
 
+    // Redirigir al enlace si el usuario escribe "bye"
+    if (userInput.toLowerCase().trim() === 'bye') {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Ciao Bambino!<br><br>";
+        messageElement = document.createElement("div");
+        messageElement.innerHTML = npcResponse;
+        conversationDiv.appendChild(messageElement);
+        messageElement.scrollIntoView({ behavior: "smooth", block: "end" });
+        window.location.href = "https://stickershub1.github.io/StickersHUB1/menuprofittracker.html";
+    }
+
     // Retornar false para evitar el comportamiento predeterminado del formulario
     return false;
-  }
+}
 </script>
 
 </body>
