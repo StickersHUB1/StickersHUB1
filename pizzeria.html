@@ -126,7 +126,7 @@ var conversationState = "";
 
 // Lista de productos disponibles del joyero
 var productList = [
-    "melted chesse",
+    "melted cheese",
     "tomato sauce",
     "pizza dough",
     "pepperoni"
@@ -134,7 +134,7 @@ var productList = [
 
 // Precios de los productos en monedas de oro
 var productPrices = {
-    "melted chesse": 10000,
+    "melted cheese": 10000,
     "tomato sauce": 10000,
     "pizza dough": 10000,
     "pepperoni": 10000
@@ -151,37 +151,37 @@ function sendMessage() {
 
     if (conversationState === "") {
         if (userInput.toLowerCase().trim() === 'hi' || userInput.toLowerCase().trim() === 'buy') {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Hi Bambino, welcome to my Interspatial Pizzeria! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Ciao, Bambino! Welcome to Giovanni's Interspatial Pizzeria! What would you like to do today, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
             conversationState = "start";
         } else if (userInput.toLowerCase().trim() === 'sell') {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> You don't have any items in your inventory!<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Ah, you want to sell! But it seems your inventory is empty, my friend.<br><br>";
         } else if (userInput.toLowerCase().trim() === 'help') {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> To start a conversation with me type hi.<br>To buy items, type buy.<br>To sell items, type sell.<br>To end the conversation and return to the home menu, type bye.<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> To start a conversation, type hi.<br>To buy items, type buy.<br>To sell items, type sell.<br>To end the conversation and return to the home menu, type bye.<br><br>";
         } else {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I don't understand. Please say 'hi' or 'sell'.<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Scusi, I didn't catch that. Please say 'hi' or 'sell'.<br><br>";
         }
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I see, you need to make some pizzas!<br><br>This is the list of Ingredients that I have available:<br><br>";
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Ah, you want to buy! Let's get cooking!<br><br>Here's what's on the menu today:<br><br>";
         // Agregar productos disponibles a la respuesta con sus precios
         productList.forEach(function(product) {
-            npcResponse += product + " - Price: 10000 gold coins<br>";
+            npcResponse += product + " - Price: " + productPrices[product] + " gold coins<br>";
         });
         npcResponse += "<br>";
         conversationState = "buy";
     } else if (conversationState === "buy") {
         if (productList.includes(userInput.trim())) {
             var productName = userInput.trim();
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Do you want to buy " + productName + " - Price: 10000 gold coins? Clear! How many would you like to buy?<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Fantastico! How many " + productName + " would you like to buy?<br><br>";
             conversationState = "confirm_" + productName;
         } else {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> I'm sorry, we don't have that on the menu. Please choose from the options above.<br><br>";
         }
     } else if (conversationState.startsWith("confirm_")) {
         var productName = conversationState.split("_")[1];
         var quantity = parseInt(userInput.trim());
         if (!isNaN(quantity)) {
             var totalPrice = quantity * productPrices[productName];
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> " + quantity + "? That will be " + totalPrice + " gold coins, do you want to continue with the deal?<br><br>";
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> " + quantity + " it is! That'll be " + totalPrice + " gold coins. Are you ready to proceed?<br><br>";
             conversationState = "final_" + totalPrice; // Utilizamos el precio total como parte del nuevo estado
         } else {
             npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Please enter a valid number.<br><br>";
@@ -190,18 +190,20 @@ function sendMessage() {
         var totalPrice = parseInt(conversationState.split("_")[1]);
         if (userInput.toLowerCase().trim() === 'yes') {
             if (totalPrice <= userMoney) {
-                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Here you are! (Coming Soon)<br><br>";
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Grazie! Your order is on its way.<br><br>";
                 // Descontar el precio del balance del usuario
                 userMoney -= totalPrice;
                 document.getElementById('coin-balance').innerText = "Balance: " + userMoney.toLocaleString(); // Actualizar el balance mostrado
-                conversationState = ""; // Restablecer el estado de la conversación después de la transacción
+                conversationState = ""; // Restable
             } else {
-                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Sorry! You don't have enough money!<br><br>";
-                conversationState = ""; // Restablecer el estado de la conversación si no hay suficiente dinero
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Scusi, you don't have enough coins for that. Please choose a smaller quantity or cancel the transaction.<br><br>";
+                conversationState = ""; // Restable
             }
+        } else if (userInput.toLowerCase().trim() === 'no') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Va bene, we'll save it for another time. Ciao!<br><br>";
+            conversationState = ""; // Restable
         } else {
-            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Transaction canceled.<br><br>";
-            conversationState = ""; // Restablecer el estado de la conversación si la transacción se cancela
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Scusi, I didn't get that. Please type 'yes' or 'no'.<br><br>";
         }
     }
 
@@ -220,7 +222,7 @@ function sendMessage() {
 
     // Redirigir al enlace si el usuario escribe "bye"
     if (userInput.toLowerCase().trim() === 'bye') {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Giovanni il Pizzaiolo:</strong> Ciao Bambino!<br><br>";
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Farewell, may the forest watch over you.<br><br>";
         messageElement = document.createElement("div");
         messageElement.innerHTML = npcResponse;
         conversationDiv.appendChild(messageElement);
