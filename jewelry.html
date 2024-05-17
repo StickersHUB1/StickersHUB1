@@ -16,30 +16,30 @@
     }
 
     .npc-container {
-      position: relative;
-      width: 80vw;
-      max-width: 800px;
-      height: 80vh;
-      max-height: 600px;
-      background-image: url(https://i.imgur.com/JfsumFl.gif);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      border: 2px solid #000;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      margin-top: 70px;
+    position: relative;
+    width: 100vw;
+    max-width: 800px;
+    height: 80vh;
+    max-height: 600px;
+    background-image: url(https://i.imgur.com/JfsumFl.gif);
+    background-size: 800px;
+    background-repeat: no-repeat;
+    background-position: 0px -290px;
+    border: 2px solid #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin-top: 70px;
     }
 
     .dialog-box {
-    position: absolute;
-    bottom: 100px;
-    width: 100%;
-    max-height: calc(40vh - 200px);
-    overflow-y: auto;
-    background-color: #fff;
-    border: 2px solid #000;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      bottom: 100px;
+      width: 100%;
+      max-height: calc(40vh - 200px);
+      overflow-y: auto;
+      background-color: #fff;
+      border: 2px solid #000;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .dialog-text {
@@ -81,6 +81,24 @@
     .blue-text {
       color: blue;
     }
+
+    .coin-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .coin-image {
+      width: 50px;
+      height: auto;
+    }
+
+    .coin-balance {
+      margin-left: 5px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -97,72 +115,114 @@
   <button class="send-button" onclick="sendMessage()">Send</button>
 </div>
 
-<script>
-  // Variable para almacenar el estado de la conversación
-  var conversationState = "";
+<div class="coin-container">
+  <img src="https://i.imgur.com/WeGCqEE.png" class="coin-image" alt="Moneda del juego">
+  <div class="coin-balance" id="coin-balance">Balance: 50,000</div>
+</div>
 
-  // Lista de productos disponibles del joyero
-  var productList = [
+<script>
+// Variable para almacenar el estado de la conversación
+var conversationState = "";
+
+// Lista de productos disponibles del joyero
+var productList = [
     "amber",
-    "amethyst",
-    "black diamond",
-    "nanodiamond",
     "jade",
+    "pearl",
+    "turquoise",
+    "amethyst",
     "diamond",
     "opal",
-    "peridots",
-    "pearl",
     "ruby",
-    "star ruby",
     "topaz",
-    "turquoise",
-    "sapphire"
-  ];
+    "sapphire",
+    "black diamond",
+    "star ruby",
+    "nanodiamond",
+    "peridots"
+];
 
-  // Función para enviar mensajes
-  function sendMessage() {
+// Precios de los productos en monedas de oro
+var productPrices = {
+"amber": 500,
+"jade": 500,
+"pearl": 500,
+"turquoise": 500,
+"amethyst": 1000,
+"diamond": 1000,
+"opal": 1000,
+"ruby": 1000,
+"topaz": 1000,
+"sapphire": 1000,
+"black diamond": 3000,
+"star ruby": 3000,
+"nanodiamond": 10000,
+"peridots": 10000
+};
+
+// Variable para almacenar la cantidad de dinero del usuario (simulada)
+var userMoney = 50000; // Ejemplo: $50,000
+
+// Función para enviar mensajes
+function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     var conversationDiv = document.getElementById('conversation');
     var npcResponse = "";
 
-    if (userInput.toLowerCase().trim() === 'hi') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Hi Navigator, welcome to my jewelry spacecraft! What would you like to do, <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
-      conversationState = "start";
+    if (conversationState === "") {
+        if (userInput.toLowerCase().trim() === 'hi' || userInput.toLowerCase().trim() === 'buy') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Welcome, esteemed patron. I am Frederic the Jeweler. What exquisite treasures can I assist you with today? Would you like to <span class='blue-text'>buy</span> or <span class='blue-text'>sell</span>?<br><br>";
+            conversationState = "start";
+        } else if (userInput.toLowerCase().trim() === 'sell') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Ah, you seek to part with your treasures. Let us see what marvels you possess.<br><br>";
+        } else if (userInput.toLowerCase().trim() === 'help') {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> To commence a discussion with me, kindly type 'hi'. For purchasing fine jewelry, type 'buy'. To sell your valuables, type 'sell'. To end our discourse, type 'bye'.<br><br>";
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> My apologies, but I cannot decipher your words. Please say 'hi' or 'sell'.<br><br>";
+        }
     } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'buy') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> So you want to buy some of my gems huh? Talk business.<br><br>This is the list of gems that I have available:<br><br>";
-      // Agregar productos disponibles a la respuesta
-      productList.forEach(function(product) {
-        npcResponse += product + "<br>";
-      });
-      npcResponse += "<br>";
-      conversationState = "buy";
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Ah, a connoisseur of fine craftsmanship. Allow me to present the exquisite treasures I have to offer:<br><br>";
+        // Agregar productos disponibles a la respuesta con sus precios
+        productList.forEach(function(product) {
+            npcResponse += product + " - Price: " + productPrices[product] + " gold coins<br>";
+        });
+        npcResponse += "<br>";
+        conversationState = "buy";
     } else if (conversationState === "buy") {
-      if (productList.includes(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + "? Clear! How many would you like to buy?<br><br>";
-        conversationState = "confirm";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> I don't understand what you want to buy. Please choose from the list above.<br><br>";
-      }
-    } else if (conversationState === "confirm") {
-      if (!isNaN(userInput.trim())) {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you want to buy " + userInput.trim() + " " + conversationState + "?<br><br>";
-        conversationState = "final";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Please enter a valid number.<br><br>";
-      }
-    } else if (conversationState === "final") {
-      if (userInput.toLowerCase().trim() === 'yes') {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Here you are!<br><br>";
-        conversationState = "";
-      } else {
-        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Transaction canceled.<br><br>";
-        conversationState = "";
-      }
-    } else if (conversationState === "start" && userInput.toLowerCase().trim() === 'sell') {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Do you have gems to sell? Show them to me!<br><br>";
-      conversationState = "sell";
-    } else {
-      npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Please say 'hi', 'buy', or 'sell'.<br><br>";
+        if (productList.includes(userInput.trim())) {
+            var productName = userInput.trim();
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Are you interested in acquiring " + productName + " for " + productPrices[productName] + " gold coins? How many would you like to purchase?<br><br>";
+            conversationState = "confirm_" + productName;
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> My apologies, but I do not carry such an item. Please choose from the list above.<br><br>";
+        }
+    } else if (conversationState.startsWith("confirm_")) {
+        var productName = conversationState.split("_")[1];
+        var quantity = parseInt(userInput.trim());
+        if (!isNaN(quantity)) {
+            var totalPrice = quantity * productPrices[productName];
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> " + quantity + "? That will amount to " + totalPrice + " gold coins. Shall we proceed with the transaction?<br><br>";
+            conversationState = "final_" + totalPrice; // Utilizamos el precio total como parte del nuevo estado
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> My apologies, but numbers are the language of trade. Please enter a valid quantity.<br><br>";
+        }
+    } else if (conversationState.startsWith("final_")) {
+        var totalPrice = parseInt(conversationState.split("_")[1]);
+        if (userInput.toLowerCase().trim() === 'yes') {
+            if (totalPrice <= userMoney) {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> The transaction is complete. May these treasures bring you joy and fortune.<br><br>";
+                // Descontar el precio del balance del usuario
+                userMoney -= totalPrice;
+                document.getElementById('coin-balance').innerText = "Balance: " + userMoney.toLocaleString(); // Actualizar el balance mostrado
+                conversationState = ""; // Restablecer el estado de la conversación después de la transacción
+            } else {
+                npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Apologies, but it seems you lack the necessary funds. Perhaps another time when your coffers are fuller.<br><br>";
+                conversationState = ""; // Restablecer el estado de la conversación si no hay suficiente dinero
+            }
+        } else {
+            npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Frederic the Jeweler:</strong> Very well. The transaction has been canceled.<br><br>";
+            conversationState = ""; // Restablecer el estado de la conversación si la transacción se cancela
+        }
     }
 
     // Crear un nuevo elemento de mensaje
@@ -178,9 +238,19 @@
     // Limpiar el campo de entrada después de enviar el mensaje
     document.getElementById('user-input').value = "";
 
+    // Redirigir al enlace si el usuario escribe "bye"
+    if (userInput.toLowerCase().trim() === 'bye') {
+        npcResponse = "<strong>Usuario:</strong> " + userInput + "<br><strong>Usékar the Druid:</strong> Farewell, may the forest watch over you.<br><br>";
+        messageElement = document.createElement("div");
+        messageElement.innerHTML = npcResponse;
+        conversationDiv.appendChild(messageElement);
+        messageElement.scrollIntoView({ behavior: "smooth", block: "end" });
+        window.location.href = "https://stickershub1.github.io/StickersHUB1/menuprofittracker.html";
+    }
+
     // Retornar false para evitar el comportamiento predeterminado del formulario
     return false;
-  }
+}
 </script>
 
 </body>
