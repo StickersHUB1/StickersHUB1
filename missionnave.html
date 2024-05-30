@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameSite</title>
+  <style>
+    body {
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      background: url(https://i.imgur.com/qtcwf1L.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 2000px;
+    }
+
+    .container {
+      width: 80%;
+      padding: 20px;
+      background-color: #2a2a2a7a;
+      border-radius: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .grid-item {
+      background-color: #3a3a3a96;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.05);
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 10px;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background: url(https://i.imgur.com/RQNSpxq.png);
+      background-position: center;
+      text-shadow: -1px 1px 0px black;
+    }
+
+    .button:hover {
+      background-color: #0099cc;
+    }
+
+    .login-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      background-color: #2a2a2a7a;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-button">
+    <button class="button">𝐋𝐎𝐆 𝐈𝐍</button>
+    <button class="button">𝐆𝐎 𝐁𝐀𝐂𝐊</button>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <div class="grid-item">
+        <h3>Flash</h3>
+        <p>Posible Rewards:</p> 
+        <p>Basic</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Short</h3>
+        <p>Posible Rewards:</p> 
+        <p>Basic</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Moderate</h3>
+        <p>Posible Rewards:</p> 
+        <p>Basic</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Long</h3>
+        <p>Posible Rewards:</p> 
+        <p>Rare</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Extensive</h3>
+        <p>Posible Rewards:</p> 
+        <p>Rare</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Exhaustive</h3>
+        <p>Posible Rewards:</p> 
+        <p>Epic</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>Elite</h3>
+        <p>Posible Rewards:</p> 
+        <p>Legendary</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+      <div class="grid-item">
+        <h3>¿NUEVA?</h3>
+        <p>Posible Rewards:</p> 
+        <p>Coming Soon</p>
+        <button class="button">𝐓𝐀𝐊𝐄 𝐌𝐈𝐒𝐒𝐈𝐎𝐍</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2024 STICKERSHUB1. All rights reserved.
+  </div>
+</body>
+</html>
